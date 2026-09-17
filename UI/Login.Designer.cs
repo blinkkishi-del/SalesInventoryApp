@@ -82,12 +82,15 @@
             // 
             // btnExit
             // 
+            btnExit.BackColor = Color.Red;
+            btnExit.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExit.ForeColor = SystemColors.ButtonHighlight;
             btnExit.Location = new Point(1196, 12);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(74, 27);
+            btnExit.Size = new Size(74, 36);
             btnExit.TabIndex = 12;
             btnExit.Text = "Exit";
-            btnExit.UseVisualStyleBackColor = true;
+            btnExit.UseVisualStyleBackColor = false;
             // 
             // txtPassword
             // 
@@ -107,12 +110,15 @@
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(859, 463);
+            btnLogin.BackColor = SystemColors.ActiveCaption;
+            btnLogin.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogin.ForeColor = SystemColors.ButtonHighlight;
+            btnLogin.Location = new Point(861, 444);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(94, 29);
+            btnLogin.Size = new Size(118, 36);
             btnLogin.TabIndex = 15;
             btnLogin.Text = "Login";
-            btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.UseVisualStyleBackColor = false;
             // 
             // Login
             // 
