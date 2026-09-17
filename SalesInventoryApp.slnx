@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="BusinessLogic/BusinessLogic.csproj" />
+  <Project Path="DB/DB.sqlproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="Model/Model.csproj" />
+  <Project Path="UI/UI.csproj" />
+</Solution>
