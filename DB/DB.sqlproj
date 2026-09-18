@@ -65,4 +65,7 @@
     <Build Include="Table\tblUsers.sql" />
     <Build Include="Table\tblProduct.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostScript\Script.InitialScript.sql" />
+  </ItemGroup>
 </Project>
