@@ -8,15 +8,14 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class Login : Form
+    public partial class AdminDashboard : Form
     {
-        public Login()
+        public AdminDashboard()
         {
             InitializeComponent();
         }
 
-
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void btnLogout_Click(object sender, EventArgs e)
         {
 
         }

@@ -9,10 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+
     <Folder Include="reference\" />
   </ItemGroup>
 
   <ItemGroup>
+
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
