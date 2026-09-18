@@ -63,5 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Table\tblUsers.sql" />
+    <Build Include="Table\tblProduct.sql" />
   </ItemGroup>
 </Project>
