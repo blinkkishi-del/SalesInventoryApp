@@ -15,12 +15,8 @@ namespace UI
             InitializeComponent();
         }
 
-        private void lblStorename_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void pbLogo_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
 
         }

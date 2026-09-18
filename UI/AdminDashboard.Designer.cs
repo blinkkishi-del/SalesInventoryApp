@@ -57,7 +57,6 @@
             btnProduct.TabIndex = 6;
             btnProduct.Text = "Search";
             btnProduct.UseVisualStyleBackColor = false;
-           
             // 
             // lblAdmindashboard
             // 
@@ -71,7 +70,6 @@
             lblAdmindashboard.TabIndex = 7;
             lblAdmindashboard.Text = "Admin Dashboard";
             lblAdmindashboard.TextAlign = ContentAlignment.TopCenter;
-           
             // 
             // txtSearch
             // 
@@ -134,6 +132,7 @@
             btnLogout.TabIndex = 12;
             btnLogout.Text = "Logout";
             btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
             // 
             // btnProductcategory
             // 
@@ -206,7 +205,6 @@
             Margin = new Padding(2, 3, 2, 3);
             Name = "AdminDashboard";
             Text = "AdminDashboard";
-          
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
