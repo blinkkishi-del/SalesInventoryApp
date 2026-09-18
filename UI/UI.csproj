@@ -12,6 +12,9 @@
 
     <Folder Include="reference\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
 
