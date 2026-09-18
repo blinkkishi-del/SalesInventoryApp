@@ -8,11 +8,16 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class Form1 : Form
+    public partial class CashierDashboard : Form
     {
-        public Form1()
+        public CashierDashboard()
         {
             InitializeComponent();
+        }
+
+        private void btnProduct_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
