@@ -61,4 +61,8 @@
     <Folder Include="StoredProc" />
     <Folder Include="PostScript" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="Table\tblUsers.sql" />
+    <Build Include="Table\tblProduct.sql" />
+  </ItemGroup>
 </Project>
