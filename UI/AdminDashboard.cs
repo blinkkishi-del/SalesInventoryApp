@@ -19,5 +19,12 @@ namespace UI
         {
 
         }
+
+        private void btnInvmanage_Click(object sender, EventArgs e)
+        {
+            InventoryManagement inventoryManagementForm = new InventoryManagement();
+            this.Hide();
+            inventoryManagementForm.Show();
+        }
     }
 }
