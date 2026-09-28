@@ -38,7 +38,7 @@ VALUES
 
 -- [ MARKERS ] (6)
 
-('Markers', 'Highlighter Yellow', 'Markers', 'Goldwings Stationery Products Inc.', 110, 25.00),
+('4GJQW8', 'Highlighter Yellow', 'Markers', 'Goldwings Stationery Products Inc.', 110, 25.00),
 ('4W8J2R', 'Highlighter Green', 'Markers', 'Goldwings Stationery Products Inc.', 85, 25.00),
 ('T7M3L9', 'Highlighter Pink', 'Markers', 'Goldwings Stationery Products Inc.', 95, 25.00),
 ('2B6V8K', 'Whiteboard Marker Black', 'Markers', 'Penline Stationery Inc.', 70, 40.00),
@@ -120,3 +120,13 @@ VALUES
 
 
 GO
+
+
+INSERT INTO [dbo].[tblProductDetails] (ProductId, Category, Supplier, Name)
+VALUES
+
+('9X4R6T', 'Notebooks', 'Sterling Paper Products Enterprises, Inc.', 'Spiral Notebook 80 Sheets');
+
+GO
+
+
