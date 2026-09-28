@@ -33,8 +33,8 @@
             panel1 = new Panel();
             lblCashierdashboard = new Label();
             panel2 = new Panel();
-            btnPos = new Button();
             btnLogout = new Button();
+            btnPos = new Button();
             panel3 = new Panel();
             btnProduct = new Button();
             panel1.SuspendLayout();
@@ -45,39 +45,43 @@
             // btnHome
             // 
             btnHome.BackColor = SystemColors.WindowFrame;
-            btnHome.Font = new Font("Californian FB", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHome.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnHome.ForeColor = SystemColors.ButtonHighlight;
-            btnHome.Location = new Point(37, 30);
+            btnHome.Location = new Point(26, 18);
+            btnHome.Margin = new Padding(2, 2, 2, 2);
             btnHome.Name = "btnHome";
-            btnHome.Size = new Size(328, 61);
+            btnHome.Size = new Size(230, 37);
             btnHome.TabIndex = 0;
             btnHome.Text = "Home";
             btnHome.UseVisualStyleBackColor = false;
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(90, 45);
+            txtSearch.Location = new Point(63, 27);
+            txtSearch.Margin = new Padding(2, 2, 2, 2);
             txtSearch.Multiline = true;
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(460, 61);
+            txtSearch.Size = new Size(323, 38);
             txtSearch.TabIndex = 5;
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ControlLight;
             panel1.Controls.Add(lblCashierdashboard);
-            panel1.Location = new Point(12, 12);
+            panel1.Location = new Point(8, 7);
+            panel1.Margin = new Padding(2, 2, 2, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(426, 108);
+            panel1.Size = new Size(298, 65);
             panel1.TabIndex = 6;
             // 
             // lblCashierdashboard
             // 
             lblCashierdashboard.AutoSize = true;
-            lblCashierdashboard.Font = new Font("Garamond", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblCashierdashboard.Location = new Point(37, 34);
+            lblCashierdashboard.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCashierdashboard.Location = new Point(26, 20);
+            lblCashierdashboard.Margin = new Padding(2, 0, 2, 0);
             lblCashierdashboard.Name = "lblCashierdashboard";
-            lblCashierdashboard.Size = new Size(346, 45);
+            lblCashierdashboard.Size = new Size(265, 31);
             lblCashierdashboard.TabIndex = 0;
             lblCashierdashboard.Text = "Cashier Dashboard";
             // 
@@ -87,43 +91,47 @@
             panel2.Controls.Add(btnLogout);
             panel2.Controls.Add(btnPos);
             panel2.Controls.Add(btnHome);
-            panel2.Location = new Point(12, 136);
+            panel2.Location = new Point(8, 82);
+            panel2.Margin = new Padding(2, 2, 2, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(426, 496);
+            panel2.Size = new Size(298, 298);
             panel2.TabIndex = 1;
-            // 
-            // btnPos
-            // 
-            btnPos.BackColor = SystemColors.WindowFrame;
-            btnPos.Font = new Font("Californian FB", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPos.ForeColor = SystemColors.ButtonHighlight;
-            btnPos.Location = new Point(37, 139);
-            btnPos.Name = "btnPos";
-            btnPos.Size = new Size(328, 61);
-            btnPos.TabIndex = 1;
-            btnPos.Text = "Point of Sale";
-            btnPos.UseVisualStyleBackColor = false;
             // 
             // btnLogout
             // 
             btnLogout.BackColor = SystemColors.ActiveCaption;
-            btnLogout.Font = new Font("Californian FB", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogout.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLogout.ForeColor = SystemColors.ButtonHighlight;
-            btnLogout.Location = new Point(101, 400);
+            btnLogout.Location = new Point(71, 240);
+            btnLogout.Margin = new Padding(2, 2, 2, 2);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(184, 61);
+            btnLogout.Size = new Size(129, 37);
             btnLogout.TabIndex = 2;
             btnLogout.Text = "Log Out";
             btnLogout.UseVisualStyleBackColor = false;
+            // 
+            // btnPos
+            // 
+            btnPos.BackColor = SystemColors.WindowFrame;
+            btnPos.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPos.ForeColor = SystemColors.ButtonHighlight;
+            btnPos.Location = new Point(26, 83);
+            btnPos.Margin = new Padding(2, 2, 2, 2);
+            btnPos.Name = "btnPos";
+            btnPos.Size = new Size(230, 37);
+            btnPos.TabIndex = 1;
+            btnPos.Text = "Point of Sale";
+            btnPos.UseVisualStyleBackColor = false;
             // 
             // panel3
             // 
             panel3.BackColor = SystemColors.ControlDark;
             panel3.Controls.Add(btnProduct);
             panel3.Controls.Add(txtSearch);
-            panel3.Location = new Point(444, 136);
+            panel3.Location = new Point(311, 82);
+            panel3.Margin = new Padding(2, 2, 2, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(822, 496);
+            panel3.Size = new Size(575, 298);
             panel3.TabIndex = 6;
             // 
             // btnProduct
@@ -131,21 +139,24 @@
             btnProduct.BackColor = SystemColors.ControlLight;
             btnProduct.Font = new Font("Candara", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnProduct.ForeColor = SystemColors.ActiveCaptionText;
-            btnProduct.Location = new Point(585, 45);
+            btnProduct.Location = new Point(410, 27);
+            btnProduct.Margin = new Padding(2, 2, 2, 2);
             btnProduct.Name = "btnProduct";
-            btnProduct.Size = new Size(161, 61);
+            btnProduct.Size = new Size(113, 37);
             btnProduct.TabIndex = 6;
             btnProduct.Text = "Search";
             btnProduct.UseVisualStyleBackColor = false;
+            btnProduct.Click += btnProduct_Click;
             // 
             // CashierDashboard
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1278, 644);
+            ClientSize = new Size(895, 386);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "CashierDashboard";
             Text = "CashierDashboard";
             panel1.ResumeLayout(false);
