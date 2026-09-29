@@ -45,14 +45,14 @@
             lblProductName = new Label();
             lblSupplier = new Label();
             txtAmount = new TextBox();
-            lbCategory = new ListBox();
-            lbSupplier = new ListBox();
             txtProductID = new TextBox();
             btnSalesreport = new Button();
             btnStockreport = new Button();
             btnHome = new Button();
             lblInventoryManagement = new Label();
             lblAmount = new Label();
+            cmbSupplier = new ComboBox();
+            cmbCategory = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgProducts).BeginInit();
             SuspendLayout();
             // 
@@ -229,22 +229,6 @@
             txtAmount.Size = new Size(248, 37);
             txtAmount.TabIndex = 31;
             // 
-            // lbCategory
-            // 
-            lbCategory.FormattingEnabled = true;
-            lbCategory.Location = new Point(673, 158);
-            lbCategory.Name = "lbCategory";
-            lbCategory.Size = new Size(248, 44);
-            lbCategory.TabIndex = 32;
-            // 
-            // lbSupplier
-            // 
-            lbSupplier.FormattingEnabled = true;
-            lbSupplier.Location = new Point(1077, 158);
-            lbSupplier.Name = "lbSupplier";
-            lbSupplier.Size = new Size(248, 44);
-            lbSupplier.TabIndex = 33;
-            // 
             // txtProductID
             // 
             txtProductID.Location = new Point(254, 158);
@@ -313,19 +297,35 @@
             lblAmount.TabIndex = 39;
             lblAmount.Text = "Amount";
             // 
+            // cmbSupplier
+            // 
+            cmbSupplier.FormattingEnabled = true;
+            cmbSupplier.Location = new Point(1074, 158);
+            cmbSupplier.Name = "cmbSupplier";
+            cmbSupplier.Size = new Size(251, 28);
+            cmbSupplier.TabIndex = 40;
+            // 
+            // cmbCategory
+            // 
+            cmbCategory.FormattingEnabled = true;
+            cmbCategory.Location = new Point(670, 158);
+            cmbCategory.Name = "cmbCategory";
+            cmbCategory.Size = new Size(248, 28);
+            cmbCategory.TabIndex = 41;
+            // 
             // InventoryManagement
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1337, 730);
+            Controls.Add(cmbCategory);
+            Controls.Add(cmbSupplier);
             Controls.Add(lblAmount);
             Controls.Add(lblInventoryManagement);
             Controls.Add(btnHome);
             Controls.Add(btnStockreport);
             Controls.Add(btnSalesreport);
             Controls.Add(txtProductID);
-            Controls.Add(lbSupplier);
-            Controls.Add(lbCategory);
             Controls.Add(txtAmount);
             Controls.Add(lblSupplier);
             Controls.Add(lblProductName);
@@ -381,12 +381,12 @@
         private TextBox txtSupplier;
         private Label lblAmmount;
         private TextBox txtAmount;
-        private ListBox lbCategory;
-        private ListBox lbSupplier;
         private TextBox txtProductID;
         private Button btnSalesreport;
         private Button btnStockreport;
         private Label lblInventoryManagement;
         private Label lblAmount;
+        private ComboBox cmbSupplier;
+        private ComboBox cmbCategory;
     }
 }
