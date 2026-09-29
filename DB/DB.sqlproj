@@ -66,6 +66,7 @@
     <Build Include="Table\tblProduct.sql" />
     <Build Include="Table\tblProductDetails.sql" />
     <Build Include="StoredProc\UpProduct.sql" />
+    <Build Include="StoredProc\AddProduct.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostScript\Script.InitialScript.sql" />
