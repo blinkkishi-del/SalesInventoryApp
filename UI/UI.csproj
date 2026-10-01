@@ -9,8 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-
-    <Folder Include="reference\" />
+    <Compile Remove="reference\**" />
+    <EmbeddedResource Remove="reference\**" />
+    <None Remove="reference\**" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
