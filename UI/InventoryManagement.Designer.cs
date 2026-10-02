@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             btnDelete = new Button();
-            txtsearch = new TextBox();
+            txtSearch = new TextBox();
             btnAdd = new Button();
             btnUpdate = new Button();
             btnSave = new Button();
@@ -45,44 +45,51 @@
             lblProductName = new Label();
             lblSupplier = new Label();
             txtAmount = new TextBox();
-            lbCategory = new ListBox();
-            lbSupplier = new ListBox();
             txtProductID = new TextBox();
             btnSalesreport = new Button();
             btnStockreport = new Button();
             btnHome = new Button();
             lblInventoryManagement = new Label();
             lblAmount = new Label();
+            cmbSupplier = new ComboBox();
+            cmbCategory = new ComboBox();
+            btnRefresh = new Button();
+            cmbFilter = new ComboBox();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgProducts).BeginInit();
             SuspendLayout();
             // 
             // btnDelete
             // 
             btnDelete.BackColor = SystemColors.ControlDark;
-            btnDelete.Font = new Font("Californian FB", 10.8F, FontStyle.Bold);
+            btnDelete.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Bold);
             btnDelete.ForeColor = Color.White;
-            btnDelete.Location = new Point(1231, 16);
+            btnDelete.Location = new Point(1077, 12);
+            btnDelete.Margin = new Padding(3, 2, 3, 2);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(94, 37);
+            btnDelete.Size = new Size(82, 28);
             btnDelete.TabIndex = 6;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
-            // txtsearch
+            // txtSearch
             // 
-            txtsearch.Location = new Point(254, 73);
-            txtsearch.Name = "txtsearch";
-            txtsearch.Size = new Size(125, 27);
-            txtsearch.TabIndex = 8;
+            txtSearch.Location = new Point(222, 55);
+            txtSearch.Margin = new Padding(3, 2, 3, 2);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(110, 23);
+            txtSearch.TabIndex = 8;
             // 
             // btnAdd
             // 
             btnAdd.BackColor = SystemColors.ControlDark;
-            btnAdd.Font = new Font("Californian FB", 10.8F, FontStyle.Bold);
+            btnAdd.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Bold);
             btnAdd.ForeColor = Color.White;
-            btnAdd.Location = new Point(1031, 16);
+            btnAdd.Location = new Point(902, 12);
+            btnAdd.Margin = new Padding(3, 2, 3, 2);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(94, 37);
+            btnAdd.Size = new Size(82, 28);
             btnAdd.TabIndex = 12;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = false;
@@ -91,177 +98,175 @@
             // btnUpdate
             // 
             btnUpdate.BackColor = Color.Red;
-            btnUpdate.Font = new Font("Californian FB", 10.8F, FontStyle.Bold);
+            btnUpdate.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Bold);
             btnUpdate.ForeColor = Color.White;
-            btnUpdate.Location = new Point(1131, 16);
+            btnUpdate.Location = new Point(990, 12);
+            btnUpdate.Margin = new Padding(3, 2, 3, 2);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(94, 37);
+            btnUpdate.Size = new Size(82, 28);
             btnUpdate.TabIndex = 13;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = false;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnSave
             // 
             btnSave.BackColor = Color.Red;
-            btnSave.Font = new Font("Californian FB", 10.8F, FontStyle.Bold);
+            btnSave.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Bold);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(1131, 284);
+            btnSave.Location = new Point(990, 213);
+            btnSave.Margin = new Padding(3, 2, 3, 2);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(94, 39);
+            btnSave.Size = new Size(82, 29);
             btnSave.TabIndex = 14;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
             btnCancel.BackColor = SystemColors.ControlDark;
-            btnCancel.Font = new Font("Californian FB", 10.8F, FontStyle.Bold);
+            btnCancel.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Bold);
             btnCancel.ForeColor = Color.White;
-            btnCancel.Location = new Point(1231, 284);
+            btnCancel.Location = new Point(1077, 213);
+            btnCancel.Margin = new Padding(3, 2, 3, 2);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(94, 39);
+            btnCancel.Size = new Size(82, 29);
             btnCancel.TabIndex = 15;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Click += btnCancel_Click;
             // 
             // btnSearch
             // 
             btnSearch.BackColor = SystemColors.ControlDarkDark;
-            btnSearch.Font = new Font("Californian FB", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSearch.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSearch.ForeColor = Color.White;
-            btnSearch.Location = new Point(401, 64);
+            btnSearch.Location = new Point(351, 48);
+            btnSearch.Margin = new Padding(3, 2, 3, 2);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(101, 43);
+            btnSearch.Size = new Size(88, 32);
             btnSearch.TabIndex = 17;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Click += btnSearch_Click;
             // 
             // lblQuantity
             // 
             lblQuantity.AutoSize = true;
-            lblQuantity.Font = new Font("Californian FB", 10.8F, FontStyle.Bold);
-            lblQuantity.Location = new Point(673, 221);
+            lblQuantity.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Bold);
+            lblQuantity.Location = new Point(589, 166);
             lblQuantity.Name = "lblQuantity";
-            lblQuantity.Size = new Size(77, 20);
+            lblQuantity.Size = new Size(70, 18);
             lblQuantity.TabIndex = 18;
             lblQuantity.Text = "Quantity";
             // 
             // lblCategory
             // 
             lblCategory.AutoSize = true;
-            lblCategory.Font = new Font("Californian FB", 10.8F, FontStyle.Bold);
-            lblCategory.Location = new Point(673, 135);
+            lblCategory.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Bold);
+            lblCategory.Location = new Point(589, 101);
             lblCategory.Name = "lblCategory";
-            lblCategory.Size = new Size(78, 20);
+            lblCategory.Size = new Size(76, 18);
             lblCategory.TabIndex = 19;
             lblCategory.Text = "Category";
             // 
             // lblProducts
             // 
             lblProducts.AutoSize = true;
-            lblProducts.Font = new Font("Californian FB", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblProducts.Location = new Point(254, 301);
+            lblProducts.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblProducts.Location = new Point(222, 226);
             lblProducts.Name = "lblProducts";
-            lblProducts.Size = new Size(84, 23);
+            lblProducts.Size = new Size(80, 20);
             lblProducts.TabIndex = 20;
             lblProducts.Text = "Products";
             // 
             // txtQuantity
             // 
-            txtQuantity.Location = new Point(670, 246);
+            txtQuantity.Location = new Point(586, 184);
+            txtQuantity.Margin = new Padding(3, 2, 3, 2);
             txtQuantity.Multiline = true;
             txtQuantity.Name = "txtQuantity";
-            txtQuantity.Size = new Size(248, 36);
+            txtQuantity.Size = new Size(218, 28);
             txtQuantity.TabIndex = 21;
             // 
             // dgProducts
             // 
             dgProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgProducts.Location = new Point(254, 329);
+            dgProducts.Location = new Point(222, 247);
+            dgProducts.Margin = new Padding(3, 2, 3, 2);
             dgProducts.Name = "dgProducts";
             dgProducts.RowHeadersWidth = 51;
-            dgProducts.Size = new Size(1062, 389);
+            dgProducts.Size = new Size(929, 292);
             dgProducts.TabIndex = 22;
+            dgProducts.CellClick += dgProducts_CellClick;
             // 
             // txtProductName
             // 
-            txtProductName.Location = new Point(254, 246);
+            txtProductName.Location = new Point(222, 184);
+            txtProductName.Margin = new Padding(3, 2, 3, 2);
             txtProductName.Multiline = true;
             txtProductName.Name = "txtProductName";
-            txtProductName.Size = new Size(248, 36);
+            txtProductName.Size = new Size(218, 28);
             txtProductName.TabIndex = 25;
             // 
             // lblProductID
             // 
             lblProductID.AutoSize = true;
-            lblProductID.Font = new Font("Californian FB", 10.8F, FontStyle.Bold);
-            lblProductID.Location = new Point(254, 131);
+            lblProductID.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Bold);
+            lblProductID.Location = new Point(222, 98);
             lblProductID.Name = "lblProductID";
-            lblProductID.Size = new Size(93, 20);
+            lblProductID.Size = new Size(88, 18);
             lblProductID.TabIndex = 26;
             lblProductID.Text = "Product ID";
             // 
             // lblProductName
             // 
             lblProductName.AutoSize = true;
-            lblProductName.Font = new Font("Californian FB", 10.8F, FontStyle.Bold);
-            lblProductName.Location = new Point(254, 223);
+            lblProductName.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Bold);
+            lblProductName.Location = new Point(222, 167);
             lblProductName.Name = "lblProductName";
-            lblProductName.Size = new Size(119, 20);
+            lblProductName.Size = new Size(116, 18);
             lblProductName.TabIndex = 27;
             lblProductName.Text = "Product Name";
             // 
             // lblSupplier
             // 
             lblSupplier.AutoSize = true;
-            lblSupplier.Font = new Font("Californian FB", 10.8F, FontStyle.Bold);
-            lblSupplier.Location = new Point(1077, 131);
+            lblSupplier.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Bold);
+            lblSupplier.Location = new Point(942, 98);
             lblSupplier.Name = "lblSupplier";
-            lblSupplier.Size = new Size(74, 20);
+            lblSupplier.Size = new Size(69, 18);
             lblSupplier.TabIndex = 28;
             lblSupplier.Text = "Supplier";
             // 
             // txtAmount
             // 
-            txtAmount.Location = new Point(1077, 245);
+            txtAmount.Location = new Point(942, 184);
+            txtAmount.Margin = new Padding(3, 2, 3, 2);
             txtAmount.Multiline = true;
             txtAmount.Name = "txtAmount";
-            txtAmount.Size = new Size(248, 37);
+            txtAmount.Size = new Size(218, 29);
             txtAmount.TabIndex = 31;
-            // 
-            // lbCategory
-            // 
-            lbCategory.FormattingEnabled = true;
-            lbCategory.Location = new Point(673, 158);
-            lbCategory.Name = "lbCategory";
-            lbCategory.Size = new Size(248, 44);
-            lbCategory.TabIndex = 32;
-            // 
-            // lbSupplier
-            // 
-            lbSupplier.FormattingEnabled = true;
-            lbSupplier.Location = new Point(1077, 158);
-            lbSupplier.Name = "lbSupplier";
-            lbSupplier.Size = new Size(248, 44);
-            lbSupplier.TabIndex = 33;
             // 
             // txtProductID
             // 
-            txtProductID.Location = new Point(254, 158);
+            txtProductID.Location = new Point(222, 118);
+            txtProductID.Margin = new Padding(3, 2, 3, 2);
             txtProductID.Multiline = true;
             txtProductID.Name = "txtProductID";
-            txtProductID.Size = new Size(248, 36);
+            txtProductID.Size = new Size(218, 28);
             txtProductID.TabIndex = 34;
             // 
             // btnSalesreport
             // 
             btnSalesreport.BackColor = SystemColors.WindowFrame;
-            btnSalesreport.Font = new Font("Californian FB", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSalesreport.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalesreport.ForeColor = SystemColors.ButtonHighlight;
-            btnSalesreport.Location = new Point(23, 205);
+            btnSalesreport.Location = new Point(20, 154);
             btnSalesreport.Margin = new Padding(2);
             btnSalesreport.Name = "btnSalesreport";
-            btnSalesreport.Size = new Size(183, 48);
+            btnSalesreport.Size = new Size(160, 36);
             btnSalesreport.TabIndex = 35;
             btnSalesreport.Text = "Sales Report";
             btnSalesreport.UseVisualStyleBackColor = false;
@@ -269,12 +274,12 @@
             // btnStockreport
             // 
             btnStockreport.BackColor = SystemColors.WindowFrame;
-            btnStockreport.Font = new Font("Californian FB", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnStockreport.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnStockreport.ForeColor = SystemColors.ButtonHighlight;
-            btnStockreport.Location = new Point(23, 119);
+            btnStockreport.Location = new Point(20, 89);
             btnStockreport.Margin = new Padding(2);
             btnStockreport.Name = "btnStockreport";
-            btnStockreport.Size = new Size(183, 48);
+            btnStockreport.Size = new Size(160, 36);
             btnStockreport.TabIndex = 36;
             btnStockreport.Text = "Stock Report";
             btnStockreport.UseVisualStyleBackColor = false;
@@ -282,12 +287,12 @@
             // btnHome
             // 
             btnHome.BackColor = SystemColors.WindowFrame;
-            btnHome.Font = new Font("Californian FB", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHome.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnHome.ForeColor = SystemColors.ButtonHighlight;
-            btnHome.Location = new Point(23, 43);
+            btnHome.Location = new Point(20, 32);
             btnHome.Margin = new Padding(2);
             btnHome.Name = "btnHome";
-            btnHome.Size = new Size(183, 48);
+            btnHome.Size = new Size(160, 36);
             btnHome.TabIndex = 37;
             btnHome.Text = "Home";
             btnHome.UseVisualStyleBackColor = false;
@@ -296,36 +301,91 @@
             // lblInventoryManagement
             // 
             lblInventoryManagement.AutoSize = true;
-            lblInventoryManagement.Font = new Font("Californian FB", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblInventoryManagement.Location = new Point(245, 9);
+            lblInventoryManagement.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblInventoryManagement.Location = new Point(214, 7);
             lblInventoryManagement.Name = "lblInventoryManagement";
-            lblInventoryManagement.Size = new Size(269, 32);
+            lblInventoryManagement.Size = new Size(241, 26);
             lblInventoryManagement.TabIndex = 38;
             lblInventoryManagement.Text = "Inventory Mnagement";
             // 
             // lblAmount
             // 
             lblAmount.AutoSize = true;
-            lblAmount.Font = new Font("Californian FB", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblAmount.Location = new Point(1079, 221);
+            lblAmount.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblAmount.Location = new Point(944, 166);
             lblAmount.Name = "lblAmount";
-            lblAmount.Size = new Size(72, 21);
+            lblAmount.Size = new Size(59, 18);
             lblAmount.TabIndex = 39;
             lblAmount.Text = "Amount";
             // 
+            // cmbSupplier
+            // 
+            cmbSupplier.FormattingEnabled = true;
+            cmbSupplier.Location = new Point(940, 118);
+            cmbSupplier.Margin = new Padding(3, 2, 3, 2);
+            cmbSupplier.Name = "cmbSupplier";
+            cmbSupplier.Size = new Size(220, 23);
+            cmbSupplier.TabIndex = 40;
+            // 
+            // cmbCategory
+            // 
+            cmbCategory.FormattingEnabled = true;
+            cmbCategory.Location = new Point(586, 118);
+            cmbCategory.Margin = new Padding(3, 2, 3, 2);
+            cmbCategory.Name = "cmbCategory";
+            cmbCategory.Size = new Size(218, 23);
+            cmbCategory.TabIndex = 41;
+            // 
+            // btnRefresh
+            // 
+            btnRefresh.BackColor = SystemColors.ControlDarkDark;
+            btnRefresh.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRefresh.ForeColor = Color.White;
+            btnRefresh.Location = new Point(469, 210);
+            btnRefresh.Margin = new Padding(3, 2, 3, 2);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(88, 32);
+            btnRefresh.TabIndex = 42;
+            btnRefresh.Text = "Refresh";
+            btnRefresh.UseVisualStyleBackColor = false;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
+            // cmbFilter
+            // 
+            cmbFilter.FormattingEnabled = true;
+            cmbFilter.Location = new Point(504, 52);
+            cmbFilter.Margin = new Padding(3, 2, 3, 2);
+            cmbFilter.Name = "cmbFilter";
+            cmbFilter.Size = new Size(179, 23);
+            cmbFilter.TabIndex = 43;
+            cmbFilter.SelectedIndexChanged += cmbFilter_SelectedIndexChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Bold);
+            label1.Location = new Point(504, 32);
+            label1.Name = "label1";
+            label1.Size = new Size(46, 18);
+            label1.TabIndex = 44;
+            label1.Text = "Filter";
+            // 
             // InventoryManagement
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1337, 730);
+            ClientSize = new Size(1170, 548);
+            Controls.Add(label1);
+            Controls.Add(cmbFilter);
+            Controls.Add(btnRefresh);
+            Controls.Add(cmbCategory);
+            Controls.Add(cmbSupplier);
             Controls.Add(lblAmount);
             Controls.Add(lblInventoryManagement);
             Controls.Add(btnHome);
             Controls.Add(btnStockreport);
             Controls.Add(btnSalesreport);
             Controls.Add(txtProductID);
-            Controls.Add(lbSupplier);
-            Controls.Add(lbCategory);
             Controls.Add(txtAmount);
             Controls.Add(lblSupplier);
             Controls.Add(lblProductName);
@@ -341,10 +401,12 @@
             Controls.Add(btnSave);
             Controls.Add(btnUpdate);
             Controls.Add(btnAdd);
-            Controls.Add(txtsearch);
+            Controls.Add(txtSearch);
             Controls.Add(btnDelete);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "InventoryManagement";
             Text = "InventoryManagement";
+            Load += InventoryManagement_Load;
             ((System.ComponentModel.ISupportInitialize)dgProducts).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -358,7 +420,7 @@
         private Button button6;
         private Button btnDelete;
         private DataGridView dataGridView1;
-        private TextBox txtsearch;
+        private TextBox txtSearch;
         private TextBox textBox2;
         private TextBox txtRestocks;
         private Button btnAdd;
@@ -381,12 +443,15 @@
         private TextBox txtSupplier;
         private Label lblAmmount;
         private TextBox txtAmount;
-        private ListBox lbCategory;
-        private ListBox lbSupplier;
         private TextBox txtProductID;
         private Button btnSalesreport;
         private Button btnStockreport;
         private Label lblInventoryManagement;
         private Label lblAmount;
+        private ComboBox cmbSupplier;
+        private ComboBox cmbCategory;
+        private Button btnRefresh;
+        private ComboBox cmbFilter;
+        private Label label1;
     }
 }

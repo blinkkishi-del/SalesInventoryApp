@@ -46,7 +46,7 @@
             pbLogo.Location = new Point(84, 105);
             pbLogo.Margin = new Padding(3, 2, 3, 2);
             pbLogo.Name = "pbLogo";
-            pbLogo.Size = new Size(349, 283);
+            pbLogo.Size = new Size(391, 356);
             pbLogo.TabIndex = 7;
             pbLogo.TabStop = false;
             // 
@@ -54,7 +54,7 @@
             // 
             lblStorename.AutoSize = true;
             lblStorename.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblStorename.Location = new Point(132, 67);
+            lblStorename.Location = new Point(180, 65);
             lblStorename.Name = "lblStorename";
             lblStorename.Size = new Size(188, 29);
             lblStorename.TabIndex = 8;
@@ -74,7 +74,7 @@
             // 
             lblPassword.AutoSize = true;
             lblPassword.Font = new Font("SimSun", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPassword.Location = new Point(651, 261);
+            lblPassword.Location = new Point(651, 257);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(97, 19);
             lblPassword.TabIndex = 10;
@@ -96,21 +96,23 @@
             // 
             // txtPassword
             // 
+            txtPassword.Font = new Font("Segoe UI", 11.25F);
             txtPassword.Location = new Point(651, 278);
             txtPassword.Margin = new Padding(3, 2, 3, 2);
             txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(325, 34);
+            txtPassword.Size = new Size(325, 36);
             txtPassword.TabIndex = 13;
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(651, 185);
+            txtUsername.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUsername.Location = new Point(651, 189);
             txtUsername.Margin = new Padding(3, 2, 3, 2);
             txtUsername.Multiline = true;
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(325, 35);
+            txtUsername.Size = new Size(325, 32);
             txtUsername.TabIndex = 14;
             // 
             // btnLogin
@@ -118,10 +120,10 @@
             btnLogin.BackColor = SystemColors.ActiveCaption;
             btnLogin.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLogin.ForeColor = SystemColors.ButtonHighlight;
-            btnLogin.Location = new Point(753, 333);
+            btnLogin.Location = new Point(760, 331);
             btnLogin.Margin = new Padding(3, 2, 3, 2);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(104, 27);
+            btnLogin.Size = new Size(103, 41);
             btnLogin.TabIndex = 15;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = false;
@@ -131,7 +133,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1121, 490);
+            ClientSize = new Size(1121, 513);
             Controls.Add(btnLogin);
             Controls.Add(txtUsername);
             Controls.Add(txtPassword);
