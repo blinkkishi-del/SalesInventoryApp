@@ -405,6 +405,7 @@
             Controls.Add(btnDelete);
             Margin = new Padding(3, 2, 3, 2);
             Name = "InventoryManagement";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "InventoryManagement";
             Load += InventoryManagement_Load;
             ((System.ComponentModel.ISupportInitialize)dgProducts).EndInit();

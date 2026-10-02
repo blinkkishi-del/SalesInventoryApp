@@ -9,5 +9,15 @@ namespace Model
         public string Username { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
+
+
+        public void Clear()
+        {
+            Username = null;
+            Password = null;
+            Role = null;
+        }
+
+
     }
-}
+ }
