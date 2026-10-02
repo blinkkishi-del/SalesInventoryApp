@@ -69,6 +69,7 @@
     <Build Include="StoredProc\AddProduct.sql" />
     <Build Include="StoredProc\DelProduct.sql" />
     <Build Include="StoredProc\GetTop50Products.sql" />
+    <Build Include="StoredProc\ss_SearchProducts.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostScript\Script.InitialScript.sql" />

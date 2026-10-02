@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using Model;
 using System.Data;
 
@@ -11,7 +8,6 @@ namespace BusinessLogic.Repository
     {
         private readonly string connectionString =
         "Server=DESKTOP-SMD1DHH;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
-
 
         public void AddProduct(ProductDetailsModel product)
         {
@@ -32,7 +28,6 @@ namespace BusinessLogic.Repository
                 cmd.ExecuteNonQuery();
             }
         }
-
 
         public void UpdateProduct(ProductDetailsModel product)
         {
@@ -106,24 +101,15 @@ namespace BusinessLogic.Repository
             return products;
         }
 
-
-
-
-
         public List<ProductDetailsModel> SearchProducts(string keyword)
         {
             var products = new List<ProductDetailsModel>();
 
             using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(@"
-                SELECT ProductId, ProductName, Category, Supplier, Quantity, Amount
-                FROM tblProduct
-                WHERE ProductName LIKE @Keyword
-                   OR Category LIKE @Keyword
-                   OR Supplier LIKE @Keyword
-                ORDER BY ProductName ASC", conn))
+            using (SqlCommand cmd = new SqlCommand("ss_SearchProducts", conn))
             {
-                cmd.Parameters.AddWithValue("@Keyword", "%" + keyword + "%");
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Keyword", keyword ?? string.Empty);
                 conn.Open();
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -147,9 +133,6 @@ namespace BusinessLogic.Repository
 
             return products;
         }
-
-
-
 
     }
 }
