@@ -38,7 +38,7 @@ VALUES
 
 -- [ MARKERS ] (6)
 
-('Markers', 'Highlighter Yellow', 'Markers', 'Goldwings Stationery Products Inc.', 110, 25.00),
+('4GJQW8', 'Highlighter Yellow', 'Markers', 'Goldwings Stationery Products Inc.', 110, 25.00),
 ('4W8J2R', 'Highlighter Green', 'Markers', 'Goldwings Stationery Products Inc.', 85, 25.00),
 ('T7M3L9', 'Highlighter Pink', 'Markers', 'Goldwings Stationery Products Inc.', 95, 25.00),
 ('2B6V8K', 'Whiteboard Marker Black', 'Markers', 'Penline Stationery Inc.', 70, 40.00),
@@ -65,15 +65,15 @@ VALUES
 ('5J9X3P', 'Short Bond Paper 70gsm (Ream)', 'Papers', 'Sterling Paper Products Enterprises, Inc.', 50, 210.00),
 ('B2L8R7', 'Long Bond Paper 70gsm (Ream)', 'Papers', 'Sterling Paper Products Enterprises, Inc.', 45, 230.00),
 ('8F4W1K', 'A4 Bond Paper 70gsm (Ream)', 'Papers', 'Sterling Paper Products Enterprises, Inc.', 60, 220.00),
-('N7Q6D3', 'Intermediate Pad Paper', 'Capitol Stationery Mfg. Co. Inc.', 140, 35.00),
+('N7Q6D3', 'Intermediate Pad Paper', 'Papers', 'Capitol Stationery Mfg. Co. Inc.', 140, 35.00),
 ('P1V9M2', 'Intermediate Pad Paper', 'Papers', 'Capitol Stationery Mfg. Co. Inc.', 160, 40.00),
 ('X3T5J8', 'Construction Paper Assorted 20s', 'Papers', 'Goldwings Stationery Products Inc.', 75, 55.00),
 
 
 -- [ MEASURING TOOLS ] (4)
 
-('7W3M9F ', 'Plastic Ruler 12 Inch', 'Measuring Tools', 'Goldwings Stationery Products Inc.', 150, 15.00),
-('D8P1K4 ', 'Metal Ruler 12 Inch', 'Measuring Tools', 'Goldwings Stationery Products Inc.', 90, 35.00),
+('7W3M9F', 'Plastic Ruler 12 Inch', 'Measuring Tools', 'Goldwings Stationery Products Inc.', 150, 15.00),
+('D8P1K4', 'Metal Ruler 12 Inch', 'Measuring Tools', 'Goldwings Stationery Products Inc.', 90, 35.00),
 ('1Q6V2T', 'Math Protractor 180 Deg ', 'Measuring Tools', 'Goldwings Stationery Products Inc.', 110, 18.00),
 ('M5R8J7', 'Compass Set with Pencil', 'Measuring Tools', 'Penline Stationery Inc.', 70, 45.00),
 
@@ -120,3 +120,13 @@ VALUES
 
 
 GO
+
+
+INSERT INTO [dbo].[tblProductDetails] (ProductId, Category, Supplier, Name)
+VALUES
+
+('9X4R6T', 'Notebooks', 'Sterling Paper Products Enterprises, Inc.', 'Spiral Notebook 80 Sheets');
+
+GO
+
+
