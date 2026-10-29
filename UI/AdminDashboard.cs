@@ -58,7 +58,7 @@ namespace UI
                 currentBtn.IconColor = color;
                 currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
                 currentBtn.ImageAlign = ContentAlignment.MiddleRight;
-    
+
                 leftBorderBtn.BackColor = color;
                 leftBorderBtn.Location = new Point(0, currentBtn.Location.Y);
                 leftBorderBtn.Visible = true;
@@ -108,6 +108,7 @@ namespace UI
         private void btnInventory_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color2);
+            OpenChildForm(new InventoryManagement());
 
         }
 
@@ -126,6 +127,7 @@ namespace UI
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
+
 
         }
 
@@ -186,6 +188,11 @@ namespace UI
 
 
             WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

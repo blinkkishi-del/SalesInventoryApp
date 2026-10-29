@@ -3,6 +3,7 @@ using Model;
 using System.Data;
 
 
+
 namespace UI
 {
     public partial class InventoryManagement : Form
@@ -17,6 +18,8 @@ namespace UI
         {
             InitializeComponent();
             productController = new ProductController();
+            tabAdd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;     
+            tabInventoryManagement.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         }
 
 
@@ -152,6 +155,8 @@ namespace UI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            tabInventoryManagement.SelectedTab = tabAdd;
+
             ClearFields();
             dgProducts.ClearSelection();
             EnableControls(true);
@@ -170,6 +175,8 @@ namespace UI
                 MessageBox.Show("Please select a product to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            tabInventoryManagement.SelectedTab = tabAdd;
+            lblAdding.Text = "MODIFYING A PRODUCT : ";
 
             EnableControls(true);
             isAdd = false;
@@ -238,12 +245,14 @@ namespace UI
                 {
                     productController.Add(product);
                     MessageBox.Show("Product added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    tabInventoryManagement.SelectedTab = tabInventory;
                 }
                 else
                 {
                     product.ProductId = txtProductID.Text;
                     productController.Update(product);
                     MessageBox.Show("Product updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    tabInventoryManagement.SelectedTab = tabInventory;
                 }
 
                 InitialState();
@@ -256,6 +265,7 @@ namespace UI
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            tabInventoryManagement.SelectedTab = tabInventory;
             InitialState();
         }
 
@@ -324,6 +334,7 @@ namespace UI
                 else
                 {
                     ClearFields();
+                    InitialState();
                     MessageBox.Show("No products found matching your search.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -331,8 +342,10 @@ namespace UI
             {
                 MessageBox.Show("Error during search: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
+            cmbFilter.Text = "";
             txtSearch.Text = "";
         }
+
+     
     }
 }
