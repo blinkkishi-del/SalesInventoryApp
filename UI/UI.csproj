@@ -13,6 +13,10 @@
     <EmbeddedResource Remove="reference\**" />
     <None Remove="reference\**" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontAwesome.Sharp" Version="6.6.0" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
   </ItemGroup>
