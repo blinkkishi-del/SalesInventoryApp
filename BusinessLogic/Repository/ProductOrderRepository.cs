@@ -133,5 +133,80 @@ namespace BusinessLogic.Repository
             }
         }
 
+
+
+
+        public List<ProductDetailsModel> SearchByProductName(string productName)
+        {
+            var products = new List<ProductDetailsModel>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(@"
+        SELECT ProductId, ProductName, Category, Supplier, Quantity, Amount
+        FROM Product
+        WHERE ProductName LIKE @ProductName
+        ORDER BY ProductName ASC", conn))
+            {
+                cmd.Parameters.AddWithValue("@ProductName", "%" + productName + "%");
+                conn.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var product = new ProductDetailsModel
+                        {
+                            ProductId = reader["ProductId"].ToString(),
+                            ProductName = reader["ProductName"].ToString(),
+                            Category = reader["Category"]?.ToString(),
+                            Supplier = reader["Supplier"]?.ToString(),
+                            Quantity = Convert.ToInt32(reader["Quantity"]),
+                            Amount = Convert.ToDecimal(reader["Amount"])
+                        };
+
+                        products.Add(product);
+                    }
+                }
+            }
+
+            return products;
+        }
+        public List<ProductDetailsModel> GetProductsOrderedByStock()
+        {
+            var products = new List<ProductDetailsModel>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(@"
+        SELECT ProductId, ProductName, Category, Supplier, Quantity, Amount
+        FROM Product
+        ORDER BY 
+            CASE WHEN Quantity <= 0 THEN 1 ELSE 0 END,
+            ProductName ASC", conn))
+            {
+                conn.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        products.Add(new ProductDetailsModel
+                        {
+                            ProductId = reader["ProductId"].ToString(),
+                            ProductName = reader["ProductName"].ToString(),
+                            Category = reader["Category"]?.ToString(),
+                            Supplier = reader["Supplier"]?.ToString(),
+                            Quantity = Convert.ToInt32(reader["Quantity"]),
+                            Amount = Convert.ToDecimal(reader["Amount"])
+                        });
+                    }
+                }
+            }
+            return products;
+
+
+
+
+
+
+        }
     }
 }

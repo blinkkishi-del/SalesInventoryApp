@@ -40,5 +40,38 @@ namespace BusinessLogic.Controller
             return productRepository.SearchProducts(keyword);
         }
 
+
+        public ProductDetailsModel GetById(string productId)
+        {
+            if (string.IsNullOrEmpty(productId)) throw new Exception("Invalid product Id");
+            return productRepository.GetAll().FirstOrDefault(p => p.ProductId == productId);
+        }
+
+
+
+        public void UpdateProductQuantity(string productId, int quantityToDeduct)
+        {
+            var product = GetById(productId);
+            if (product == null) throw new Exception("Product not found.");
+
+            int newQuantity = product.Quantity - quantityToDeduct;
+            if (newQuantity < 0) newQuantity = 0;
+
+            productRepository.UpdateProductQuantity(productId, newQuantity);
+            product.Quantity = newQuantity;
+        }
+
+        public List<ProductDetailsModel> SearchByProductName(string productName)
+        {
+            if (string.IsNullOrWhiteSpace(productName))
+                return productRepository.GetAll();
+
+            return productRepository.SearchByProductName(productName);
+        }
+        public List<ProductDetailsModel> GetProductsOrderedByStock()
+        {
+            return productRepository.GetProductsOrderedByStock();
+        }
+
     }
 }
