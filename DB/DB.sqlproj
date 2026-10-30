@@ -71,6 +71,7 @@
     <Build Include="StoredProc\GetTop50Products.sql" />
     <Build Include="StoredProc\ss_SearchProducts.sql" />
     <Build Include="Table\tblOrderProduct.sql" />
+    <Build Include="Table\tblSales.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostScript\Script.InitialScript.sql" />
