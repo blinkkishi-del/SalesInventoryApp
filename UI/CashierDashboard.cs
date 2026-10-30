@@ -77,6 +77,7 @@ namespace UI
                 currentBtn.IconColor = Color.Gainsboro;
                 currentBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
                 currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
+
             }
         }
 
@@ -88,6 +89,7 @@ namespace UI
                 "Confirm Logout",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
+
 
             if (result == DialogResult.Yes)
             {
@@ -104,11 +106,13 @@ namespace UI
         {
             ActivateButton(sender, RGBColors.color1);
 
+
         }
 
         private void btnPOS_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color2);
+
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -121,6 +125,7 @@ namespace UI
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+
         }
 
         private void OpenChildForm(Form childForm)
@@ -129,6 +134,7 @@ namespace UI
             {
                 currentChildForm.Close();
             }
+
             currentChildForm = childForm;
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
@@ -149,7 +155,9 @@ namespace UI
             }
             else if (this.WindowState == FormWindowState.Maximized)
             {
+
                 this.WindowState = FormWindowState.Normal;
+
             }
         }
 
@@ -160,9 +168,6 @@ namespace UI
 
         private void btnMinimize_Click(object sender, EventArgs e)
         {
-
-
-
             WindowState = FormWindowState.Minimized;
         }
 
