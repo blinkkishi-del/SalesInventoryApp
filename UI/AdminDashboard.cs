@@ -5,6 +5,7 @@ using System.Data;
 using System.Runtime.InteropServices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Windows.Forms;
+using System.Printing;
 namespace UI
 {
     public partial class AdminDashboard : Form
@@ -104,29 +105,37 @@ namespace UI
         }
 
 
+       
+
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
+            if (currentBtn == sender) return;
             ActivateButton(sender, RGBColors.color2);
             OpenChildForm(new InventoryManagement());
 
         }
 
+
         private void btnStocksReport_Click(object sender, EventArgs e)
         {
+            if (currentBtn == sender) return;
             ActivateButton(sender, RGBColors.color3);
+            OpenChildForm(new StockReport());
 
         }
 
         private void btnSalesReport_Click(object sender, EventArgs e)
         {
+            if (currentBtn == sender) return;
             ActivateButton(sender, RGBColors.color4);
             OpenChildForm(new SalesReport());
-
+           
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
+            if (currentBtn == sender) return;
             ActivateButton(sender, RGBColors.color1);
 
 
@@ -148,13 +157,11 @@ namespace UI
 
         private void OpenChildForm(Form childForm)
         {
-            //open only form
             if (currentChildForm != null)
             {
                 currentChildForm.Close();
             }
             currentChildForm = childForm;
-            //End
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
@@ -163,6 +170,8 @@ namespace UI
             childForm.BringToFront();
             childForm.Show();
             lblTitleChild.Text = childForm.Text;
+
+
 
         }
 
