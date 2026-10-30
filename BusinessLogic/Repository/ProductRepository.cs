@@ -138,7 +138,7 @@ namespace BusinessLogic.Repository
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(@"
-                UPDATE Product 
+                UPDATE tblProduct 
                 SET Quantity = @Quantity
                 WHERE ProductId = @ProductId", conn))
             {
@@ -157,7 +157,7 @@ namespace BusinessLogic.Repository
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(@"
         SELECT ProductId, ProductName, Category, Supplier, Quantity, Amount
-        FROM Product
+        FROM tblProduct
         WHERE ProductName LIKE @ProductName
         ORDER BY ProductName ASC", conn))
             {
@@ -192,7 +192,7 @@ namespace BusinessLogic.Repository
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(@"
         SELECT ProductId, ProductName, Category, Supplier, Quantity, Amount
-        FROM Product
+        FROM tblProduct
         ORDER BY 
             CASE WHEN Quantity <= 0 THEN 1 ELSE 0 END,
             ProductName ASC", conn))

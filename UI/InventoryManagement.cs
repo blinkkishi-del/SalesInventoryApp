@@ -27,9 +27,7 @@ namespace UI
         {
             List<string> categories = new List<string>()
          {
-                 "Pencils","NoteBooks", "Office & Storage", "Pens", "Markers",
-                 "Papers", "Measuring Tools", "Adhesives", "Cutting & Correction",
-                 "Art Supplies"
+            "Kitchen", "Cleaning", "Laundry", "Climate", "Personal Care", "Outdoor"
          };
 
             cmbCategory.Items.Clear();
