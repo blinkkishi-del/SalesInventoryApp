@@ -73,6 +73,7 @@
     <Build Include="Table\tblOrderProduct.sql" />
     <Build Include="Table\tblSales.sql" />
     <Build Include="Table\tblSalesDetail.sql" />
+    <Build Include="StoredProc\GetSalesByDate.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostScript\Script.InitialScript.sql" />
