@@ -203,8 +203,9 @@
             // btnMaximize
             // 
             btnMaximize.FlatStyle = FlatStyle.Flat;
+            btnMaximize.ForeColor = Color.IndianRed;
             btnMaximize.IconChar = FontAwesome.Sharp.IconChar.WindowMaximize;
-            btnMaximize.IconColor = Color.Black;
+            btnMaximize.IconColor = Color.IndianRed;
             btnMaximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnMaximize.IconSize = 20;
             btnMaximize.Location = new Point(74, 4);
@@ -218,13 +219,14 @@
             // btnMinimize
             // 
             btnMinimize.FlatStyle = FlatStyle.Flat;
+            btnMinimize.ForeColor = Color.IndianRed;
             btnMinimize.IconChar = FontAwesome.Sharp.IconChar.SquareMinus;
-            btnMinimize.IconColor = Color.Black;
+            btnMinimize.IconColor = Color.IndianRed;
             btnMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnMinimize.Location = new Point(33, 4);
+            btnMinimize.Location = new Point(38, 4);
             btnMinimize.Margin = new Padding(3, 4, 3, 4);
             btnMinimize.Name = "btnMinimize";
-            btnMinimize.Size = new Size(34, 29);
+            btnMinimize.Size = new Size(30, 29);
             btnMinimize.TabIndex = 3;
             btnMinimize.UseVisualStyleBackColor = true;
             btnMinimize.Click += btnMinimize_Click;
