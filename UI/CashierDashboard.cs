@@ -91,7 +91,10 @@ namespace UI
 
             if (result == DialogResult.Yes)
             {
-                UserSession.Clear();
+                if (UserSession != null)
+                {
+                    UserSession.Clear();
+                }
 
                 Login login = new Login();
                 login.Show();

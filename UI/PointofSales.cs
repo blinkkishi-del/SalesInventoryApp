@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.Controller;
 using Model;
+using System.Drawing.Printing;
 
 namespace UI
 {
@@ -8,6 +9,7 @@ namespace UI
 
         private readonly OrderProductController orderController;
         private readonly ProductController productController;
+        private readonly SalesController salesController;
         private List<ProductDetailsModel> productList;
         internal UserModel CurrentUser;
 
@@ -18,6 +20,7 @@ namespace UI
             InitializeComponent();
             orderController = new OrderProductController();
             productController = new ProductController();
+            salesController = new SalesController();
             txtPay.TextChanged += txtPay_TextChanged;
 
         }
@@ -183,9 +186,176 @@ namespace UI
             lblChange.Text = "Change: ₱0.00";
             lblTotalReceipt.Text = "Total: ₱0.00";
         }
-
-       
+        private void btnPay_Click(object sender, EventArgs e)
+        {
+            var orders = orderController.GetOrders();
+            if (orders == null || orders.Count == 0)
+            {
+                MessageBox.Show("No items to process!", "Warning",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!decimal.TryParse(txtPay.Text, out decimal payment) || payment <= 0)
+            {
+                MessageBox.Show("Please enter a valid payment amount!", "Warning",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            decimal total = orders.Sum(o => o.TotalPrice);
+            if (payment < total)
+            {
+                MessageBox.Show("Paid amount is less than total!", "Warning",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            try
+            {
+                productList = productController.GetAllProducts();
+                foreach (var order in orders)
+                {
+                    var product = productList.FirstOrDefault(p => p.ProductName == order.ItemName);
+                    if (product == null)
+                    {
+                        MessageBox.Show($"Product '{order.ItemName}' not found!", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    if (product.Quantity < order.Quantity)
+                    {
+                        MessageBox.Show($"Not enough stock for {order.ItemName}. Available: {product.Quantity}",
+                            "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                foreach (var order in orders)
+                {
+                    var product = productList.FirstOrDefault(p => p.ProductName == order.ItemName);
+                    if (product != null)
+                        salesController.AddSale(product.ProductId, order.Quantity, order.Price);
+                }
+                PrintReceiptPreview();
+                orderController.ClearAllOrders();
+                RefreshReceiptGrid();
+                LoadProducts();
+                lblTotalReceipt.Text = "Total: ₱0.00";
+                lblChange.Text = "Change: ₱0.00";
+                txtPay.Clear();
+                MessageBox.Show("Order processed successfully!", "Success",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error processing order: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
+
+
+                    private void PrintReceiptPreview()
+        {
+            var orders = orderController.GetOrders();
+            if (orders == null || orders.Count == 0) return;
+
+            decimal total = orders.Sum(o => o.TotalPrice);
+            decimal paid = decimal.TryParse(txtPay.Text, out var p) ? p : 0;
+            decimal change = paid - total;
+
+            int receiptHeight = 220 + (orders.Count * 25);
+            PrintDocument printDoc = new PrintDocument
+            {
+                DefaultPageSettings =
+    {
+        Landscape = false,
+        PaperSize = new PaperSize("Receipt", 280, receiptHeight),
+        Margins = new Margins(10, 10, 10, 10)
     }
+            };
+
+            Font headerFont = new Font("Arial", 12, FontStyle.Bold);
+            Font subHeaderFont = new Font("Arial", 9);
+            Font tableHeaderFont = new Font("Arial", 9, FontStyle.Bold);
+            Font tableFont = new Font("Arial", 9);
+            int lineHeight = tableFont.Height + 4;
+
+            printDoc.PrintPage += (s, e) =>
+            {
+                float left = e.MarginBounds.Left;
+                float y = e.MarginBounds.Top;
+                StringFormat center = new StringFormat { Alignment = StringAlignment.Center };
+                StringFormat right = new StringFormat { Alignment = StringAlignment.Far };
+
+                e.Graphics.DrawString("Lin Tech", headerFont, Brushes.Black,
+                    left + e.MarginBounds.Width / 2, y, center);
+                y += headerFont.Height + 2;
+                e.Graphics.DrawString("TIN: 123-456-789", subHeaderFont, Brushes.Black,
+                    left + e.MarginBounds.Width / 2, y, center);
+                y += subHeaderFont.Height + 2;
+                e.Graphics.DrawString("SALES RECEIPT", subHeaderFont, Brushes.Black,
+                    left + e.MarginBounds.Width / 2, y, center);
+                y += subHeaderFont.Height + 4;
+
+                e.Graphics.DrawString($"Cashier: {CurrentUser?.Username ?? "N/A"}", subHeaderFont, Brushes.Black, left, y);
+                y += subHeaderFont.Height + 2;
+                e.Graphics.DrawString($"Date: {DateTime.Now:MM/dd/yyyy hh:mm tt}", subHeaderFont, Brushes.Black, left, y);
+                y += subHeaderFont.Height + 6;
+
+                e.Graphics.DrawLine(Pens.Black, left, y, left + e.MarginBounds.Width, y);
+                y += 4;
+
+                float colItem = left;
+                float colQty = left + e.MarginBounds.Width * 0.55f;
+                float colTotal = left + e.MarginBounds.Width * 0.85f;
+
+                e.Graphics.DrawString("Item", tableHeaderFont, Brushes.Black, colItem, y);
+                e.Graphics.DrawString("Qty", tableHeaderFont, Brushes.Black, colQty, y, right);
+                e.Graphics.DrawString("Total", tableHeaderFont, Brushes.Black, colTotal, y, right);
+                y += lineHeight;
+                e.Graphics.DrawLine(Pens.Black, left, y, left + e.MarginBounds.Width, y);
+                y += 2;
+
+                foreach (var order in orders)
+                {
+                    e.Graphics.DrawString(order.ItemName, tableFont, Brushes.Black, colItem, y);
+                    e.Graphics.DrawString(order.Quantity.ToString(), tableFont, Brushes.Black, colQty, y, right);
+                    e.Graphics.DrawString("₱" + order.TotalPrice.ToString("N2"), tableFont, Brushes.Black, colTotal, y, right);
+                    y += lineHeight;
+                    e.Graphics.DrawLine(Pens.LightGray, left, y, left + e.MarginBounds.Width, y);
+                }
+
+                y += 4;
+                e.Graphics.DrawLine(Pens.Black, left, y, left + e.MarginBounds.Width, y);
+                y += 4;
+
+                e.Graphics.DrawString($"TOTAL: ₱{total:N2}", tableHeaderFont, Brushes.Black,
+                    colTotal, y, right);
+                y += lineHeight;
+                e.Graphics.DrawString($"PAID: ₱{paid:N2}", tableHeaderFont, Brushes.Black,
+                    colTotal, y, right);
+                y += lineHeight;
+                e.Graphics.DrawString($"CHANGE: ₱{change:N2}", tableHeaderFont, Brushes.Black,
+                    colTotal, y, right);
+                y += lineHeight + 4;
+
+                e.Graphics.DrawString("Thank you for your purchase!", subHeaderFont, Brushes.Black,
+                    left + e.MarginBounds.Width / 2, y, center);
+            };
+
+            PrintPreviewDialog preview = new PrintPreviewDialog
+            {
+                Document = printDoc,
+                Width = 400,
+                Height = 600
+            };
+            preview.ShowDialog();
+
+
+
+
+
+
+        }
+
+    }
+}
 
