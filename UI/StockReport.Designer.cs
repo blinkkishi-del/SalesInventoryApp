@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             cbProductsCategory = new ComboBox();
             panelStocks = new Panel();
             lblNumberofstocks = new Label();
@@ -37,9 +37,9 @@
             iconStock = new FontAwesome.Sharp.IconPictureBox();
             btnPrint = new FontAwesome.Sharp.IconButton();
             panelLowStock = new Panel();
-            lblLowStocks = new Label();
-            label1 = new Label();
             lblLowStock = new Label();
+            lblLowStocks = new Label();
+            lblLow = new Label();
             iconLowStock = new FontAwesome.Sharp.IconPictureBox();
             dgProducts = new DataGridView();
             panelStocks.SuspendLayout();
@@ -58,6 +58,7 @@
             cbProductsCategory.Name = "cbProductsCategory";
             cbProductsCategory.Size = new Size(281, 36);
             cbProductsCategory.TabIndex = 65;
+            cbProductsCategory.SelectedIndexChanged += cbProductsCategory_SelectedIndexChanged;
             // 
             // panelStocks
             // 
@@ -128,20 +129,34 @@
             btnPrint.TextAlign = ContentAlignment.MiddleRight;
             btnPrint.TextImageRelation = TextImageRelation.TextBeforeImage;
             btnPrint.UseVisualStyleBackColor = false;
+            btnPrint.Click += btnPrint_Click;
             // 
             // panelLowStock
             // 
             panelLowStock.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             panelLowStock.BackColor = Color.FromArgb(224, 224, 224);
             panelLowStock.BorderStyle = BorderStyle.Fixed3D;
-            panelLowStock.Controls.Add(lblLowStocks);
-            panelLowStock.Controls.Add(label1);
             panelLowStock.Controls.Add(lblLowStock);
+            panelLowStock.Controls.Add(lblLowStocks);
+            panelLowStock.Controls.Add(lblLow);
             panelLowStock.Controls.Add(iconLowStock);
             panelLowStock.Location = new Point(620, 33);
             panelLowStock.Name = "panelLowStock";
             panelLowStock.Size = new Size(311, 140);
             panelLowStock.TabIndex = 67;
+            // 
+            // lblLowStock
+            // 
+            lblLowStock.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblLowStock.AutoSize = true;
+            lblLowStock.BackColor = Color.Transparent;
+            lblLowStock.Font = new Font("Microsoft Sans Serif", 22.75F, FontStyle.Bold);
+            lblLowStock.ForeColor = Color.Black;
+            lblLowStock.Location = new Point(54, 72);
+            lblLowStock.Name = "lblLowStock";
+            lblLowStock.Size = new Size(63, 44);
+            lblLowStock.TabIndex = 69;
+            lblLowStock.Text = "12";
             // 
             // lblLowStocks
             // 
@@ -156,31 +171,18 @@
             lblLowStocks.TabIndex = 55;
             lblLowStocks.Text = "STOCKS";
             // 
-            // label1
+            // lblLow
             // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Microsoft Sans Serif", 22.75F, FontStyle.Bold);
-            label1.ForeColor = Color.Black;
-            label1.Location = new Point(58, 76);
-            label1.Name = "label1";
-            label1.Size = new Size(63, 44);
-            label1.TabIndex = 54;
-            label1.Text = "12";
-            // 
-            // lblLowStock
-            // 
-            lblLowStock.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lblLowStock.AutoSize = true;
-            lblLowStock.BackColor = Color.Transparent;
-            lblLowStock.Font = new Font("Microsoft Sans Serif", 14.75F, FontStyle.Bold);
-            lblLowStock.ForeColor = Color.Black;
-            lblLowStock.Location = new Point(54, 7);
-            lblLowStock.Name = "lblLowStock";
-            lblLowStock.Size = new Size(73, 29);
-            lblLowStock.TabIndex = 53;
-            lblLowStock.Text = "LOW";
+            lblLow.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblLow.AutoSize = true;
+            lblLow.BackColor = Color.Transparent;
+            lblLow.Font = new Font("Microsoft Sans Serif", 14.75F, FontStyle.Bold);
+            lblLow.ForeColor = Color.Black;
+            lblLow.Location = new Point(54, 7);
+            lblLow.Name = "lblLow";
+            lblLow.Size = new Size(73, 29);
+            lblLow.TabIndex = 53;
+            lblLow.Text = "LOW";
             // 
             // iconLowStock
             // 
@@ -201,23 +203,23 @@
             dgProducts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgProducts.BackgroundColor = SystemColors.ButtonFace;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Control;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Window;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle6.ForeColor = Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = Color.DeepSkyBlue;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dgProducts.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = Color.DeepSkyBlue;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgProducts.DefaultCellStyle = dataGridViewCellStyle2;
             dgProducts.Location = new Point(5, 293);
             dgProducts.Name = "dgProducts";
             dgProducts.RowHeadersWidth = 51;
@@ -239,6 +241,7 @@
             ForeColor = Color.Black;
             Name = "StockReport";
             Text = "StockReport";
+            Load += StockReport_Load;
             panelStocks.ResumeLayout(false);
             panelStocks.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconStock).EndInit();
@@ -258,10 +261,11 @@
         private Label lblNumberofstocks;
         private Panel panel1;
         private Label label1;
-        private Label lblLowStock;
+        private Label lblLow;
         private FontAwesome.Sharp.IconPictureBox iconLowStock;
         private Label lblLowStocks;
         private DataGridView dgProducts;
         private Panel panelLowStock;
+        private Label lblLowStock;
     }
 }
