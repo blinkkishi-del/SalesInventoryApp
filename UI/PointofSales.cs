@@ -32,8 +32,13 @@ namespace UI
             UpdateTotalAndChange();
             dgProducts.CellDoubleClick += dgProducts_CellDoubleClick;
             dgProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgProducts.MultiSelect = false;
-            dgProducts.ReadOnly = true;
+
+
+            dgViewReceipt.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgViewReceipt.MultiSelect = false;
+            dgViewReceipt.ReadOnly = true;
+            dgViewReceipt.AllowUserToAddRows = false;
+            dgViewReceipt.AllowUserToDeleteRows = false;
         }
 
         private void LoadProducts()
@@ -71,27 +76,38 @@ namespace UI
 
         private void dgProducts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            dgProducts.MultiSelect = false;
+            dgProducts.ReadOnly = true;
+            dgProducts.AllowUserToAddRows = false;
+            dgProducts.AllowUserToDeleteRows = false;
             if (e.RowIndex < 0 || e.RowIndex >= productList.Count)
                 return;
             var selectedProduct = productList[e.RowIndex];
             AddProductToOrder(selectedProduct);
+
         }
 
         private void AddProductToOrder(ProductDetailsModel product)
         {
             if (product == null) return;
-            if (product.Quantity <= 0)
+
+            var existingOrder = orderController.GetOrders().FirstOrDefault(o => o.ItemName == product.ProductName);
+            int currentQtyInCart = existingOrder != null ? existingOrder.Quantity : 0;
+
+            if (currentQtyInCart + 1 > product.Quantity)
             {
-                MessageBox.Show($"'{product.ProductName}' is out of stock!", "Stock Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"Cannot add more. '{product.ProductName}' \nstock limit reached! \nAvailable stock: {product.Quantity}",
+                    "Stock Limit Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             var order = new OrderProductModel
             {
                 ItemName = product.ProductName,
                 Quantity = 1,
                 Price = product.Amount
             };
+
             orderController.AddOrder(order);
             RefreshReceiptGrid();
             UpdateTotalAndChange();
@@ -285,7 +301,7 @@ namespace UI
                 StringFormat center = new StringFormat { Alignment = StringAlignment.Center };
                 StringFormat right = new StringFormat { Alignment = StringAlignment.Far };
 
-                e.Graphics.DrawString("Lin Tech", headerFont, Brushes.Black,
+                e.Graphics.DrawString("Homexa", headerFont, Brushes.Black,
                     left + e.MarginBounds.Width / 2, y, center);
                 y += headerFont.Height + 2;
                 e.Graphics.DrawString("TIN: 123-456-789", subHeaderFont, Brushes.Black,

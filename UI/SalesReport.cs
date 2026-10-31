@@ -43,6 +43,11 @@ namespace UI
         private void SalesReport_Load(object sender, EventArgs e)
         {
             cbDateMonth.SelectedIndex = DateTime.Now.Month - 1;
+            dgList.ReadOnly = true;
+            dgList.AllowUserToAddRows = false;
+            dgList.AllowUserToDeleteRows = false;
+            dgList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgList.MultiSelect = false;
         }
 
         private void LoadSalesDataByMonth(int month)
