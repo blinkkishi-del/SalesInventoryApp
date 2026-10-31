@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            pbLogo = new PictureBox();
             lblStorename = new Label();
             lblUsername = new Label();
             lblPassword = new Label();
@@ -37,18 +35,7 @@
             txtPassword = new TextBox();
             txtUsername = new TextBox();
             btnLogin = new Button();
-            ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             SuspendLayout();
-            // 
-            // pbLogo
-            // 
-            pbLogo.Image = (Image)resources.GetObject("pbLogo.Image");
-            pbLogo.Location = new Point(84, 105);
-            pbLogo.Margin = new Padding(3, 2, 3, 2);
-            pbLogo.Name = "pbLogo";
-            pbLogo.Size = new Size(391, 356);
-            pbLogo.TabIndex = 7;
-            pbLogo.TabStop = false;
             // 
             // lblStorename
             // 
@@ -141,11 +128,9 @@
             Controls.Add(lblPassword);
             Controls.Add(lblUsername);
             Controls.Add(lblStorename);
-            Controls.Add(pbLogo);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Login";
             Text = "Login";
-            ((System.ComponentModel.ISupportInitialize)pbLogo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -159,7 +144,6 @@
         private Label label2;
         private Label label3;
         private TextBox textBox2;
-        private PictureBox pbLogo;
         private Label lblStorename;
         private Label lblUsername;
         private Label lblPassword;

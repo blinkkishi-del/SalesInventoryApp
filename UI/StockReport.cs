@@ -21,6 +21,12 @@ namespace UI
             {
                 dgProducts.Visible = true;
 
+                dgProducts.ReadOnly = true;
+                dgProducts.AllowUserToAddRows = false;
+                dgProducts.AllowUserToDeleteRows = false;
+                dgProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgProducts.MultiSelect = false;
+
                 LoadStockSummary();
                 LoadStockData("");
                 LoadCategories();

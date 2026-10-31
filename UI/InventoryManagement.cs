@@ -277,6 +277,13 @@ namespace UI
             InitialState();
             LoadCategories();
             dgProducts.AutoGenerateColumns = true;
+  
+            dgProducts.ReadOnly = true;
+            dgProducts.AllowUserToAddRows = false;
+            dgProducts.AllowUserToDeleteRows = false;
+            dgProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgProducts.MultiSelect = false;
+
             dgProducts.CellClick += dgProducts_CellClick;
             cmbFilter.SelectedIndexChanged += cmbFilter_SelectedIndexChanged;
         }
