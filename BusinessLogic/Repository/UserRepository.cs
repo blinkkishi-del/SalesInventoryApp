@@ -6,7 +6,7 @@ namespace BusinessLogic.Repository
     public class UserRepository
     {
         private string CONNECTIONSTRING =
-            "Server=DESKTOP-SMD1DHH;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
+            "Server=LYNN_19\\SQLEXPRESS;Initial Catalog=SalesInventory;Trusted_Connection=True;TrustServerCertificate=True;";
 
         public UserModel ValidateUser(string username, string password)
         {

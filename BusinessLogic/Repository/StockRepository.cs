@@ -10,7 +10,7 @@ namespace BusinessLogic.Repository
     {
 
      private string connectionString =
-     "Server=DESKTOP-SMD1DHH;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
+     "Server=LYNN_19\\SQLEXPRESS;Initial Catalog=SalesInventory;Trusted_Connection=True;TrustServerCertificate=True;";
 
 
 
