@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             lblUsername = new Label();
             lblPassword = new Label();
-            btnExit = new Button();
             txtPassword = new TextBox();
             txtUsername = new TextBox();
             btnLogin = new Button();
@@ -47,10 +46,11 @@
             // 
             // lblUsername
             // 
+            lblUsername.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Sitka Banner", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblUsername.ForeColor = SystemColors.ButtonFace;
-            lblUsername.Location = new Point(654, 272);
+            lblUsername.Location = new Point(942, 301);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(91, 26);
             lblUsername.TabIndex = 9;
@@ -58,32 +58,21 @@
             // 
             // lblPassword
             // 
+            lblPassword.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblPassword.AutoSize = true;
             lblPassword.Font = new Font("Sitka Banner", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPassword.ForeColor = SystemColors.ButtonHighlight;
-            lblPassword.Location = new Point(654, 407);
+            lblPassword.Location = new Point(942, 374);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(86, 26);
             lblPassword.TabIndex = 10;
             lblPassword.Text = "Password:";
             // 
-            // btnExit
-            // 
-            btnExit.BackColor = Color.Red;
-            btnExit.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnExit.ForeColor = SystemColors.ButtonHighlight;
-            btnExit.Location = new Point(1195, 12);
-            btnExit.Name = "btnExit";
-            btnExit.Size = new Size(73, 36);
-            btnExit.TabIndex = 12;
-            btnExit.Text = "Exit";
-            btnExit.UseVisualStyleBackColor = false;
-            btnExit.Click += btnExit_Click;
-            // 
             // txtPassword
             // 
+            txtPassword.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtPassword.Font = new Font("Segoe UI", 11.25F);
-            txtPassword.Location = new Point(758, 396);
+            txtPassword.Location = new Point(942, 403);
             txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
@@ -92,8 +81,9 @@
             // 
             // txtUsername
             // 
+            txtUsername.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtUsername.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtUsername.Location = new Point(758, 270);
+            txtUsername.Location = new Point(942, 330);
             txtUsername.Multiline = true;
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(371, 41);
@@ -101,10 +91,11 @@
             // 
             // btnLogin
             // 
+            btnLogin.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnLogin.BackColor = Color.Navy;
             btnLogin.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLogin.ForeColor = SystemColors.ButtonHighlight;
-            btnLogin.Location = new Point(854, 475);
+            btnLogin.Location = new Point(1035, 472);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(191, 55);
             btnLogin.TabIndex = 15;
@@ -115,10 +106,11 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.MidnightBlue;
+            pictureBox1.Dock = DockStyle.Left;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(1, 0);
+            pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(609, 687);
+            pictureBox1.Size = new Size(609, 885);
             pictureBox1.TabIndex = 16;
             pictureBox1.TabStop = false;
             // 
@@ -134,8 +126,9 @@
             // 
             // pictureBox3
             // 
+            pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(823, 39);
+            pictureBox3.Location = new Point(1006, 93);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(243, 182);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
@@ -146,7 +139,7 @@
             // 
             pictureBox4.BackColor = Color.MidnightBlue;
             pictureBox4.Image = Properties.Resources.Screenshot_2026_11_05_210452;
-            pictureBox4.Location = new Point(59, 523);
+            pictureBox4.Location = new Point(59, 550);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(480, 135);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
@@ -158,7 +151,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.MidnightBlue;
-            ClientSize = new Size(1281, 684);
+            ClientSize = new Size(1398, 885);
             Controls.Add(pictureBox4);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
@@ -166,10 +159,10 @@
             Controls.Add(btnLogin);
             Controls.Add(txtUsername);
             Controls.Add(txtPassword);
-            Controls.Add(btnExit);
             Controls.Add(lblPassword);
             Controls.Add(lblUsername);
             Name = "Login";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -191,7 +184,6 @@
         private Label lblUsername;
         private Label lblPassword;
         private Button button3;
-        private Button btnExit;
         private TextBox txtPassword;
         private TextBox txtUsername;
         private Button btnLogin;
