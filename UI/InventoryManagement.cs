@@ -18,7 +18,7 @@ namespace UI
         {
             InitializeComponent();
             productController = new ProductController();
-            tabAdd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;     
+            tabAdd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tabInventoryManagement.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         }
 
@@ -277,7 +277,7 @@ namespace UI
             InitialState();
             LoadCategories();
             dgProducts.AutoGenerateColumns = true;
-  
+
             dgProducts.ReadOnly = true;
             dgProducts.AllowUserToAddRows = false;
             dgProducts.AllowUserToDeleteRows = false;
@@ -339,7 +339,7 @@ namespace UI
                 else
                 {
                     ClearFields();
-                    InitialState();
+                    LoadData();
                     MessageBox.Show("No products found matching your search.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -351,6 +351,6 @@ namespace UI
             txtSearch.Text = "";
         }
 
-     
+
     }
 }

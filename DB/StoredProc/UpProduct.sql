@@ -8,13 +8,14 @@
 AS
 BEGIN
 	SET NOCOUNT ON;
+	
 	UPDATE [dbo].[tblProduct]
 	SET ProductName = ISNULL(@ProductName, ProductName),
 		Category = ISNULL(@Category, Category),
 		Supplier = ISNULL(@Supplier, Supplier),
 		Quantity = ISNULL(@Quantity, Quantity),
 		Amount = ISNULL(@Amount, Amount)
-	WHERE ProductId = @ProductId;
-
+	WHERE ProductId = @ProductId 
+	  AND IsActive = 1;
 END;
 GO
