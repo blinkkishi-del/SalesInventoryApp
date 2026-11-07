@@ -14,6 +14,12 @@ namespace UI
         {
             InitializeComponent();
             userController = new UserController();
+
+            this.Text = string.Empty;
+            this.ControlBox = false;
+            this.DoubleBuffered = true;
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            btnMaximize.Enabled = false;
         }
 
 
@@ -64,10 +70,7 @@ namespace UI
             }
         }
 
-        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
-        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
 
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -77,6 +80,23 @@ namespace UI
         private void pictureBox2_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+        private void btnExit_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
         }
     }
 }

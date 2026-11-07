@@ -7,7 +7,7 @@ namespace BusinessLogic.Repository
     internal class ProductRepository
     {
         private readonly string connectionString =
-            "Server=LYNN_19\\SQLEXPRESS;Initial Catalog=SalesInventory;Trusted_Connection=True;TrustServerCertificate=True;";
+            "Server=DESKTOP-SMD1DHH;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
 
         public void AddProduct(ProductDetailsModel product)
         {

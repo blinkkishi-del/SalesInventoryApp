@@ -37,6 +37,7 @@
             btnInventory = new FontAwesome.Sharp.IconButton();
             btnDashboard = new FontAwesome.Sharp.IconButton();
             panelLogo = new Panel();
+            picture_Logo = new PictureBox();
             panelTitleBar = new Panel();
             panel1 = new Panel();
             btnExit = new FontAwesome.Sharp.IconButton();
@@ -46,14 +47,13 @@
             iconCurrentChildIcon = new FontAwesome.Sharp.IconPictureBox();
             panelShadow = new Panel();
             panelMenuForm = new Panel();
-            picture_Logo = new PictureBox();
             panelMenu.SuspendLayout();
             panelLogo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picture_Logo).BeginInit();
             panelTitleBar.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconCurrentChildIcon).BeginInit();
             panelShadow.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picture_Logo).BeginInit();
             SuspendLayout();
             // 
             // btnSupplier
@@ -61,7 +61,7 @@
             btnSupplier.BackColor = SystemColors.WindowFrame;
             btnSupplier.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSupplier.Location = new Point(144, 70);
-            btnSupplier.Margin = new Padding(2, 2, 2, 2);
+            btnSupplier.Margin = new Padding(2);
             btnSupplier.Name = "btnSupplier";
             btnSupplier.Size = new Size(249, 40);
             btnSupplier.TabIndex = 14;
@@ -208,6 +208,18 @@
             panelLogo.Size = new Size(200, 158);
             panelLogo.TabIndex = 0;
             // 
+            // picture_Logo
+            // 
+            picture_Logo.BackgroundImage = (Image)resources.GetObject("picture_Logo.BackgroundImage");
+            picture_Logo.BackgroundImageLayout = ImageLayout.Stretch;
+            picture_Logo.BorderStyle = BorderStyle.Fixed3D;
+            picture_Logo.ErrorImage = (Image)resources.GetObject("picture_Logo.ErrorImage");
+            picture_Logo.Location = new Point(5, 9);
+            picture_Logo.Name = "picture_Logo";
+            picture_Logo.Size = new Size(191, 140);
+            picture_Logo.TabIndex = 2;
+            picture_Logo.TabStop = false;
+            // 
             // panelTitleBar
             // 
             panelTitleBar.BackColor = Color.FromArgb(26, 25, 62);
@@ -251,8 +263,9 @@
             // btnMaximize
             // 
             btnMaximize.FlatStyle = FlatStyle.Flat;
+            btnMaximize.ForeColor = Color.IndianRed;
             btnMaximize.IconChar = FontAwesome.Sharp.IconChar.WindowMaximize;
-            btnMaximize.IconColor = Color.Black;
+            btnMaximize.IconColor = Color.IndianRed;
             btnMaximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnMaximize.IconSize = 20;
             btnMaximize.Location = new Point(65, 3);
@@ -265,8 +278,9 @@
             // btnMinimize
             // 
             btnMinimize.FlatStyle = FlatStyle.Flat;
+            btnMinimize.ForeColor = Color.IndianRed;
             btnMinimize.IconChar = FontAwesome.Sharp.IconChar.SquareMinus;
-            btnMinimize.IconColor = Color.Black;
+            btnMinimize.IconColor = Color.IndianRed;
             btnMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnMinimize.Location = new Point(29, 3);
             btnMinimize.Name = "btnMinimize";
@@ -318,18 +332,6 @@
             panelMenuForm.Size = new Size(1023, 589);
             panelMenuForm.TabIndex = 18;
             // 
-            // picture_Logo
-            // 
-            picture_Logo.BackgroundImage = (Image)resources.GetObject("picture_Logo.BackgroundImage");
-            picture_Logo.BackgroundImageLayout = ImageLayout.Stretch;
-            picture_Logo.BorderStyle = BorderStyle.Fixed3D;
-            picture_Logo.ErrorImage = (Image)resources.GetObject("picture_Logo.ErrorImage");
-            picture_Logo.Location = new Point(5, 9);
-            picture_Logo.Name = "picture_Logo";
-            picture_Logo.Size = new Size(191, 140);
-            picture_Logo.TabIndex = 2;
-            picture_Logo.TabStop = false;
-            // 
             // AdminDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -341,18 +343,18 @@
             Controls.Add(panelTitleBar);
             Controls.Add(panelMenu);
             ForeColor = SystemColors.Control;
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "AdminDashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AdminDashboard";
             panelMenu.ResumeLayout(false);
             panelLogo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picture_Logo).EndInit();
             panelTitleBar.ResumeLayout(false);
             panelTitleBar.PerformLayout();
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)iconCurrentChildIcon).EndInit();
             panelShadow.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)picture_Logo).EndInit();
             ResumeLayout(false);
         }
 

@@ -5,6 +5,7 @@
  [Category] VARCHAR(30) NULL,
  [Supplier] VARCHAR(50) NULL,
  [Quantity] INT NULL,
- [Amount] DECIMAL(15,2) NULL
+ [Amount] DECIMAL(15,2) NULL,
+ [IsActive] BIT NOT NULL DEFAULT 1
 );
 GO
