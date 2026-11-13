@@ -216,7 +216,54 @@ namespace BusinessLogic.Repository
             }
             return products;
 
+        }
 
+
+        public int GetTotalInventory()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand("SELECT ISNULL(SUM(Quantity), 0) FROM tblProduct", conn))
+            {
+                conn.Open();
+                object result = cmd.ExecuteScalar();
+                return (result != DBNull.Value) ? Convert.ToInt32(result) : 0;
+            }
+        }
+
+
+        public List<ProductDetailsModel> GetLowStockProducts(int threshold = 10)
+        {
+            var products = new List<ProductDetailsModel>();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(@"
+                SELECT ProductId, ProductName, Category, Supplier, Quantity, Amount
+                FROM tblProduct
+                WHERE Quantity <= @Threshold
+                ORDER BY Quantity ASC", conn))
+            {
+                cmd.Parameters.AddWithValue("@Threshold", threshold);
+                conn.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var product = new ProductDetailsModel
+                        {
+                            ProductId = reader["ProductId"].ToString(),
+                            ProductName = reader["ProductName"].ToString(),
+                            Category = reader["Category"]?.ToString(),
+                            Supplier = reader["Supplier"]?.ToString(),
+                            Quantity = Convert.ToInt32(reader["Quantity"]),
+                            Amount = Convert.ToDecimal(reader["Amount"])
+                        };
+
+                        products.Add(product);
+                    }
+                }
+            }
+            return products;
         }
     }
 }

@@ -1,208 +1,173 @@
-﻿using FontAwesome.Sharp;
-using Microsoft.VisualBasic.ApplicationServices;
-using Model;
-using System.Data;
-using System.Runtime.InteropServices;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System.Windows.Forms;
-using System.Printing;
+﻿using BusinessLogic.Controller;
+using System.Drawing.Printing;
+
+
 namespace UI
 {
     public partial class AdminDashboard : Form
     {
 
-        private IconButton currentBtn;
-        private Panel leftBorderBtn;
-        private Form currentChildForm;
+        private readonly ProductController productController;
+        private readonly SalesController salesController;
 
-
-        UserModel UserSession;
         public AdminDashboard()
         {
             InitializeComponent();
+            productController = new ProductController();
+            salesController = new SalesController();
+            LoadDashboardData();
+            dgridLowStock.ReadOnly = true;
+            dgridLowStock.AllowUserToAddRows = false;
+            dgridLowStock.AllowUserToDeleteRows = false;
+            dgridLowStock.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgridLowStock.MultiSelect = false;
 
-            leftBorderBtn = new Panel();
-            leftBorderBtn.Size = new Size(7, 60);
-            panelMenu.Controls.Add(leftBorderBtn);
-
-            this.Text = string.Empty;
-            this.ControlBox = false;
-            this.DoubleBuffered = true;
-            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
-
-
-
-            UserSession = new UserModel();
-        }
-
-
-        private struct RGBColors
-        {
-            public static Color color1 = Color.FromArgb(172, 126, 241);
-            public static Color color2 = Color.FromArgb(249, 118, 176);
-            public static Color color3 = Color.FromArgb(253, 138, 114);
-            public static Color color4 = Color.FromArgb(24, 161, 251);
-
-
-        }
-
-        private void ActivateButton(object senderBtn, Color color)
-        {
-            if (senderBtn != null)
+            foreach (DataGridViewRow row in dgridLowStock.Rows)
             {
-                DisableButton();
-
-                currentBtn = (IconButton)senderBtn;
-                currentBtn.BackColor = Color.FromArgb(37, 36, 81);
-                currentBtn.ForeColor = color;
-                currentBtn.TextAlign = ContentAlignment.MiddleCenter;
-                currentBtn.IconColor = color;
-                currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
-                currentBtn.ImageAlign = ContentAlignment.MiddleRight;
-
-                leftBorderBtn.BackColor = color;
-                leftBorderBtn.Location = new Point(0, currentBtn.Location.Y);
-                leftBorderBtn.Visible = true;
-                leftBorderBtn.BringToFront();
-
-                iconCurrentChildIcon.IconChar = currentBtn.IconChar;
-                iconCurrentChildIcon.IconColor = color;
-            }
-        }
-
-        private void DisableButton()
-        {
-            if (currentBtn != null)
-            {
-                currentBtn.BackColor = Color.FromArgb(31, 30, 68);
-                currentBtn.ForeColor = Color.Gainsboro;
-                currentBtn.TextAlign = ContentAlignment.MiddleLeft;
-                currentBtn.IconColor = Color.Gainsboro;
-                currentBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
-                currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    cell.Style.ForeColor = Color.Black;
+                    cell.Style.BackColor = Color.White;
+                }
             }
         }
 
 
-        private void btnLogout_Click(object sender, EventArgs e)
+        public void ExpandColumns(DataGridView source, bool sizable = true)
         {
-
-            DialogResult result = MessageBox.Show(
-                "Are you sure you want to log out?",
-                "Confirm Logout",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
+            foreach (DataGridViewColumn col in source.Columns)
             {
-                UserSession.Clear();
-
-                Login login = new Login();
-                login.Show();
-
-                this.Close();
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
 
-
-       
-
-
-        private void btnInventory_Click(object sender, EventArgs e)
+        private void LoadDashboardData()
         {
-            if (currentBtn == sender) return;
-            ActivateButton(sender, RGBColors.color2);
-            OpenChildForm(new InventoryManagement());
+            var totalInventory = productController.GetTotalInventory();
+            lblTotalInventory.Text = totalInventory.ToString();
 
-        }
+            var lowStock = productController.GetLowStockProducts(10);
+            dgridLowStock.DataSource = lowStock;
+            lblLowStock.Text = lowStock.Count.ToString();
 
-
-        private void btnStocksReport_Click(object sender, EventArgs e)
-        {
-            if (currentBtn == sender) return;
-            ActivateButton(sender, RGBColors.color3);
-            OpenChildForm(new StockReport());
-
-        }
-
-        private void btnSalesReport_Click(object sender, EventArgs e)
-        {
-            if (currentBtn == sender) return;
-            ActivateButton(sender, RGBColors.color4);
-            OpenChildForm(new SalesReport());
-           
-        }
-
-        private void btnDashboard_Click(object sender, EventArgs e)
-        {
-            if (currentBtn == sender) return;
-            ActivateButton(sender, RGBColors.color1);
+            var totalSales = salesController.GetTotalSalesToday();
+            lblTotalSalesToday.Text = ((int)totalSales).ToString();
 
 
         }
 
-
-
-        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
-        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
-
-
-        private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
+        private void btnPrintLowStock_Click(object sender, EventArgs e)
         {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
-        }
 
-        private void OpenChildForm(Form childForm)
-        {
-            if (currentChildForm != null)
+            if (dgridLowStock.Rows.Count == 0)
             {
-                currentChildForm.Close();
+                MessageBox.Show("No low stock records available to print.");
+                return;
             }
-            currentChildForm = childForm;
-            childForm.TopLevel = false;
-            childForm.FormBorderStyle = FormBorderStyle.None;
-            childForm.Dock = DockStyle.Fill;
-            panelMenuForm.Controls.Add(childForm);
-            panelMenuForm.Tag = childForm;
-            childForm.BringToFront();
-            childForm.Show();
-            lblTitleChild.Text = childForm.Text;
+
+            PrintDocument printDoc = new PrintDocument();
+            printDoc.DefaultPageSettings.Landscape = false;
+
+            Font headerFont = new Font("Arial", 14, FontStyle.Bold);
+            Font subHeaderFont = new Font("Arial", 10, FontStyle.Regular);
+            Font tableHeaderFont = new Font("Arial", 9, FontStyle.Bold);
+            Font tableFont = new Font("Arial", 9);
+            int lineHeight = tableFont.Height + 6;
 
 
-
-        }
-
-        private void btnMaximize_Click(object sender, EventArgs e)
-        {
-            if ((this.WindowState) == FormWindowState.Normal)
+            int totalRows = 0;
+            foreach (DataGridViewRow row in dgridLowStock.Rows)
             {
-                this.WindowState = FormWindowState.Maximized;
+                if (!row.IsNewRow)
+                    totalRows++;
             }
-            else if (this.WindowState == FormWindowState.Maximized)
+
+            int tableHeight = (totalRows + 1) * lineHeight;
+            int pageHeight = headerFont.Height + subHeaderFont.Height * 2 + 10 + tableHeight + 50;
+
+
+            PaperSize receiptSize = new PaperSize("Custom", 850, pageHeight);
+            printDoc.DefaultPageSettings.PaperSize = receiptSize;
+            printDoc.DefaultPageSettings.Margins = new Margins(10, 10, 10, 10);
+
+            int currentRow = 0;
+
+            printDoc.PrintPage += (s, ev) =>
             {
-                this.WindowState = FormWindowState.Normal;
-            }
+                float left = ev.MarginBounds.Left;
+                float y = ev.MarginBounds.Top;
+
+                StringFormat center = new StringFormat { Alignment = StringAlignment.Center };
+
+
+                ev.Graphics.DrawString("Homexa", headerFont, Brushes.Black,
+                    ev.MarginBounds.Left + ev.MarginBounds.Width / 2, y, center);
+                y += headerFont.Height + 5;
+
+                ev.Graphics.DrawString("LOW STOCK REPORT", subHeaderFont, Brushes.Black,
+                    ev.MarginBounds.Left + ev.MarginBounds.Width / 2, y, center);
+                y += subHeaderFont.Height + 2;
+
+                ev.Graphics.DrawString($"Generated: {DateTime.Now:MMMM dd, yyyy hh:mm tt}", subHeaderFont, Brushes.Black,
+                    ev.MarginBounds.Left + ev.MarginBounds.Width / 2, y, center);
+                y += subHeaderFont.Height + 10;
+
+                ev.Graphics.DrawLine(Pens.Black, left, y, left + ev.MarginBounds.Width, y);
+                y += 12;
+
+
+                float col1 = left;
+                float col2 = left + 100;
+                float col3 = left + 350;
+                float col4 = left + 550;
+                float col5 = left + 700;
+                float col6 = left + 750;
+
+                ev.Graphics.DrawString("Prod ID", tableHeaderFont, Brushes.Black, col1, y);
+                ev.Graphics.DrawString("Product Name", tableHeaderFont, Brushes.Black, col2, y);
+                ev.Graphics.DrawString("Category", tableHeaderFont, Brushes.Black, col3, y);
+                ev.Graphics.DrawString("Supplier", tableHeaderFont, Brushes.Black, col4, y);
+                ev.Graphics.DrawString("Qty", tableHeaderFont, Brushes.Black, col5, y);
+                ev.Graphics.DrawString("Amount", tableHeaderFont, Brushes.Black, col6, y);
+
+                y += lineHeight;
+                ev.Graphics.DrawLine(Pens.Black, left, y, left + ev.MarginBounds.Width, y);
+                y += 8;
+
+
+                for (; currentRow < dgridLowStock.Rows.Count; currentRow++)
+                {
+                    DataGridViewRow row = dgridLowStock.Rows[currentRow];
+                    if (row.IsNewRow) continue;
+
+                    ev.Graphics.DrawString(row.Cells["ProductId"].Value?.ToString(), tableFont, Brushes.Black, col1, y);
+                    ev.Graphics.DrawString(row.Cells["ProductName"].Value?.ToString(), tableFont, Brushes.Black, col2, y);
+                    ev.Graphics.DrawString(row.Cells["Category"].Value?.ToString(), tableFont, Brushes.Black, col3, y);
+                    ev.Graphics.DrawString(row.Cells["Supplier"].Value?.ToString(), tableFont, Brushes.Black, col4, y);
+                    ev.Graphics.DrawString(row.Cells["Quantity"].Value?.ToString(), tableFont, Brushes.Black, col5, y);
+                    ev.Graphics.DrawString(row.Cells["Amount"].Value?.ToString(), tableFont, Brushes.Black, col6, y);
+
+                    y += lineHeight;
+                }
+
+
+                y += 10;
+                ev.Graphics.DrawLine(Pens.Black, left, y, left + ev.MarginBounds.Width, y);
+                y += 10;
+                ev.Graphics.DrawString("END OF REPORT", tableHeaderFont, Brushes.Black,
+                    ev.MarginBounds.Left + ev.MarginBounds.Width / 2, y, center);
+
+                ev.HasMorePages = false;
+            };
+
+            PrintPreviewDialog preview = new PrintPreviewDialog();
+            preview.Document = printDoc;
+            preview.Width = 900;
+            preview.Height = 700;
+            preview.ShowDialog();
+
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
 
-        private void btnMinimize_Click(object sender, EventArgs e)
-        {
-
-
-
-            WindowState = FormWindowState.Minimized;
-        }
-
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

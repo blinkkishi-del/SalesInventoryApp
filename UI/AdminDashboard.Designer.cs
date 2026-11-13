@@ -28,354 +28,315 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard));
-            btnSupplier = new Button();
-            panelMenu = new Panel();
-            btnLogout = new FontAwesome.Sharp.IconButton();
-            btnSalesReport = new FontAwesome.Sharp.IconButton();
-            btnStocksReport = new FontAwesome.Sharp.IconButton();
-            btnInventory = new FontAwesome.Sharp.IconButton();
-            btnDashboard = new FontAwesome.Sharp.IconButton();
-            panelLogo = new Panel();
-            picture_Logo = new PictureBox();
-            panelTitleBar = new Panel();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             panel1 = new Panel();
-            btnExit = new FontAwesome.Sharp.IconButton();
-            btnMaximize = new FontAwesome.Sharp.IconButton();
-            btnMinimize = new FontAwesome.Sharp.IconButton();
-            lblTitleChild = new Label();
-            iconCurrentChildIcon = new FontAwesome.Sharp.IconPictureBox();
-            panelShadow = new Panel();
-            panelMenuForm = new Panel();
-            panelMenu.SuspendLayout();
-            panelLogo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picture_Logo).BeginInit();
-            panelTitleBar.SuspendLayout();
+            iconTotalInventory = new FontAwesome.Sharp.IconPictureBox();
+            lblTotalInventory = new Label();
+            label1 = new Label();
+            panel2 = new Panel();
+            iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            lblLowStock = new Label();
+            label2 = new Label();
+            panel4 = new Panel();
+            iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
+            lblTotalSalesToday = new Label();
+            label3 = new Label();
+            btnPrintLowStock = new FontAwesome.Sharp.IconButton();
+            dgridLowStock = new DataGridView();
+            label4 = new Label();
+            panel3 = new Panel();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)iconCurrentChildIcon).BeginInit();
-            panelShadow.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)iconTotalInventory).BeginInit();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
+            panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)iconPictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgridLowStock).BeginInit();
+            panel3.SuspendLayout();
             SuspendLayout();
-            // 
-            // btnSupplier
-            // 
-            btnSupplier.BackColor = SystemColors.WindowFrame;
-            btnSupplier.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSupplier.Location = new Point(144, 70);
-            btnSupplier.Margin = new Padding(2);
-            btnSupplier.Name = "btnSupplier";
-            btnSupplier.Size = new Size(249, 40);
-            btnSupplier.TabIndex = 14;
-            btnSupplier.Text = "Supplier";
-            btnSupplier.UseVisualStyleBackColor = false;
-            // 
-            // panelMenu
-            // 
-            panelMenu.BackColor = Color.FromArgb(26, 25, 62);
-            panelMenu.Controls.Add(btnLogout);
-            panelMenu.Controls.Add(btnSalesReport);
-            panelMenu.Controls.Add(btnStocksReport);
-            panelMenu.Controls.Add(btnInventory);
-            panelMenu.Controls.Add(btnDashboard);
-            panelMenu.Controls.Add(panelLogo);
-            panelMenu.Dock = DockStyle.Left;
-            panelMenu.Location = new Point(0, 0);
-            panelMenu.Name = "panelMenu";
-            panelMenu.Size = new Size(200, 664);
-            panelMenu.TabIndex = 15;
-            // 
-            // btnLogout
-            // 
-            btnLogout.Dock = DockStyle.Bottom;
-            btnLogout.FlatAppearance.BorderSize = 0;
-            btnLogout.FlatStyle = FlatStyle.Flat;
-            btnLogout.Font = new Font("Arial Black", 8F, FontStyle.Bold);
-            btnLogout.ForeColor = Color.Gray;
-            btnLogout.IconChar = FontAwesome.Sharp.IconChar.SignOut;
-            btnLogout.IconColor = Color.White;
-            btnLogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnLogout.IconSize = 28;
-            btnLogout.ImageAlign = ContentAlignment.MiddleLeft;
-            btnLogout.Location = new Point(0, 604);
-            btnLogout.Name = "btnLogout";
-            btnLogout.Padding = new Padding(10, 0, 20, 0);
-            btnLogout.Size = new Size(200, 60);
-            btnLogout.TabIndex = 20;
-            btnLogout.Text = "Log Out";
-            btnLogout.TextAlign = ContentAlignment.MiddleLeft;
-            btnLogout.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnLogout.UseVisualStyleBackColor = true;
-            btnLogout.Click += btnLogout_Click;
-            // 
-            // btnSalesReport
-            // 
-            btnSalesReport.Dock = DockStyle.Top;
-            btnSalesReport.FlatAppearance.BorderSize = 0;
-            btnSalesReport.FlatStyle = FlatStyle.Flat;
-            btnSalesReport.Font = new Font("Arial Black", 10F, FontStyle.Bold);
-            btnSalesReport.ForeColor = Color.Gainsboro;
-            btnSalesReport.IconChar = FontAwesome.Sharp.IconChar.CartArrowDown;
-            btnSalesReport.IconColor = Color.White;
-            btnSalesReport.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnSalesReport.IconSize = 32;
-            btnSalesReport.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSalesReport.Location = new Point(0, 338);
-            btnSalesReport.Name = "btnSalesReport";
-            btnSalesReport.Padding = new Padding(10, 0, 20, 0);
-            btnSalesReport.Size = new Size(200, 60);
-            btnSalesReport.TabIndex = 19;
-            btnSalesReport.Text = "Sales Report";
-            btnSalesReport.TextAlign = ContentAlignment.MiddleLeft;
-            btnSalesReport.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnSalesReport.UseVisualStyleBackColor = true;
-            btnSalesReport.Click += btnSalesReport_Click;
-            // 
-            // btnStocksReport
-            // 
-            btnStocksReport.Dock = DockStyle.Top;
-            btnStocksReport.FlatAppearance.BorderSize = 0;
-            btnStocksReport.FlatStyle = FlatStyle.Flat;
-            btnStocksReport.Font = new Font("Arial Black", 10F, FontStyle.Bold);
-            btnStocksReport.ForeColor = Color.Gainsboro;
-            btnStocksReport.IconChar = FontAwesome.Sharp.IconChar.BoxesStacked;
-            btnStocksReport.IconColor = Color.White;
-            btnStocksReport.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnStocksReport.IconSize = 32;
-            btnStocksReport.ImageAlign = ContentAlignment.MiddleLeft;
-            btnStocksReport.Location = new Point(0, 278);
-            btnStocksReport.Name = "btnStocksReport";
-            btnStocksReport.Padding = new Padding(10, 0, 20, 0);
-            btnStocksReport.Size = new Size(200, 60);
-            btnStocksReport.TabIndex = 18;
-            btnStocksReport.Text = "Stocks Report";
-            btnStocksReport.TextAlign = ContentAlignment.MiddleLeft;
-            btnStocksReport.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnStocksReport.UseVisualStyleBackColor = true;
-            btnStocksReport.Click += btnStocksReport_Click;
-            // 
-            // btnInventory
-            // 
-            btnInventory.Dock = DockStyle.Top;
-            btnInventory.FlatAppearance.BorderSize = 0;
-            btnInventory.FlatStyle = FlatStyle.Flat;
-            btnInventory.Font = new Font("Arial Black", 10F, FontStyle.Bold);
-            btnInventory.ForeColor = Color.Gainsboro;
-            btnInventory.IconChar = FontAwesome.Sharp.IconChar.Warehouse;
-            btnInventory.IconColor = Color.White;
-            btnInventory.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnInventory.IconSize = 32;
-            btnInventory.ImageAlign = ContentAlignment.MiddleLeft;
-            btnInventory.Location = new Point(0, 218);
-            btnInventory.Name = "btnInventory";
-            btnInventory.Padding = new Padding(10, 0, 20, 0);
-            btnInventory.Size = new Size(200, 60);
-            btnInventory.TabIndex = 17;
-            btnInventory.Text = "Inventory Management";
-            btnInventory.TextAlign = ContentAlignment.MiddleLeft;
-            btnInventory.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnInventory.UseVisualStyleBackColor = true;
-            btnInventory.Click += btnInventory_Click;
-            // 
-            // btnDashboard
-            // 
-            btnDashboard.Dock = DockStyle.Top;
-            btnDashboard.FlatAppearance.BorderSize = 0;
-            btnDashboard.FlatStyle = FlatStyle.Flat;
-            btnDashboard.Font = new Font("Arial Black", 10F, FontStyle.Bold);
-            btnDashboard.ForeColor = Color.Gainsboro;
-            btnDashboard.IconChar = FontAwesome.Sharp.IconChar.BarChart;
-            btnDashboard.IconColor = Color.White;
-            btnDashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnDashboard.IconSize = 32;
-            btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.Location = new Point(0, 158);
-            btnDashboard.Name = "btnDashboard";
-            btnDashboard.Padding = new Padding(10, 0, 20, 0);
-            btnDashboard.Size = new Size(200, 60);
-            btnDashboard.TabIndex = 16;
-            btnDashboard.Text = "Dashboard";
-            btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnDashboard.UseVisualStyleBackColor = true;
-            btnDashboard.Click += btnDashboard_Click;
-            // 
-            // panelLogo
-            // 
-            panelLogo.BackColor = Color.Cyan;
-            panelLogo.Controls.Add(picture_Logo);
-            panelLogo.Dock = DockStyle.Top;
-            panelLogo.Location = new Point(0, 0);
-            panelLogo.Name = "panelLogo";
-            panelLogo.Size = new Size(200, 158);
-            panelLogo.TabIndex = 0;
-            // 
-            // picture_Logo
-            // 
-            picture_Logo.BackgroundImage = (Image)resources.GetObject("picture_Logo.BackgroundImage");
-            picture_Logo.BackgroundImageLayout = ImageLayout.Stretch;
-            picture_Logo.BorderStyle = BorderStyle.Fixed3D;
-            picture_Logo.ErrorImage = (Image)resources.GetObject("picture_Logo.ErrorImage");
-            picture_Logo.Location = new Point(5, 9);
-            picture_Logo.Name = "picture_Logo";
-            picture_Logo.Size = new Size(191, 140);
-            picture_Logo.TabIndex = 2;
-            picture_Logo.TabStop = false;
-            // 
-            // panelTitleBar
-            // 
-            panelTitleBar.BackColor = Color.FromArgb(26, 25, 62);
-            panelTitleBar.Controls.Add(panel1);
-            panelTitleBar.Controls.Add(lblTitleChild);
-            panelTitleBar.Controls.Add(iconCurrentChildIcon);
-            panelTitleBar.Dock = DockStyle.Top;
-            panelTitleBar.Location = new Point(200, 0);
-            panelTitleBar.Name = "panelTitleBar";
-            panelTitleBar.Size = new Size(1023, 65);
-            panelTitleBar.TabIndex = 16;
-            panelTitleBar.MouseDown += panelTitleBar_MouseDown;
             // 
             // panel1
             // 
-            panel1.Controls.Add(btnExit);
-            panel1.Controls.Add(btnMaximize);
-            panel1.Controls.Add(btnMinimize);
-            panel1.Dock = DockStyle.Right;
-            panel1.Location = new Point(887, 0);
+            panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(iconTotalInventory);
+            panel1.Controls.Add(lblTotalInventory);
+            panel1.Controls.Add(label1);
+            panel1.Location = new Point(60, 34);
             panel1.Name = "panel1";
-            panel1.Size = new Size(136, 65);
-            panel1.TabIndex = 2;
+            panel1.Size = new Size(272, 122);
+            panel1.TabIndex = 0;
             // 
-            // btnExit
+            // iconTotalInventory
             // 
-            btnExit.BackColor = Color.Transparent;
-            btnExit.FlatStyle = FlatStyle.Flat;
-            btnExit.ForeColor = Color.DarkSalmon;
-            btnExit.IconChar = FontAwesome.Sharp.IconChar.Close;
-            btnExit.IconColor = Color.FromArgb(255, 128, 0);
-            btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnExit.IconSize = 25;
-            btnExit.Location = new Point(99, 3);
-            btnExit.Name = "btnExit";
-            btnExit.Size = new Size(30, 22);
-            btnExit.TabIndex = 5;
-            btnExit.UseVisualStyleBackColor = false;
-            btnExit.Click += btnExit_Click;
+            iconTotalInventory.BackColor = SystemColors.ActiveCaption;
+            iconTotalInventory.ForeColor = SystemColors.ControlText;
+            iconTotalInventory.IconChar = FontAwesome.Sharp.IconChar.BoxesStacked;
+            iconTotalInventory.IconColor = SystemColors.ControlText;
+            iconTotalInventory.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconTotalInventory.IconSize = 83;
+            iconTotalInventory.Location = new Point(180, 22);
+            iconTotalInventory.Name = "iconTotalInventory";
+            iconTotalInventory.Size = new Size(89, 83);
+            iconTotalInventory.TabIndex = 2;
+            iconTotalInventory.TabStop = false;
             // 
-            // btnMaximize
+            // lblTotalInventory
             // 
-            btnMaximize.FlatStyle = FlatStyle.Flat;
-            btnMaximize.ForeColor = Color.IndianRed;
-            btnMaximize.IconChar = FontAwesome.Sharp.IconChar.WindowMaximize;
-            btnMaximize.IconColor = Color.IndianRed;
-            btnMaximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnMaximize.IconSize = 20;
-            btnMaximize.Location = new Point(65, 3);
-            btnMaximize.Name = "btnMaximize";
-            btnMaximize.Size = new Size(30, 22);
-            btnMaximize.TabIndex = 4;
-            btnMaximize.UseVisualStyleBackColor = true;
-            btnMaximize.Click += btnMaximize_Click;
+            lblTotalInventory.AutoSize = true;
+            lblTotalInventory.Font = new Font("Segoe UI Black", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotalInventory.Location = new Point(57, 49);
+            lblTotalInventory.Name = "lblTotalInventory";
+            lblTotalInventory.Size = new Size(30, 37);
+            lblTotalInventory.TabIndex = 1;
+            lblTotalInventory.Text = "1";
             // 
-            // btnMinimize
+            // label1
             // 
-            btnMinimize.FlatStyle = FlatStyle.Flat;
-            btnMinimize.ForeColor = Color.IndianRed;
-            btnMinimize.IconChar = FontAwesome.Sharp.IconChar.SquareMinus;
-            btnMinimize.IconColor = Color.IndianRed;
-            btnMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnMinimize.Location = new Point(29, 3);
-            btnMinimize.Name = "btnMinimize";
-            btnMinimize.Size = new Size(30, 22);
-            btnMinimize.TabIndex = 3;
-            btnMinimize.UseVisualStyleBackColor = true;
-            btnMinimize.Click += btnMinimize_Click;
+            label1.AutoSize = true;
+            label1.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(13, 16);
+            label1.Name = "label1";
+            label1.Size = new Size(149, 22);
+            label1.TabIndex = 0;
+            label1.Text = "Total Inventory";
             // 
-            // lblTitleChild
+            // panel2
             // 
-            lblTitleChild.AutoSize = true;
-            lblTitleChild.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitleChild.ForeColor = Color.Gainsboro;
-            lblTitleChild.Location = new Point(58, 27);
-            lblTitleChild.Name = "lblTitleChild";
-            lblTitleChild.Size = new Size(50, 20);
-            lblTitleChild.TabIndex = 1;
-            lblTitleChild.Text = "Home";
+            panel2.Anchor = AnchorStyles.Top;
+            panel2.BackColor = Color.Crimson;
+            panel2.Controls.Add(iconPictureBox1);
+            panel2.Controls.Add(lblLowStock);
+            panel2.Controls.Add(label2);
+            panel2.Location = new Point(373, 34);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(272, 122);
+            panel2.TabIndex = 1;
             // 
-            // iconCurrentChildIcon
+            // iconPictureBox1
             // 
-            iconCurrentChildIcon.BackColor = Color.FromArgb(26, 25, 62);
-            iconCurrentChildIcon.ForeColor = Color.MediumOrchid;
-            iconCurrentChildIcon.IconChar = FontAwesome.Sharp.IconChar.House;
-            iconCurrentChildIcon.IconColor = Color.MediumOrchid;
-            iconCurrentChildIcon.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconCurrentChildIcon.Location = new Point(20, 21);
-            iconCurrentChildIcon.Name = "iconCurrentChildIcon";
-            iconCurrentChildIcon.Size = new Size(32, 32);
-            iconCurrentChildIcon.TabIndex = 0;
-            iconCurrentChildIcon.TabStop = false;
+            iconPictureBox1.BackColor = Color.Transparent;
+            iconPictureBox1.ForeColor = SystemColors.ControlText;
+            iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.BoxesStacked;
+            iconPictureBox1.IconColor = SystemColors.ControlText;
+            iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconPictureBox1.IconSize = 83;
+            iconPictureBox1.Location = new Point(180, 22);
+            iconPictureBox1.Name = "iconPictureBox1";
+            iconPictureBox1.Size = new Size(89, 83);
+            iconPictureBox1.TabIndex = 3;
+            iconPictureBox1.TabStop = false;
             // 
-            // panelShadow
+            // lblLowStock
             // 
-            panelShadow.BackColor = Color.FromArgb(26, 25, 62);
-            panelShadow.Controls.Add(btnSupplier);
-            panelShadow.Dock = DockStyle.Top;
-            panelShadow.Location = new Point(200, 65);
-            panelShadow.Name = "panelShadow";
-            panelShadow.Size = new Size(1023, 10);
-            panelShadow.TabIndex = 17;
+            lblLowStock.AutoSize = true;
+            lblLowStock.Font = new Font("Segoe UI Black", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLowStock.Location = new Point(52, 49);
+            lblLowStock.Name = "lblLowStock";
+            lblLowStock.Size = new Size(30, 37);
+            lblLowStock.TabIndex = 2;
+            lblLowStock.Text = "1";
             // 
-            // panelMenuForm
+            // label2
             // 
-            panelMenuForm.BackColor = Color.FromArgb(34, 33, 74);
-            panelMenuForm.Dock = DockStyle.Fill;
-            panelMenuForm.Location = new Point(200, 75);
-            panelMenuForm.Name = "panelMenuForm";
-            panelMenuForm.Size = new Size(1023, 589);
-            panelMenuForm.TabIndex = 18;
+            label2.AutoSize = true;
+            label2.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(17, 16);
+            label2.Name = "label2";
+            label2.Size = new Size(118, 22);
+            label2.TabIndex = 1;
+            label2.Text = "Low Stocks";
+            // 
+            // panel4
+            // 
+            panel4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panel4.BackColor = Color.LimeGreen;
+            panel4.Controls.Add(iconPictureBox3);
+            panel4.Controls.Add(lblTotalSalesToday);
+            panel4.Controls.Add(label3);
+            panel4.Location = new Point(685, 34);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(272, 122);
+            panel4.TabIndex = 2;
+            // 
+            // iconPictureBox3
+            // 
+            iconPictureBox3.BackColor = Color.Transparent;
+            iconPictureBox3.ForeColor = SystemColors.ControlText;
+            iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.BoxesStacked;
+            iconPictureBox3.IconColor = SystemColors.ControlText;
+            iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconPictureBox3.IconSize = 83;
+            iconPictureBox3.Location = new Point(170, 20);
+            iconPictureBox3.Name = "iconPictureBox3";
+            iconPictureBox3.Size = new Size(89, 83);
+            iconPictureBox3.TabIndex = 4;
+            iconPictureBox3.TabStop = false;
+            // 
+            // lblTotalSalesToday
+            // 
+            lblTotalSalesToday.AutoSize = true;
+            lblTotalSalesToday.Font = new Font("Segoe UI Black", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotalSalesToday.Location = new Point(53, 49);
+            lblTotalSalesToday.Name = "lblTotalSalesToday";
+            lblTotalSalesToday.Size = new Size(30, 37);
+            lblTotalSalesToday.TabIndex = 3;
+            lblTotalSalesToday.Text = "1";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(18, 16);
+            label3.Name = "label3";
+            label3.Size = new Size(129, 22);
+            label3.TabIndex = 2;
+            label3.Text = "Today's Sale";
+            // 
+            // btnPrintLowStock
+            // 
+            btnPrintLowStock.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnPrintLowStock.BackColor = Color.FromArgb(128, 128, 255);
+            btnPrintLowStock.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPrintLowStock.ForeColor = Color.Black;
+            btnPrintLowStock.IconChar = FontAwesome.Sharp.IconChar.Print;
+            btnPrintLowStock.IconColor = Color.Black;
+            btnPrintLowStock.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnPrintLowStock.IconSize = 23;
+            btnPrintLowStock.ImageAlign = ContentAlignment.MiddleLeft;
+            btnPrintLowStock.Location = new Point(866, 202);
+            btnPrintLowStock.Name = "btnPrintLowStock";
+            btnPrintLowStock.Size = new Size(107, 38);
+            btnPrintLowStock.TabIndex = 62;
+            btnPrintLowStock.Text = "PRINT";
+            btnPrintLowStock.TextAlign = ContentAlignment.MiddleRight;
+            btnPrintLowStock.TextImageRelation = TextImageRelation.TextBeforeImage;
+            btnPrintLowStock.UseVisualStyleBackColor = false;
+            btnPrintLowStock.Click += btnPrintLowStock_Click;
+            // 
+            // dgridLowStock
+            // 
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = Color.DeepSkyBlue;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dgridLowStock.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgridLowStock.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgridLowStock.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgridLowStock.BackgroundColor = SystemColors.ButtonFace;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = Color.DeepSkyBlue;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgridLowStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgridLowStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = Color.DeepSkyBlue;
+            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgridLowStock.DefaultCellStyle = dataGridViewCellStyle3;
+            dgridLowStock.GridColor = SystemColors.Desktop;
+            dgridLowStock.Location = new Point(35, 267);
+            dgridLowStock.Margin = new Padding(3, 2, 3, 2);
+            dgridLowStock.Name = "dgridLowStock";
+            dgridLowStock.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = Color.DeepSkyBlue;
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgridLowStock.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dgridLowStock.RowHeadersWidth = 51;
+            dataGridViewCellStyle5.BackColor = Color.White;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = Color.DeepSkyBlue;
+            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
+            dgridLowStock.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dgridLowStock.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgridLowStock.Size = new Size(938, 261);
+            dgridLowStock.TabIndex = 63;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = SystemColors.ActiveCaptionText;
+            label4.Location = new Point(11, 4);
+            label4.Name = "label4";
+            label4.Size = new Size(169, 22);
+            label4.TabIndex = 2;
+            label4.Text = "Low Stock Items:";
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.FromArgb(224, 224, 224);
+            panel3.Controls.Add(label4);
+            panel3.Location = new Point(35, 231);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(189, 31);
+            panel3.TabIndex = 64;
             // 
             // AdminDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(1223, 664);
-            Controls.Add(panelMenuForm);
-            Controls.Add(panelShadow);
-            Controls.Add(panelTitleBar);
-            Controls.Add(panelMenu);
-            ForeColor = SystemColors.Control;
-            Margin = new Padding(2);
+            BackColor = Color.FromArgb(34, 33, 74);
+            ClientSize = new Size(1007, 550);
+            Controls.Add(panel3);
+            Controls.Add(dgridLowStock);
+            Controls.Add(btnPrintLowStock);
+            Controls.Add(panel4);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "AdminDashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AdminDashboard";
-            panelMenu.ResumeLayout(false);
-            panelLogo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)picture_Logo).EndInit();
-            panelTitleBar.ResumeLayout(false);
-            panelTitleBar.PerformLayout();
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)iconCurrentChildIcon).EndInit();
-            panelShadow.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)iconTotalInventory).EndInit();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)iconPictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgridLowStock).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-        private Button btnSupplier;
-        private Panel panelMenu;
-        private FontAwesome.Sharp.IconButton btnDashboard;
-        private Panel panelLogo;
-        private FontAwesome.Sharp.IconButton btnSalesReport;
-        private FontAwesome.Sharp.IconButton btnStocksReport;
-        private FontAwesome.Sharp.IconButton btnInventory;
-        private Panel panelTitleBar;
-        private FontAwesome.Sharp.IconPictureBox iconCurrentChildIcon;
-        private Label lblTitleChild;
-        private Panel panelShadow;
-        private Panel panelMenuForm;
-        private FontAwesome.Sharp.IconButton btnLogout;
+
         private Panel panel1;
-        private FontAwesome.Sharp.IconButton btnExit;
-        private FontAwesome.Sharp.IconButton btnMaximize;
-        private FontAwesome.Sharp.IconButton btnMinimize;
-        private PictureBox picture_Logo;
+        private Label lblTotalInventory;
+        private Label label1;
+        private Panel panel2;
+        private Label label2;
+        private Panel panel4;
+        private Label label3;
+        private Label lblLowStock;
+        private Label lblTotalSalesToday;
+        private FontAwesome.Sharp.IconButton btnPrintLowStock;
+        private DataGridView dgridLowStock;
+        private Label label4;
+        private FontAwesome.Sharp.IconPictureBox iconTotalInventory;
+        private Panel panel3;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox3;
     }
 }

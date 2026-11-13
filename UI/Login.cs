@@ -46,7 +46,7 @@ namespace UI
 
                     if (user.Role == "Admin")
                     {
-                        AdminDashboard db = new AdminDashboard();
+                        AdminLandingPage db = new AdminLandingPage();
                         db.Show();
                         this.Hide();
                     }
