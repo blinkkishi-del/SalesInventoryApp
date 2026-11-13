@@ -258,6 +258,7 @@
             dgProducts.Margin = new Padding(3, 2, 3, 2);
             dgProducts.Name = "dgProducts";
             dgProducts.RowHeadersWidth = 51;
+            dgProducts.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dgProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgProducts.Size = new Size(983, 476);
             dgProducts.TabIndex = 51;
