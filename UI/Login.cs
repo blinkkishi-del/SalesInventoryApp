@@ -40,7 +40,7 @@ namespace UI
                     if (user.Role == "Admin")
                     {
                         AdminLandingPage db = new AdminLandingPage();
-                 
+                        db.UserSession = user;
                         db.Show();
                         this.Hide();
                     }

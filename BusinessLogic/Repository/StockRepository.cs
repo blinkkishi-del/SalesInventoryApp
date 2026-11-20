@@ -1,14 +1,12 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
 namespace BusinessLogic.Repository
 {
     public class StockRepository
     {
-        private string connectionString =
+        private readonly string connectionString =
+
             "Server=DESKTOP-SMD1DHH;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
 
         public DataTable GetTopProducts()
@@ -35,7 +33,8 @@ namespace BusinessLogic.Repository
         public int GetTotalInventory()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand("SELECT ISNULL(SUM(Quantity), 0) FROM tblProduct WHERE IsActive = 1", conn))
+            using (SqlCommand cmd = new SqlCommand(
+                "SELECT ISNULL(SUM(Quantity), 0) FROM tblProduct WHERE IsActive = 1", conn))
             {
                 conn.Open();
                 object result = cmd.ExecuteScalar();
@@ -46,7 +45,8 @@ namespace BusinessLogic.Repository
         public int GetLowStockCount(int threshold = 10)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM tblProduct WHERE IsActive = 1 AND Quantity <= @Threshold", conn))
+            using (SqlCommand cmd = new SqlCommand(
+                "SELECT COUNT(*) FROM tblProduct WHERE IsActive = 1 AND Quantity <= @Threshold", conn))
             {
                 cmd.Parameters.AddWithValue("@Threshold", threshold);
                 conn.Open();
@@ -57,11 +57,10 @@ namespace BusinessLogic.Repository
         public DataTable GetStockByProductId(string productId)
         {
             var dt = new DataTable();
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query = @"
-                    SELECT 
+                    SELECT
                         p.ProductId,
                         p.ProductName,
                         p.Category,
@@ -71,7 +70,7 @@ namespace BusinessLogic.Repository
                     FROM tblProduct p
                     LEFT JOIN tblSalesDetail sd ON p.ProductId = sd.ProductId
                     LEFT JOIN tblSales s ON sd.SalesId = s.SalesId
-                    WHERE p.IsActive = 1 
+                    WHERE p.IsActive = 1
                       AND (@ProductId = '' OR p.ProductId LIKE '%' + @ProductId + '%')
                     GROUP BY p.ProductId, p.ProductName, p.Category, p.Quantity
                     ORDER BY p.ProductName;";
@@ -82,7 +81,6 @@ namespace BusinessLogic.Repository
                     new SqlDataAdapter(cmd).Fill(dt);
                 }
             }
-
             return dt;
         }
     }

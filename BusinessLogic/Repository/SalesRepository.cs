@@ -75,10 +75,7 @@ namespace BusinessLogic.Repository
             }
         }
 
-        /// <summary>
-        /// Atomic checkout: one sale header, all detail lines, stock decremented — all or nothing.
-        /// Throws if any product's stock is insufficient (guarded UPDATE returns 0 rows).
-        /// </summary>
+
         public void Checkout(DateTime salesDate, IEnumerable<(string ProductId, int Quantity, decimal Price)> lines)
         {
             var items = lines.ToList();
@@ -102,7 +99,6 @@ namespace BusinessLogic.Repository
 
                 foreach (var (productId, quantity, price) in items)
                 {
-                    // Guard prevents overselling even under concurrent checkouts.
                     using (var stock = new SqlCommand(@"
                         UPDATE tblProduct
                         SET Quantity = Quantity - @Quantity
@@ -181,7 +177,6 @@ namespace BusinessLogic.Repository
             }
         }
 
-        /// <summary>Returns the top 5 products by total quantity sold (all time).</summary>
         public DataTable GetTop5Sellers()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -202,7 +197,6 @@ namespace BusinessLogic.Repository
             }
         }
 
-        /// <summary>Returns total sales amount for each of the last 7 days (including today).</summary>
         public DataTable GetLast7DaysSales()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))

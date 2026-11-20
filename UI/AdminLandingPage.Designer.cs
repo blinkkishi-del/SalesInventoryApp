@@ -348,6 +348,8 @@
             Name = "AdminLandingPage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AdminDashboard";
+            WindowState = FormWindowState.Maximized;
+            Load += AdminLandingPage_Load;
             panelMenu.ResumeLayout(false);
             panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picture_Logo).EndInit();

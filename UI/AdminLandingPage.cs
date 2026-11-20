@@ -16,7 +16,7 @@ namespace UI
         private Form currentChildForm;
 
 
-        UserModel UserSession;
+        internal UserModel UserSession;
         public AdminLandingPage()
         {
             InitializeComponent();
@@ -105,7 +105,7 @@ namespace UI
         }
 
 
-       
+
 
 
         private void btnInventory_Click(object sender, EventArgs e)
@@ -130,16 +130,16 @@ namespace UI
             if (currentBtn == sender) return;
             ActivateButton(sender, RGBColors.color4);
             OpenChildForm(new SalesReport());
-           
+
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             if (currentBtn == sender) return;
             ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new AdminDashboard());
-
-
+            var dash = new AdminDashboard();
+            dash.CurrentUser = UserSession;
+            OpenChildForm(dash);
         }
 
 
@@ -203,7 +203,14 @@ namespace UI
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            if (currentChildForm is AdminDashboard dash)
+                dash.LoadDashboardData();
+        }
 
+        private void AdminLandingPage_Load(object sender, EventArgs e)
+        {
+            btnDashboard_Click(btnDashboard, EventArgs.Empty);
         }
     }
 }
+

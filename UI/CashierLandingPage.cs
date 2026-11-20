@@ -10,7 +10,6 @@ namespace UI
         private Panel leftBorderBtn;
         private Form currentChildForm;
 
-        // Set by Login before Show() is called.
         internal UserModel UserSession;
 
         public CashierLandingPage()
