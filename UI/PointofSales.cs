@@ -226,7 +226,6 @@ namespace UI
             }
             try
             {
-                // Use full active catalog — GetAllProducts() is capped at 50 rows.
                 var products = productController.GetProductsOrderedByStock();
                 var lines = new List<(string ProductId, int Quantity, decimal Price)>();
 
@@ -248,7 +247,6 @@ namespace UI
                     lines.Add((product.ProductId, order.Quantity, order.Price));
                 }
 
-                // One transaction: one sale header, all lines, stock deducted — all or nothing.
                 salesController.Checkout(lines);
 
                 PrintReceiptPreview();
