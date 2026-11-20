@@ -22,6 +22,7 @@ namespace UI
             productController = new ProductController();
             salesController = new SalesController();
             txtPay.TextChanged += txtPay_TextChanged;
+            datetpDate.Enabled = false;
 
         }
 
@@ -30,7 +31,6 @@ namespace UI
             LoadProducts();
             RefreshReceiptGrid();
             UpdateTotalAndChange();
-            dgProducts.CellDoubleClick += dgProducts_CellDoubleClick;
             dgProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
 
@@ -226,10 +226,12 @@ namespace UI
             }
             try
             {
-                productList = productController.GetAllProducts();
+                var products = productController.GetProductsOrderedByStock();
+                var lines = new List<(string ProductId, int Quantity, decimal Price)>();
+
                 foreach (var order in orders)
                 {
-                    var product = productList.FirstOrDefault(p => p.ProductName == order.ItemName);
+                    var product = products.FirstOrDefault(p => p.ProductName == order.ItemName);
                     if (product == null)
                     {
                         MessageBox.Show($"Product '{order.ItemName}' not found!", "Error",
@@ -242,13 +244,11 @@ namespace UI
                             "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+                    lines.Add((product.ProductId, order.Quantity, order.Price));
                 }
-                foreach (var order in orders)
-                {
-                    var product = productList.FirstOrDefault(p => p.ProductName == order.ItemName);
-                    if (product != null)
-                        salesController.AddSale(product.ProductId, order.Quantity, order.Price);
-                }
+
+                salesController.Checkout(lines);
+
                 PrintReceiptPreview();
                 orderController.ClearAllOrders();
                 RefreshReceiptGrid();
@@ -261,14 +261,14 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error processing order: " + ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Checkout failed. Nothing was saved.\n\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
 
 
-                    private void PrintReceiptPreview()
+        private void PrintReceiptPreview()
         {
             var orders = orderController.GetOrders();
             if (orders == null || orders.Count == 0) return;

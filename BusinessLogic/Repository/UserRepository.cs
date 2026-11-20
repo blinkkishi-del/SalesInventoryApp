@@ -5,14 +5,14 @@ namespace BusinessLogic.Repository
 {
     public class UserRepository
     {
-        private string CONNECTIONSTRING =
+        private string connectionString =
             "Server=DESKTOP-SMD1DHH;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
 
         public UserModel ValidateUser(string username, string password)
         {
             UserModel user = null; 
 
-            using (SqlConnection connection = new SqlConnection(CONNECTIONSTRING)) 
+            using (SqlConnection connection = new SqlConnection(connectionString)) 
             {
                 string query = "SELECT Username, Password, Role FROM tblUsers WHERE Username = @Username AND Password = @Password";
 

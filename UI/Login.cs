@@ -30,13 +30,6 @@ namespace UI
                 string username = txtUsername.Text.Trim();
                 string password = txtPassword.Text.Trim();
 
-                if (password.Length < 6)
-                {
-                    MessageBox.Show("Password must be at least 6 characters!",
-                        "Invalid Password", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
                 UserModel user = userController.Login(username, password);
 
                 if (user != null)
@@ -47,12 +40,14 @@ namespace UI
                     if (user.Role == "Admin")
                     {
                         AdminLandingPage db = new AdminLandingPage();
+                 
                         db.Show();
                         this.Hide();
                     }
                     else if (user.Role == "Cashier")
                     {
-                        CashierDashboard cashierForm = new CashierDashboard();
+                        CashierLandingPage cashierForm = new CashierLandingPage();
+                        cashierForm.UserSession = user;
                         cashierForm.Show();
                         this.Hide();
                     }
