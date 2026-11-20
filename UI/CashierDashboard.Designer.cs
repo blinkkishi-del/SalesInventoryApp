@@ -1,335 +1,400 @@
-﻿namespace UI
+namespace UI
 {
     partial class CashierDashboard
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
+            if (disposing && (components != null)) components.Dispose();
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            panelMenu = new Panel();
-            btnLogout = new FontAwesome.Sharp.IconButton();
-            btnPOS = new FontAwesome.Sharp.IconButton();
-            btnDashboard = new FontAwesome.Sharp.IconButton();
-            panelLogo = new Panel();
-            pictureBox1 = new PictureBox();
-            panelTitleBar = new Panel();
-            panel1 = new Panel();
-            btnExit = new FontAwesome.Sharp.IconButton();
-            btnMaximize = new FontAwesome.Sharp.IconButton();
-            btnMinimize = new FontAwesome.Sharp.IconButton();
-            lblTitleChild = new Label();
-            iconCurrentChildIcon = new FontAwesome.Sharp.IconPictureBox();
-            panelShadow = new Panel();
-            btnSupplier = new Button();
-            panelMenuForm = new Panel();
-            panelMenu.SuspendLayout();
-            panelLogo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panelTitleBar.SuspendLayout();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)iconCurrentChildIcon).BeginInit();
-            panelShadow.SuspendLayout();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            outerLayout = new TableLayoutPanel();
+            panelTop = new Panel();
+            lblCashierName = new Label();
+            lblWelcome = new Label();
+            panelBody = new TableLayoutPanel();
+            panelCards = new TableLayoutPanel();
+            cardSales = new Panel();
+            iconSalesToday = new FontAwesome.Sharp.IconPictureBox();
+            lblSalesTitle = new Label();
+            lblSalesToday = new Label();
+            cardTransactions = new Panel();
+            iconTransactionToday = new FontAwesome.Sharp.IconPictureBox();
+            lblTransactionsTitle = new Label();
+            lblTransactionsToday = new Label();
+            panelActions = new Panel();
+            lblLoginTime = new Label();
+            panelGridHeader = new Panel();
+            btnRefresh = new FontAwesome.Sharp.IconButton();
+            lblShiftTitle = new Label();
+            dgShiftHistory = new DataGridView();
+            outerLayout.SuspendLayout();
+            panelTop.SuspendLayout();
+            panelBody.SuspendLayout();
+            panelCards.SuspendLayout();
+            cardSales.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)iconSalesToday).BeginInit();
+            cardTransactions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)iconTransactionToday).BeginInit();
+            panelActions.SuspendLayout();
+            panelGridHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgShiftHistory).BeginInit();
             SuspendLayout();
             // 
-            // panelMenu
+            // outerLayout
             // 
-            panelMenu.BackColor = Color.FromArgb(26, 25, 62);
-            panelMenu.Controls.Add(btnLogout);
-            panelMenu.Controls.Add(btnPOS);
-            panelMenu.Controls.Add(btnDashboard);
-            panelMenu.Controls.Add(panelLogo);
-            panelMenu.Dock = DockStyle.Left;
-            panelMenu.Location = new Point(0, 0);
-            panelMenu.Margin = new Padding(3, 4, 3, 4);
-            panelMenu.Name = "panelMenu";
-            panelMenu.Size = new Size(229, 885);
-            panelMenu.TabIndex = 16;
+            outerLayout.ColumnCount = 1;
+            outerLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            outerLayout.Controls.Add(panelTop, 0, 0);
+            outerLayout.Controls.Add(panelBody, 0, 1);
+            outerLayout.Dock = DockStyle.Fill;
+            outerLayout.Location = new Point(0, 0);
+            outerLayout.Margin = new Padding(0);
+            outerLayout.Name = "outerLayout";
+            outerLayout.RowCount = 2;
+            outerLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 90F));
+            outerLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            outerLayout.Size = new Size(1007, 550);
+            outerLayout.TabIndex = 0;
             // 
-            // btnLogout
+            // panelTop
             // 
-            btnLogout.Dock = DockStyle.Bottom;
-            btnLogout.FlatAppearance.BorderSize = 0;
-            btnLogout.FlatStyle = FlatStyle.Flat;
-            btnLogout.Font = new Font("Arial Black", 8F, FontStyle.Bold);
-            btnLogout.ForeColor = Color.Gray;
-            btnLogout.IconChar = FontAwesome.Sharp.IconChar.SignOut;
-            btnLogout.IconColor = Color.White;
-            btnLogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnLogout.IconSize = 28;
-            btnLogout.ImageAlign = ContentAlignment.MiddleLeft;
-            btnLogout.Location = new Point(0, 805);
-            btnLogout.Margin = new Padding(3, 4, 3, 4);
-            btnLogout.Name = "btnLogout";
-            btnLogout.Padding = new Padding(11, 0, 23, 0);
-            btnLogout.Size = new Size(229, 80);
-            btnLogout.TabIndex = 20;
-            btnLogout.Text = "Log Out";
-            btnLogout.TextAlign = ContentAlignment.MiddleLeft;
-            btnLogout.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnLogout.UseVisualStyleBackColor = true;
-            btnLogout.Click += btnLogout_Click;
+            panelTop.BackColor = Color.FromArgb(26, 25, 62);
+            panelTop.Controls.Add(lblCashierName);
+            panelTop.Controls.Add(lblWelcome);
+            panelTop.Dock = DockStyle.Fill;
+            panelTop.Location = new Point(3, 3);
+            panelTop.Name = "panelTop";
+            panelTop.Padding = new Padding(24, 0, 24, 0);
+            panelTop.Size = new Size(1001, 84);
+            panelTop.TabIndex = 0;
             // 
-            // btnPOS
+            // lblCashierName
             // 
-            btnPOS.Dock = DockStyle.Top;
-            btnPOS.FlatAppearance.BorderSize = 0;
-            btnPOS.FlatStyle = FlatStyle.Flat;
-            btnPOS.Font = new Font("Arial Black", 10F, FontStyle.Bold);
-            btnPOS.ForeColor = Color.Gainsboro;
-            btnPOS.IconChar = FontAwesome.Sharp.IconChar.CartShopping;
-            btnPOS.IconColor = Color.White;
-            btnPOS.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnPOS.IconSize = 32;
-            btnPOS.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPOS.Location = new Point(0, 291);
-            btnPOS.Margin = new Padding(3, 4, 3, 4);
-            btnPOS.Name = "btnPOS";
-            btnPOS.Padding = new Padding(11, 0, 23, 0);
-            btnPOS.Size = new Size(229, 80);
-            btnPOS.TabIndex = 17;
-            btnPOS.Text = "Point of Sales";
-            btnPOS.TextAlign = ContentAlignment.MiddleLeft;
-            btnPOS.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnPOS.UseVisualStyleBackColor = true;
-            btnPOS.Click += btnPOS_Click;
+            lblCashierName.AutoSize = true;
+            lblCashierName.Font = new Font("Segoe UI Black", 19F, FontStyle.Bold);
+            lblCashierName.ForeColor = Color.White;
+            lblCashierName.Location = new Point(21, 37);
+            lblCashierName.Name = "lblCashierName";
+            lblCashierName.Size = new Size(0, 36);
+            lblCashierName.TabIndex = 1;
             // 
-            // btnDashboard
+            // lblWelcome
             // 
-            btnDashboard.Dock = DockStyle.Top;
-            btnDashboard.FlatAppearance.BorderSize = 0;
-            btnDashboard.FlatStyle = FlatStyle.Flat;
-            btnDashboard.Font = new Font("Arial Black", 10F, FontStyle.Bold);
-            btnDashboard.ForeColor = Color.Gainsboro;
-            btnDashboard.IconChar = FontAwesome.Sharp.IconChar.BarChart;
-            btnDashboard.IconColor = Color.White;
-            btnDashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnDashboard.IconSize = 32;
-            btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.Location = new Point(0, 211);
-            btnDashboard.Margin = new Padding(3, 4, 3, 4);
-            btnDashboard.Name = "btnDashboard";
-            btnDashboard.Padding = new Padding(11, 0, 23, 0);
-            btnDashboard.Size = new Size(229, 80);
-            btnDashboard.TabIndex = 16;
-            btnDashboard.Text = "Dashboard";
-            btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnDashboard.UseVisualStyleBackColor = true;
-            btnDashboard.Click += btnDashboard_Click;
+            lblWelcome.AutoSize = true;
+            lblWelcome.Font = new Font("Segoe UI", 11F);
+            lblWelcome.ForeColor = Color.FromArgb(180, 180, 210);
+            lblWelcome.Location = new Point(24, 10);
+            lblWelcome.Name = "lblWelcome";
+            lblWelcome.Size = new Size(109, 20);
+            lblWelcome.TabIndex = 2;
+            lblWelcome.Text = "Welcome back,";
             // 
-            // panelLogo
+            // panelBody
             // 
-            panelLogo.Controls.Add(pictureBox1);
-            panelLogo.Dock = DockStyle.Top;
-            panelLogo.Location = new Point(0, 0);
-            panelLogo.Margin = new Padding(3, 4, 3, 4);
-            panelLogo.Name = "panelLogo";
-            panelLogo.Size = new Size(229, 211);
-            panelLogo.TabIndex = 0;
+            panelBody.BackColor = Color.FromArgb(34, 33, 74);
+            panelBody.ColumnCount = 1;
+            panelBody.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            panelBody.Controls.Add(panelCards, 0, 0);
+            panelBody.Controls.Add(panelGridHeader, 0, 1);
+            panelBody.Controls.Add(dgShiftHistory, 0, 2);
+            panelBody.Dock = DockStyle.Fill;
+            panelBody.Location = new Point(0, 90);
+            panelBody.Margin = new Padding(0);
+            panelBody.Name = "panelBody";
+            panelBody.RowCount = 3;
+            panelBody.RowStyles.Add(new RowStyle(SizeType.Absolute, 118F));
+            panelBody.RowStyles.Add(new RowStyle(SizeType.Absolute, 42F));
+            panelBody.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            panelBody.Size = new Size(1007, 460);
+            panelBody.TabIndex = 1;
             // 
-            // pictureBox1
+            // panelCards
             // 
-            pictureBox1.Location = new Point(31, 43);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(174, 101);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            panelCards.BackColor = Color.FromArgb(34, 33, 74);
+            panelCards.ColumnCount = 3;
+            panelCards.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
+            panelCards.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
+            panelCards.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.34F));
+            panelCards.Controls.Add(cardSales, 0, 0);
+            panelCards.Controls.Add(cardTransactions, 1, 0);
+            panelCards.Controls.Add(panelActions, 2, 0);
+            panelCards.Dock = DockStyle.Fill;
+            panelCards.Location = new Point(0, 0);
+            panelCards.Margin = new Padding(0);
+            panelCards.Name = "panelCards";
+            panelCards.Padding = new Padding(16, 12, 16, 8);
+            panelCards.RowCount = 1;
+            panelCards.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            panelCards.Size = new Size(1007, 118);
+            panelCards.TabIndex = 0;
             // 
-            // panelTitleBar
+            // cardSales
             // 
-            panelTitleBar.BackColor = Color.FromArgb(26, 25, 62);
-            panelTitleBar.Controls.Add(panel1);
-            panelTitleBar.Controls.Add(lblTitleChild);
-            panelTitleBar.Controls.Add(iconCurrentChildIcon);
-            panelTitleBar.Dock = DockStyle.Top;
-            panelTitleBar.Location = new Point(229, 0);
-            panelTitleBar.Margin = new Padding(3, 4, 3, 4);
-            panelTitleBar.Name = "panelTitleBar";
-            panelTitleBar.Size = new Size(1169, 87);
-            panelTitleBar.TabIndex = 17;
+            cardSales.BackColor = Color.FromArgb(43, 108, 196);
+            cardSales.Controls.Add(iconSalesToday);
+            cardSales.Controls.Add(lblSalesTitle);
+            cardSales.Controls.Add(lblSalesToday);
+            cardSales.Dock = DockStyle.Fill;
+            cardSales.Location = new Point(16, 12);
+            cardSales.Margin = new Padding(0, 0, 10, 0);
+            cardSales.Name = "cardSales";
+            cardSales.Padding = new Padding(16, 10, 16, 10);
+            cardSales.Size = new Size(314, 98);
+            cardSales.TabIndex = 0;
             // 
-            // panel1
+            // iconSalesToday
             // 
-            panel1.Controls.Add(btnExit);
-            panel1.Controls.Add(btnMaximize);
-            panel1.Controls.Add(btnMinimize);
-            panel1.Dock = DockStyle.Right;
-            panel1.Location = new Point(1014, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(155, 87);
-            panel1.TabIndex = 2;
+            iconSalesToday.Anchor = AnchorStyles.Right;
+            iconSalesToday.BackColor = Color.Transparent;
+            iconSalesToday.ForeColor = SystemColors.ButtonFace;
+            iconSalesToday.IconChar = FontAwesome.Sharp.IconChar.MoneyBillTrendUp;
+            iconSalesToday.IconColor = SystemColors.ButtonFace;
+            iconSalesToday.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconSalesToday.IconSize = 83;
+            iconSalesToday.Location = new Point(192, 10);
+            iconSalesToday.Name = "iconSalesToday";
+            iconSalesToday.Size = new Size(89, 83);
+            iconSalesToday.TabIndex = 3;
+            iconSalesToday.TabStop = false;
             // 
-            // btnExit
+            // lblSalesTitle
             // 
-            btnExit.BackColor = Color.Transparent;
-            btnExit.FlatStyle = FlatStyle.Flat;
-            btnExit.ForeColor = Color.DarkSalmon;
-            btnExit.IconChar = FontAwesome.Sharp.IconChar.Close;
-            btnExit.IconColor = Color.FromArgb(255, 128, 0);
-            btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnExit.IconSize = 25;
-            btnExit.Location = new Point(113, 4);
-            btnExit.Margin = new Padding(3, 4, 3, 4);
-            btnExit.Name = "btnExit";
-            btnExit.Size = new Size(34, 29);
-            btnExit.TabIndex = 5;
-            btnExit.UseVisualStyleBackColor = false;
-            btnExit.Click += btnExit_Click;
+            lblSalesTitle.AutoSize = true;
+            lblSalesTitle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            lblSalesTitle.ForeColor = Color.FromArgb(200, 230, 255);
+            lblSalesTitle.Location = new Point(16, 10);
+            lblSalesTitle.Name = "lblSalesTitle";
+            lblSalesTitle.Size = new Size(115, 17);
+            lblSalesTitle.TabIndex = 0;
+            lblSalesTitle.Text = "Total Sales Today";
             // 
-            // btnMaximize
+            // lblSalesToday
             // 
-            btnMaximize.FlatStyle = FlatStyle.Flat;
-            btnMaximize.IconChar = FontAwesome.Sharp.IconChar.WindowMaximize;
-            btnMaximize.IconColor = Color.Black;
-            btnMaximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnMaximize.IconSize = 20;
-            btnMaximize.Location = new Point(74, 4);
-            btnMaximize.Margin = new Padding(3, 4, 3, 4);
-            btnMaximize.Name = "btnMaximize";
-            btnMaximize.Size = new Size(34, 29);
-            btnMaximize.TabIndex = 4;
-            btnMaximize.UseVisualStyleBackColor = true;
-            btnMaximize.Click += btnMaximize_Click;
+            lblSalesToday.AutoSize = true;
+            lblSalesToday.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
+            lblSalesToday.ForeColor = Color.White;
+            lblSalesToday.Location = new Point(16, 36);
+            lblSalesToday.Name = "lblSalesToday";
+            lblSalesToday.Size = new Size(94, 37);
+            lblSalesToday.TabIndex = 1;
+            lblSalesToday.Text = "₱0.00";
             // 
-            // btnMinimize
+            // cardTransactions
             // 
-            btnMinimize.FlatStyle = FlatStyle.Flat;
-            btnMinimize.IconChar = FontAwesome.Sharp.IconChar.SquareMinus;
-            btnMinimize.IconColor = Color.Black;
-            btnMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnMinimize.Location = new Point(33, 4);
-            btnMinimize.Margin = new Padding(3, 4, 3, 4);
-            btnMinimize.Name = "btnMinimize";
-            btnMinimize.Size = new Size(34, 29);
-            btnMinimize.TabIndex = 3;
-            btnMinimize.UseVisualStyleBackColor = true;
-            btnMinimize.Click += btnMinimize_Click;
+            cardTransactions.BackColor = Color.FromArgb(32, 160, 110);
+            cardTransactions.Controls.Add(iconTransactionToday);
+            cardTransactions.Controls.Add(lblTransactionsTitle);
+            cardTransactions.Controls.Add(lblTransactionsToday);
+            cardTransactions.Dock = DockStyle.Fill;
+            cardTransactions.Location = new Point(340, 12);
+            cardTransactions.Margin = new Padding(0, 0, 10, 0);
+            cardTransactions.Name = "cardTransactions";
+            cardTransactions.Padding = new Padding(16, 10, 16, 10);
+            cardTransactions.Size = new Size(314, 98);
+            cardTransactions.TabIndex = 1;
             // 
-            // lblTitleChild
+            // iconTransactionToday
             // 
-            lblTitleChild.AutoSize = true;
-            lblTitleChild.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitleChild.ForeColor = Color.Gainsboro;
-            lblTitleChild.Location = new Point(66, 36);
-            lblTitleChild.Name = "lblTitleChild";
-            lblTitleChild.Size = new Size(64, 25);
-            lblTitleChild.TabIndex = 1;
-            lblTitleChild.Text = "Home";
+            iconTransactionToday.Anchor = AnchorStyles.Right;
+            iconTransactionToday.BackColor = Color.Transparent;
+            iconTransactionToday.ForeColor = SystemColors.ButtonFace;
+            iconTransactionToday.IconChar = FontAwesome.Sharp.IconChar.TruckFast;
+            iconTransactionToday.IconColor = SystemColors.ButtonFace;
+            iconTransactionToday.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconTransactionToday.IconSize = 83;
+            iconTransactionToday.Location = new Point(206, 10);
+            iconTransactionToday.Name = "iconTransactionToday";
+            iconTransactionToday.Size = new Size(89, 83);
+            iconTransactionToday.TabIndex = 4;
+            iconTransactionToday.TabStop = false;
             // 
-            // iconCurrentChildIcon
+            // lblTransactionsTitle
             // 
-            iconCurrentChildIcon.BackColor = Color.FromArgb(26, 25, 62);
-            iconCurrentChildIcon.ForeColor = Color.MediumOrchid;
-            iconCurrentChildIcon.IconChar = FontAwesome.Sharp.IconChar.House;
-            iconCurrentChildIcon.IconColor = Color.MediumOrchid;
-            iconCurrentChildIcon.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconCurrentChildIcon.IconSize = 37;
-            iconCurrentChildIcon.Location = new Point(23, 28);
-            iconCurrentChildIcon.Margin = new Padding(3, 4, 3, 4);
-            iconCurrentChildIcon.Name = "iconCurrentChildIcon";
-            iconCurrentChildIcon.Size = new Size(37, 43);
-            iconCurrentChildIcon.TabIndex = 0;
-            iconCurrentChildIcon.TabStop = false;
+            lblTransactionsTitle.AutoSize = true;
+            lblTransactionsTitle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            lblTransactionsTitle.ForeColor = Color.FromArgb(200, 255, 230);
+            lblTransactionsTitle.Location = new Point(16, 10);
+            lblTransactionsTitle.Name = "lblTransactionsTitle";
+            lblTransactionsTitle.Size = new Size(126, 17);
+            lblTransactionsTitle.TabIndex = 0;
+            lblTransactionsTitle.Text = "Transactions Today";
             // 
-            // panelShadow
+            // lblTransactionsToday
             // 
-            panelShadow.BackColor = Color.FromArgb(26, 25, 62);
-            panelShadow.Controls.Add(btnSupplier);
-            panelShadow.Dock = DockStyle.Top;
-            panelShadow.Location = new Point(229, 87);
-            panelShadow.Margin = new Padding(3, 4, 3, 4);
-            panelShadow.Name = "panelShadow";
-            panelShadow.Size = new Size(1169, 13);
-            panelShadow.TabIndex = 18;
+            lblTransactionsToday.AutoSize = true;
+            lblTransactionsToday.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
+            lblTransactionsToday.ForeColor = Color.White;
+            lblTransactionsToday.Location = new Point(16, 36);
+            lblTransactionsToday.Name = "lblTransactionsToday";
+            lblTransactionsToday.Size = new Size(33, 37);
+            lblTransactionsToday.TabIndex = 1;
+            lblTransactionsToday.Text = "0";
             // 
-            // btnSupplier
+            // panelActions
             // 
-            btnSupplier.BackColor = SystemColors.WindowFrame;
-            btnSupplier.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSupplier.Location = new Point(165, 93);
-            btnSupplier.Margin = new Padding(2, 3, 2, 3);
-            btnSupplier.Name = "btnSupplier";
-            btnSupplier.Size = new Size(285, 53);
-            btnSupplier.TabIndex = 14;
-            btnSupplier.Text = "Supplier";
-            btnSupplier.UseVisualStyleBackColor = false;
+            panelActions.BackColor = Color.FromArgb(31, 30, 68);
+            panelActions.Controls.Add(lblLoginTime);
+            panelActions.Dock = DockStyle.Fill;
+            panelActions.Location = new Point(664, 12);
+            panelActions.Margin = new Padding(0);
+            panelActions.Name = "panelActions";
+            panelActions.Size = new Size(327, 98);
+            panelActions.TabIndex = 2;
             // 
-            // panelMenuForm
+            // lblLoginTime
             // 
-            panelMenuForm.BackColor = Color.FromArgb(34, 33, 74);
-            panelMenuForm.Dock = DockStyle.Fill;
-            panelMenuForm.Location = new Point(229, 100);
-            panelMenuForm.Margin = new Padding(3, 4, 3, 4);
-            panelMenuForm.Name = "panelMenuForm";
-            panelMenuForm.Size = new Size(1169, 785);
-            panelMenuForm.TabIndex = 19;
+            lblLoginTime.Anchor = AnchorStyles.Left;
+            lblLoginTime.AutoSize = true;
+            lblLoginTime.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLoginTime.ForeColor = Color.FromArgb(172, 126, 241);
+            lblLoginTime.Location = new Point(37, 36);
+            lblLoginTime.Name = "lblLoginTime";
+            lblLoginTime.Size = new Size(83, 30);
+            lblLoginTime.TabIndex = 0;
+            lblLoginTime.Text = "Session";
+            // 
+            // panelGridHeader
+            // 
+            panelGridHeader.BackColor = Color.FromArgb(31, 30, 68);
+            panelGridHeader.Controls.Add(btnRefresh);
+            panelGridHeader.Controls.Add(lblShiftTitle);
+            panelGridHeader.Dock = DockStyle.Fill;
+            panelGridHeader.Location = new Point(3, 121);
+            panelGridHeader.Name = "panelGridHeader";
+            panelGridHeader.Padding = new Padding(16, 0, 16, 0);
+            panelGridHeader.Size = new Size(1001, 36);
+            panelGridHeader.TabIndex = 1;
+            // 
+            // btnRefresh
+            // 
+            btnRefresh.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            btnRefresh.BackColor = Color.FromArgb(172, 126, 241);
+            btnRefresh.FlatAppearance.BorderSize = 0;
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnRefresh.ForeColor = Color.White;
+            btnRefresh.IconChar = FontAwesome.Sharp.IconChar.Refresh;
+            btnRefresh.IconColor = Color.White;
+            btnRefresh.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnRefresh.IconSize = 15;
+            btnRefresh.ImageAlign = ContentAlignment.MiddleLeft;
+            btnRefresh.Location = new Point(1681, 6);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Padding = new Padding(4, 0, 8, 0);
+            btnRefresh.Size = new Size(104, 0);
+            btnRefresh.TabIndex = 0;
+            btnRefresh.Text = "Refresh";
+            btnRefresh.TextAlign = ContentAlignment.MiddleRight;
+            btnRefresh.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnRefresh.UseVisualStyleBackColor = false;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
+            // lblShiftTitle
+            // 
+            lblShiftTitle.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            lblShiftTitle.AutoSize = true;
+            lblShiftTitle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblShiftTitle.ForeColor = Color.Gainsboro;
+            lblShiftTitle.Location = new Point(16, 10);
+            lblShiftTitle.Name = "lblShiftTitle";
+            lblShiftTitle.Size = new Size(151, 19);
+            lblShiftTitle.TabIndex = 1;
+            lblShiftTitle.Text = "Today's Sales History";
+            // 
+            // dgShiftHistory
+            // 
+            dgShiftHistory.AllowUserToAddRows = false;
+            dgShiftHistory.AllowUserToDeleteRows = false;
+            dgShiftHistory.AllowUserToResizeColumns = false;
+            dgShiftHistory.AllowUserToResizeRows = false;
+            dgShiftHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgShiftHistory.BackgroundColor = Color.FromArgb(34, 33, 74);
+            dgShiftHistory.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgShiftHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgShiftHistory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 14F);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = Color.DeepSkyBlue;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgShiftHistory.DefaultCellStyle = dataGridViewCellStyle2;
+            dgShiftHistory.Dock = DockStyle.Fill;
+            dgShiftHistory.GridColor = Color.FromArgb(55, 54, 105);
+            dgShiftHistory.Location = new Point(16, 160);
+            dgShiftHistory.Margin = new Padding(16, 0, 16, 16);
+            dgShiftHistory.MultiSelect = false;
+            dgShiftHistory.Name = "dgShiftHistory";
+            dgShiftHistory.ReadOnly = true;
+            dgShiftHistory.RowHeadersVisible = false;
+            dgShiftHistory.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgShiftHistory.Size = new Size(975, 284);
+            dgShiftHistory.TabIndex = 10;
             // 
             // CashierDashboard
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1398, 885);
-            Controls.Add(panelMenuForm);
-            Controls.Add(panelShadow);
-            Controls.Add(panelTitleBar);
-            Controls.Add(panelMenu);
-            Margin = new Padding(2, 3, 2, 3);
+            BackColor = Color.FromArgb(34, 33, 74);
+            ClientSize = new Size(1007, 550);
+            Controls.Add(outerLayout);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "CashierDashboard";
-            Text = "CashierDashboard";
-            panelMenu.ResumeLayout(false);
-            panelLogo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panelTitleBar.ResumeLayout(false);
-            panelTitleBar.PerformLayout();
-            panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)iconCurrentChildIcon).EndInit();
-            panelShadow.ResumeLayout(false);
+            Text = "Dashboard";
+            Load += CashierHome_Load;
+            outerLayout.ResumeLayout(false);
+            panelTop.ResumeLayout(false);
+            panelTop.PerformLayout();
+            panelBody.ResumeLayout(false);
+            panelCards.ResumeLayout(false);
+            cardSales.ResumeLayout(false);
+            cardSales.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)iconSalesToday).EndInit();
+            cardTransactions.ResumeLayout(false);
+            cardTransactions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)iconTransactionToday).EndInit();
+            panelActions.ResumeLayout(false);
+            panelActions.PerformLayout();
+            panelGridHeader.ResumeLayout(false);
+            panelGridHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgShiftHistory).EndInit();
             ResumeLayout(false);
         }
 
-        #endregion
-
-        private Panel panelMenu;
-        private FontAwesome.Sharp.IconButton btnLogout;
-        private FontAwesome.Sharp.IconButton btnSalesReport;
-        private FontAwesome.Sharp.IconButton btnStocksReport;
-        private FontAwesome.Sharp.IconButton btnPOS;
-        private FontAwesome.Sharp.IconButton btnDashboard;
-        private Panel panelLogo;
-        private PictureBox pictureBox1;
-        private Panel panelTitleBar;
-        private Panel panel1;
-        private FontAwesome.Sharp.IconButton btnExit;
-        private FontAwesome.Sharp.IconButton btnMaximize;
-        private FontAwesome.Sharp.IconButton btnMinimize;
-        private Label lblTitleChild;
-        private FontAwesome.Sharp.IconPictureBox iconCurrentChildIcon;
-        private Panel panelShadow;
-        private Button btnSupplier;
-        private Panel panelMenuForm;
+        private TableLayoutPanel outerLayout;
+        private Panel panelTop;
+        private Label lblWelcome;
+        private Label lblCashierName;
+        private Label lblLoginTime;
+        private TableLayoutPanel panelBody;
+        private TableLayoutPanel panelCards;
+        private Panel cardSales;
+        private Label lblSalesTitle;
+        private Label lblSalesToday;
+        private Panel cardTransactions;
+        private Label lblTransactionsTitle;
+        private Label lblTransactionsToday;
+        private Panel panelActions;
+        private Panel panelGridHeader;
+        private Label lblShiftTitle;
+        private FontAwesome.Sharp.IconButton btnRefresh;
+        private DataGridView dgShiftHistory;
+        private FontAwesome.Sharp.IconPictureBox iconSalesToday;
+        private FontAwesome.Sharp.IconPictureBox iconTransactionToday;
     }
 }
