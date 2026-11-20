@@ -15,109 +15,67 @@ GO
 INSERT INTO [dbo].[tblProduct] (ProductId, ProductName, Category, Supplier, Quantity, Amount)
 VALUES
 
--- [ PENCILS ] (6)
-('K79X2M', 'Mongol 1', 'Pencils', 'Amspec Fine Products Inc.', 102, 10.00),
-('P4W8Q1', 'Mongol 2', 'Pencils', 'Amspec Fine Products Inc.', 250, 10.00),
-('9F3V7L', 'Mongol 3', 'Pencils', 'Amspec Fine Products Inc.', 180, 10.00),
-('R2M6K8', 'Faber-Castell 2B Pencil', 'Pencils', 'Amspec Fine Products Inc.', 120, 15.00),
-('3J8H5N', 'Pilot Mechanical Pencil 0.5', 'Pencils', 'Penline Stationery Inc.', 75, 45.00),
-('X9B4T2', 'HB Graphite Pencil Set', 'Pencils', 'Goldwings Stationery Products Inc.', 60, 85.00),
+-- [ KITCHEN ] (19)
+('HA1001', 'Air Fryer 5L', 'Kitchen', 'NinjaCorp', 120, 129.99),
+('HA1002', 'Smart Inverter Fridge', 'Kitchen', 'Apex Appliances', 35, 899.00),
+('HA1005', 'Electric Pressure Cooker', 'Kitchen', 'InstantHome', 150, 89.99),
+('HA1008', '12-Cup Coffee Maker', 'Kitchen', 'BrewMaster', 110, 49.99),
+('HA1010', 'Convection Microwave', 'Kitchen', 'Apex Appliances', 70, 179.99),
+('HA1013', 'Countertop Ice Maker', 'Kitchen', 'ChillTech', 85, 119.99),
+('HA1014', 'High-Speed Blender', 'Kitchen', 'VitaMixer', 90, 159.50),
+('HA1019', 'Food Processor 8-Cup', 'Kitchen', 'NinjaCorp', 115, 89.99),
+('HA1020', 'Toaster 4-Slice', 'Kitchen', 'BrewMaster', 160, 39.99),
+('HA1022', 'Electric Kettle 1.7L', 'Kitchen', 'ChillTech', 220, 34.99),
+('HA1023', 'Water Dispenser', 'Kitchen', 'AquaPure', 45, 139.99),
+('HA1024', 'Multi-Cooker Rice Cooker', 'Kitchen', 'InstantHome', 175, 74.50),
+('HA1026', 'Hand Mixer', 'Kitchen', 'BrewMaster', 210, 24.99),
+('HA1027', 'Garlic Chopper Mini', 'Kitchen', 'NinjaCorp', 350, 19.99),
+('HA1028', 'Electric Griddle', 'Kitchen', 'Apex Appliances', 95, 49.99),
+('HA1029', 'Deep Fryer 3L', 'Kitchen', 'ChillTech', 65, 69.99),
+('HA1030', 'Stick Immersion Blender', 'Kitchen', 'VitaMixer', 140, 39.99),
+('HA1031', 'Espresso Machine', 'Kitchen', 'BrewMaster', 55, 299.99),
+('HA1037', 'Mini Fridge 4L', 'Kitchen', 'Apex Appliances', 75, 49.99),
+('HA1038', 'Panini Press Grill', 'Kitchen', 'NinjaCorp', 100, 59.99),
+('HA1039', 'Waffle Maker', 'Kitchen', 'BrewMaster', 120, 34.99),
+('HA1040', 'Portable Induction Cooktop', 'Kitchen', 'InstantHome', 90, 79.99),
+('HA1041', 'Stand Mixer 5Qt', 'Kitchen', 'VitaMixer', 40, 229.99),
+('HA1042', 'Wine Cooler 18-Bottle', 'Kitchen', 'ChillTech', 30, 249.99),
+('HA1043', 'Dishwasher Built-In', 'Kitchen', 'Whirlwind', 20, 480.00),
+('HA1045', 'Upright Freezer', 'Kitchen', 'Apex Appliances', 25, 399.99),
 
+-- [ CLEANING ] (5)
+('HA1003', 'Cordless Stick Vacuum', 'Cleaning', 'DysonTech', 80, 249.50),
+('HA1007', 'Robotic Vacuum Cleaner', 'Cleaning', 'RoboClean', 60, 329.00),
+('HA1046', 'Carpet Cleaner', 'Cleaning', 'RoboClean', 45, 189.99),
+('HA1047', 'Handheld Vacuum', 'Cleaning', 'DysonTech', 110, 79.99),
 
+-- [ LAUNDRY ] (4)
+('HA1004', 'Front-Load Washer', 'Laundry', 'Whirlwind', 25, 650.00),
+('HA1011', 'Steam Iron', 'Laundry', 'PressPro', 200, 35.00),
+('HA1015', 'Clothes Dryer', 'Laundry', 'Whirlwind', 30, 599.99),
+('HA1021', 'Handheld Garment Steamer', 'Laundry', 'PressPro', 180, 45.00),
 
--- [ PENS ] (7)
-('8N2D6P', 'Pilot G2 Gel Pen Black 0.7', 'Pens', 'Penline Stationery Inc.', 150, 65.00),
-('V4K9X3', 'Pilot G2 Gel Pen Blue 0.7', 'Pens', 'Penline Stationery Inc.', 140, 65.00),
-('1M7F5J', 'Pilot G2 Gel Pen Red 0.7', 'Pens', 'Penline Stationery Inc.', 90, 65.00),
-('Q3R8W2', 'Faber-Castell Ballpen Black', 'Pens', 'Amspec Fine Products Inc.', 300, 12.00),
-('7L5T9B', 'Faber-Castell Ballpen Blue', 'Pens', 'Amspec Fine Products Inc.', 280, 12.00),
-('H2P6N4', 'Panda Ballpoint Pen Black', 'Pens', 'Goldwings Stationery Products Inc.', 500, 6.00),
-('E9X1K3', 'Panda Ballpoint Pen Blue', 'Pens', 'Goldwings Stationery Products Inc.', 450, 6.00),
+-- [ CLIMATE ] (7)
+('HA1006', 'HEPA Air Purifier', 'Climate', 'PureAir Inc.', 95, 149.99),
+('HA1009', 'Tower Fan with Remote', 'Climate', 'BreezeCo', 140, 65.00),
+('HA1012', 'Dehumidifier 50-Pint', 'Climate', 'PureAir Inc.', 40, 219.99),
+('HA1018', 'Portable Space Heater', 'Climate', 'WarmthCo', 130, 59.99),
+('HA1025', 'Window AC Unit 10000BTU', 'Climate', 'BreezeCo', 50, 349.00),
+('HA1034', 'Electric Blanket', 'Climate', 'WarmthCo', 110, 69.99),
+('HA1035', 'Humidifier Ultrasonic', 'Climate', 'PureAir Inc.', 130, 49.99),
+('HA1036', 'Smart Thermostat', 'Climate', 'EcoHome', 85, 129.99),
 
+-- [ PERSONAL CARE ] (5)
+('HA1016', 'Ceramic Hair Straightener', 'Personal Care', 'GlamourTech', 250, 29.99),
+('HA1017', 'Electric Toothbrush', 'Personal Care', 'SmileCare', 300, 49.99),
+('HA1032', 'Sonic Facial Cleanser', 'Personal Care', 'GlamourTech', 190, 39.99),
+('HA1033', 'Hair Dryer Pro', 'Personal Care', 'GlamourTech', 160, 54.99),
+('HA1044', 'Electric Toothbrush Kids', 'Personal Care', 'SmileCare', 240, 24.99),
 
-
--- [ MARKERS ] (6)
-
-('4GJQW8', 'Highlighter Yellow', 'Markers', 'Goldwings Stationery Products Inc.', 110, 25.00),
-('4W8J2R', 'Highlighter Green', 'Markers', 'Goldwings Stationery Products Inc.', 85, 25.00),
-('T7M3L9', 'Highlighter Pink', 'Markers', 'Goldwings Stationery Products Inc.', 95, 25.00),
-('2B6V8K', 'Whiteboard Marker Black', 'Markers', 'Penline Stationery Inc.', 70, 40.00),
-('Y1Q5F4', 'Whiteboard Marker Blue', 'Markers', 'Penline Stationery Inc.', 65, 40.00),
-('6N9P3X', 'Whiteboard Marker Black', 'Markers', 'Penline Stationery Inc.', 70, 40.00),
-('F8W2D7', 'Permanent Marker Black', 'Markers', 'Penline Stationery Inc.', 130, 35.00),
-
-
-
-
-
--- [ NOTEBOOKS ] (6)
-('9X4R6T', 'Spiral Notebook 80 Sheets', 'Notebooks', 'Sterling Paper Products Enterprises, Inc.', 200, 30.00),
-('2M8B1K', 'Composition Notebook 80 Sheets', 'Notebooks', 'Sterling Paper Products Enterprises, Inc.', 180, 28.00),
-('L7F3W9', 'Writing Notebook 80 Sheets', 'Notebooks', 'Sterling Paper Products Enterprises, Inc.', 220, 25.00),
-('K5P9J2', 'Binder Notebook Filler', 'Notebooks', 'Capitol Stationery Mfg. Co. Inc.', 90, 45.00),
-('3Q1V8D', 'Graphing Notebook', 'Notebooks', 'Sterling Paper Products Enterprises, Inc.', 110, 35.00),
-('R6N7H4', 'Steno Notebook', 'Notebooks', 'Capitol Stationery Mfg. Co. Inc.', 85, 22.00),
-
-
-
-
--- [ PAPERS ] (6)
-('5J9X3P', 'Short Bond Paper 70gsm (Ream)', 'Papers', 'Sterling Paper Products Enterprises, Inc.', 50, 210.00),
-('B2L8R7', 'Long Bond Paper 70gsm (Ream)', 'Papers', 'Sterling Paper Products Enterprises, Inc.', 45, 230.00),
-('8F4W1K', 'A4 Bond Paper 70gsm (Ream)', 'Papers', 'Sterling Paper Products Enterprises, Inc.', 60, 220.00),
-('N7Q6D3', 'Intermediate Pad Paper', 'Papers', 'Capitol Stationery Mfg. Co. Inc.', 140, 35.00),
-('P1V9M2', 'Intermediate Pad Paper', 'Papers', 'Capitol Stationery Mfg. Co. Inc.', 160, 40.00),
-('X3T5J8', 'Construction Paper Assorted 20s', 'Papers', 'Goldwings Stationery Products Inc.', 75, 55.00),
-
-
--- [ MEASURING TOOLS ] (4)
-
-('7W3M9F', 'Plastic Ruler 12 Inch', 'Measuring Tools', 'Goldwings Stationery Products Inc.', 150, 15.00),
-('D8P1K4', 'Metal Ruler 12 Inch', 'Measuring Tools', 'Goldwings Stationery Products Inc.', 90, 35.00),
-('1Q6V2T', 'Math Protractor 180 Deg ', 'Measuring Tools', 'Goldwings Stationery Products Inc.', 110, 18.00),
-('M5R8J7', 'Compass Set with Pencil', 'Measuring Tools', 'Penline Stationery Inc.', 70, 45.00),
-
-
--- [ ADHESIVES ] (4)
-
-
-('2F9T6R', 'Elmer Glue 130ml', 'Adhesives', 'Amspec Fine Products Inc.', 85, 50.00),
-('W4M1K8', 'Glue Stick 15g', 'Adhesives', 'Goldwings Stationery Products Inc.', 140, 25.00),
-('7X8J3L', 'Transparent Tape 1 Inch', 'Adhesives', 'Goldwings Stationery Products Inc.', 120, 20.00),
-('9P5B2V', 'Double Sided Tape 1 Inch', 'Adhesives', 'Goldwings Stationery Products Inc.', 95, 30.00),
-
-
-
-
--- [ CUTTING & CORRECTION ] (5)
-
-
-('L4P8V2 ', 'Student Scissors 5 Inch', 'Cutting & Correction', 'Goldwings Stationery Products Inc.', 105, 28.00),
-('8M3R7T', 'Cutter Knife Small  ', 'Cutting & Correction', 'Goldwings Stationery Products Inc.', 80, 22.00),
-('1K9X5F ', 'Double Pencil Sharpener', 'Cutting & Correction', 'Amspec Fine Products Inc.', 130, 18.00),
-('6J2N8W ', 'Correction Tape 12m', 'Cutting & Correction', 'Penline Stationery Inc.', 115, 38.00),
-('T5Q1D9 ', 'Eraser White Large', 'Cutting & Correction', 'Amspec Fine Products Inc.', 210, 12.00),
-
-
-
--- [ ART SUPPLIES ] (3)
-
-
-
-('Q8X2N7', 'Crayola Crayons 24 Colors', 'Art Supplies', 'Amspec Fine Products Inc.', 95, 90.00),
-('4T7P1M', 'Watercolor Set 12 Colors', 'Art Supplies', 'Amspec Fine Products Inc.', 50, 110.00),
-('9R5W3J ', 'Oil Pastels 12 Colors', 'Art Supplies', 'Amspec Fine Products Inc.', 65, 80.00),
-
-
-
-
--- [ OFFICE & STORAGE ] (3)
-
-('3W9K6D', 'Expanding Clear Envelope Long', 'Office & Storage', 'Capitol Stationery Mfg. Co. Inc.', 140, 25.00),
-('P8R4T1', 'Two-Hole Puncher Small', 'Office & Storage', 'Goldwings Stationery Products Inc.', 40, 85.00),
-('7J1V5M', 'Heavy Duty Stapler with Staples', 'Office & Storage', 'Goldwings Stationery Products Inc.', 30, 150.00);
-
-
+-- [ OUTDOOR ] (3)
+('HA1048', 'Electric Lawn Mower', 'Outdoor', 'GreenYard', 15, 299.00),
+('HA1049', 'Leaf Blower Cordless', 'Outdoor', 'GreenYard', 50, 119.00),
+('HA1050', 'Electric Pressure Washer', 'Outdoor', 'CleanMax', 40, 159.99);
 
 GO
 

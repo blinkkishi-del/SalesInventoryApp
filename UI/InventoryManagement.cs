@@ -3,6 +3,7 @@ using Model;
 using System.Data;
 
 
+
 namespace UI
 {
     public partial class InventoryManagement : Form
@@ -17,6 +18,8 @@ namespace UI
         {
             InitializeComponent();
             productController = new ProductController();
+            tabAdd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tabInventoryManagement.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         }
 
 
@@ -24,9 +27,7 @@ namespace UI
         {
             List<string> categories = new List<string>()
          {
-                 "Pencils","NoteBooks", "Office & Storage", "Pens", "Markers",
-                 "Papers", "Measuring Tools", "Adhesives", "Cutting & Correction",
-                 "Art Supplies"
+            "Kitchen", "Cleaning", "Laundry", "Climate", "Personal Care", "Outdoor"
          };
 
             cmbCategory.Items.Clear();
@@ -142,16 +143,10 @@ namespace UI
         }
 
 
-
-        private void btnHome_Click(object sender, EventArgs e)
-        {
-            AdminDashboard adminDashboardForm = new AdminDashboard();
-            adminDashboardForm.Show();
-            this.Hide();
-        }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            tabInventoryManagement.SelectedTab = tabAdd;
+
             ClearFields();
             dgProducts.ClearSelection();
             EnableControls(true);
@@ -170,6 +165,8 @@ namespace UI
                 MessageBox.Show("Please select a product to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            tabInventoryManagement.SelectedTab = tabAdd;
+            lblAdding.Text = "MODIFYING A PRODUCT : ";
 
             EnableControls(true);
             isAdd = false;
@@ -238,12 +235,14 @@ namespace UI
                 {
                     productController.Add(product);
                     MessageBox.Show("Product added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    tabInventoryManagement.SelectedTab = tabInventory;
                 }
                 else
                 {
                     product.ProductId = txtProductID.Text;
                     productController.Update(product);
                     MessageBox.Show("Product updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    tabInventoryManagement.SelectedTab = tabInventory;
                 }
 
                 InitialState();
@@ -256,6 +255,7 @@ namespace UI
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            tabInventoryManagement.SelectedTab = tabInventory;
             InitialState();
         }
 
@@ -269,6 +269,13 @@ namespace UI
             InitialState();
             LoadCategories();
             dgProducts.AutoGenerateColumns = true;
+
+            dgProducts.ReadOnly = true;
+            dgProducts.AllowUserToAddRows = false;
+            dgProducts.AllowUserToDeleteRows = false;
+            dgProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgProducts.MultiSelect = false;
+
             dgProducts.CellClick += dgProducts_CellClick;
             cmbFilter.SelectedIndexChanged += cmbFilter_SelectedIndexChanged;
         }
@@ -324,6 +331,7 @@ namespace UI
                 else
                 {
                     ClearFields();
+                    LoadData();
                     MessageBox.Show("No products found matching your search.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -331,8 +339,10 @@ namespace UI
             {
                 MessageBox.Show("Error during search: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
+            cmbFilter.Text = "";
             txtSearch.Text = "";
         }
+
+
     }
 }
