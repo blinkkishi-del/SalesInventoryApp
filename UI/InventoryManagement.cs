@@ -27,7 +27,7 @@ namespace UI
         {
             List<string> categories = new List<string>()
          {
-            "Kitchen", "Cleaning", "Laundry", "Climate", "Personal Care", "Outdoor"
+           "Basement / Bedroom", "Bathroom", "Bedroom", "Dining Room", "Dining Room / Kitchen", "Front Entrance", "Garage / Driveway", "Garage / Patio", "Garden / Yard", "Home Office", "Kitchen", "Kitchen / Dining", "Kitchen / Home Bar", "Laundry Room", "Living Room", "Living Room / All Areas", "Living Room / Bedroom", "Living Room / Hallway", "Living Room / Hallways", "Living Room / Home Office", "Master Bathroom", "Master Bedroom", "Utility / Storage Room"
          };
 
             cmbCategory.Items.Clear();
@@ -261,6 +261,7 @@ namespace UI
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            cmbFilter.Text = "";
             InitialState();
         }
 

@@ -41,8 +41,7 @@ namespace UI
         {
             List<string> categories = new List<string>()
      {
-         "All","Kitchen", "Cleaning", "Laundry", "Climate", "Personal Care", "Outdoor"
-     };
+            "All", "Basement / Bedroom", "Bathroom", "Bedroom", "Dining Room", "Dining Room / Kitchen", "Front Entrance", "Garage / Driveway", "Garage / Patio", "Garden / Yard", "Home Office", "Kitchen", "Kitchen / Dining", "Kitchen / Home Bar", "Laundry Room", "Living Room", "Living Room / All Areas", "Living Room / Bedroom", "Living Room / Hallway", "Living Room / Hallways", "Living Room / Home Office", "Master Bathroom", "Master Bedroom", "Utility / Storage Room"     };
 
             cbProductsCategory.Items.Clear();
             cbProductsCategory.Items.AddRange(categories.ToArray());

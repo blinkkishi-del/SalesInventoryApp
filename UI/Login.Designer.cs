@@ -83,7 +83,7 @@
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(325, 36);
-            txtPassword.TabIndex = 13;
+            txtPassword.TabIndex = 2;
             // 
             // txtUsername
             // 
@@ -94,7 +94,7 @@
             txtUsername.Multiline = true;
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(325, 32);
-            txtUsername.TabIndex = 14;
+            txtUsername.TabIndex = 1;
             // 
             // btnLogin
             // 
@@ -106,7 +106,7 @@
             btnLogin.Margin = new Padding(3, 2, 3, 2);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(167, 41);
-            btnLogin.TabIndex = 15;
+            btnLogin.TabIndex = 3;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = false;
             btnLogin.Click += btnLogin_Click;

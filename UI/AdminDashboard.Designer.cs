@@ -15,6 +15,13 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             rootLayout = new TableLayoutPanel();
             panelCards = new TableLayoutPanel();
             panel1 = new Panel();
@@ -42,6 +49,7 @@
             dgridTopSellers = new DataGridView();
             lblTopSellersTitle = new Label();
             panelSectionHeader = new Panel();
+            lblLowStacks = new Label();
             btnRefresh = new FontAwesome.Sharp.IconButton();
             btnPrintLowStock = new FontAwesome.Sharp.IconButton();
             panel3 = new Panel();
@@ -390,16 +398,40 @@
             // 
             dgridTopSellers.AllowUserToResizeColumns = false;
             dgridTopSellers.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dgridTopSellers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgridTopSellers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgridTopSellers.BackgroundColor = Color.FromArgb(34, 33, 74);
             dgridTopSellers.BorderStyle = BorderStyle.None;
-            dgridTopSellers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = Color.Transparent;
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dgridTopSellers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgridTopSellers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgridTopSellers.DefaultCellStyle = dataGridViewCellStyle3;
             dgridTopSellers.Dock = DockStyle.Fill;
             dgridTopSellers.GridColor = Color.FromArgb(60, 59, 110);
             dgridTopSellers.Location = new Point(0, 23);
             dgridTopSellers.Name = "dgridTopSellers";
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgridTopSellers.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgridTopSellers.RowHeadersVisible = false;
+            dataGridViewCellStyle5.BackColor = Color.White;
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = Color.DodgerBlue;
+            dgridTopSellers.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dgridTopSellers.Size = new Size(390, 167);
             dgridTopSellers.TabIndex = 70;
             // 
@@ -419,6 +451,7 @@
             // panelSectionHeader
             // 
             panelSectionHeader.BackColor = Color.Transparent;
+            panelSectionHeader.Controls.Add(lblLowStacks);
             panelSectionHeader.Controls.Add(btnRefresh);
             panelSectionHeader.Controls.Add(btnPrintLowStock);
             panelSectionHeader.Controls.Add(panel3);
@@ -428,6 +461,19 @@
             panelSectionHeader.Name = "panelSectionHeader";
             panelSectionHeader.Size = new Size(975, 32);
             panelSectionHeader.TabIndex = 2;
+            // 
+            // lblLowStacks
+            // 
+            lblLowStacks.AutoSize = true;
+            lblLowStacks.Dock = DockStyle.Top;
+            lblLowStacks.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblLowStacks.ForeColor = Color.Gainsboro;
+            lblLowStacks.Location = new Point(0, 0);
+            lblLowStacks.Name = "lblLowStacks";
+            lblLowStacks.Padding = new Padding(0, 0, 0, 4);
+            lblLowStacks.Size = new Size(83, 23);
+            lblLowStacks.TabIndex = 72;
+            lblLowStacks.Text = "Low Stocks";
             // 
             // btnRefresh
             // 
@@ -500,34 +546,47 @@
             // 
             dgridLowStock.AllowUserToResizeColumns = false;
             dgridLowStock.AllowUserToResizeRows = false;
+            dataGridViewCellStyle6.ForeColor = Color.Black;
+            dgridLowStock.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             dgridLowStock.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgridLowStock.BackgroundColor = SystemColors.ButtonFace;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dgridLowStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dgridLowStock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dgridLowStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgridLowStock.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.Transparent;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dgridLowStock.DefaultCellStyle = dataGridViewCellStyle8;
             dgridLowStock.Dock = DockStyle.Fill;
-            dgridLowStock.Enabled = false;
             dgridLowStock.GridColor = SystemColors.Desktop;
             dgridLowStock.Location = new Point(16, 368);
             dgridLowStock.Margin = new Padding(0, 0, 0, 4);
+            dgridLowStock.MultiSelect = false;
             dgridLowStock.Name = "dgridLowStock";
             dgridLowStock.ReadOnly = true;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = Color.Transparent;
+            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle9.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dgridLowStock.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             dgridLowStock.RowHeadersWidth = 51;
-            dgridLowStock.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewCellStyle10.BackColor = Color.White;
+            dataGridViewCellStyle10.ForeColor = Color.Black;
+            dgridLowStock.RowsDefaultCellStyle = dataGridViewCellStyle10;
             dgridLowStock.Size = new Size(975, 238);
             dgridLowStock.TabIndex = 63;
+            dgridLowStock.CellContentClick += dgridLowStock_CellContentClick;
             // 
             // AdminDashboard
             // 
@@ -560,6 +619,7 @@
             panelTopSellersWrap.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgridTopSellers).EndInit();
             panelSectionHeader.ResumeLayout(false);
+            panelSectionHeader.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgridLowStock).EndInit();
@@ -606,5 +666,6 @@
         private FontAwesome.Sharp.IconButton btnRefresh;
 
         private DataGridView dgridLowStock;
+        private Label lblLowStacks;
     }
 }

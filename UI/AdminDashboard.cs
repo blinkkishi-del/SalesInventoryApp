@@ -110,9 +110,9 @@ namespace UI
             int chartH = h - padBottom - padTop;
 
             decimal maxVal = _chartData.Max(d => d.Amount);
-            if (maxVal == 0) maxVal = 1; 
+            if (maxVal == 0) maxVal = 1;
 
-          
+
             using var gridPen = new Pen(Color.FromArgb(60, 255, 255, 255));
             for (int line = 0; line <= 4; line++)
             {
@@ -188,6 +188,8 @@ namespace UI
             if (dgridTopSellers.Columns.Contains("TotalRevenue"))
                 dgridTopSellers.Columns["TotalRevenue"].HeaderText = "Revenue";
             dgridTopSellers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -288,6 +290,11 @@ namespace UI
                 Height = 700
             };
             preview.ShowDialog();
+        }
+
+        private void dgridLowStock_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
