@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            label1 = new Label();
+            lblHomexia = new Label();
             lblTotalReceipt = new Label();
             lblChange = new Label();
             dgViewReceipt = new DataGridView();
@@ -57,6 +59,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(lblHomexia);
             panel1.Controls.Add(lblTotalReceipt);
             panel1.Controls.Add(lblChange);
             panel1.Controls.Add(dgViewReceipt);
@@ -81,27 +85,51 @@
             panel1.Size = new Size(1007, 554);
             panel1.TabIndex = 0;
             // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.DarkRed;
+            label1.Location = new Point(30, 103);
+            label1.Name = "label1";
+            label1.Size = new Size(240, 20);
+            label1.TabIndex = 80;
+            label1.Text = "Double click the column to select";
+            // 
+            // lblHomexia
+            // 
+            lblHomexia.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            lblHomexia.AutoSize = true;
+            lblHomexia.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold);
+            lblHomexia.ForeColor = Color.Black;
+            lblHomexia.Location = new Point(679, 42);
+            lblHomexia.Name = "lblHomexia";
+            lblHomexia.Size = new Size(97, 25);
+            lblHomexia.TabIndex = 79;
+            lblHomexia.Text = "Homexa";
+            // 
             // lblTotalReceipt
             // 
-            lblTotalReceipt.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblTotalReceipt.Anchor = AnchorStyles.Right;
             lblTotalReceipt.AutoSize = true;
             lblTotalReceipt.Font = new Font("Segoe UI", 11F);
-            lblTotalReceipt.Location = new Point(716, 432);
+            lblTotalReceipt.Location = new Point(720, 428);
             lblTotalReceipt.Name = "lblTotalReceipt";
-            lblTotalReceipt.Size = new Size(12, 20);
+            lblTotalReceipt.Size = new Size(25, 20);
             lblTotalReceipt.TabIndex = 78;
-            lblTotalReceipt.Text = ".";
+            lblTotalReceipt.Text = "00";
             // 
             // lblChange
             // 
-            lblChange.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblChange.Anchor = AnchorStyles.Right;
             lblChange.AutoSize = true;
             lblChange.Font = new Font("Segoe UI", 11F);
-            lblChange.Location = new Point(716, 510);
+            lblChange.Location = new Point(720, 506);
             lblChange.Name = "lblChange";
-            lblChange.Size = new Size(12, 20);
+            lblChange.Size = new Size(25, 20);
             lblChange.TabIndex = 77;
-            lblChange.Text = ".";
+            lblChange.Text = "00";
             // 
             // dgViewReceipt
             // 
@@ -110,37 +138,37 @@
             dgViewReceipt.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgViewReceipt.BackgroundColor = SystemColors.Control;
             dgViewReceipt.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = SystemColors.Control;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgViewReceipt.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgViewReceipt.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgViewReceipt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = SystemColors.Window;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dgViewReceipt.DefaultCellStyle = dataGridViewCellStyle6;
-            dgViewReceipt.Location = new Point(584, 214);
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgViewReceipt.DefaultCellStyle = dataGridViewCellStyle2;
+            dgViewReceipt.Location = new Point(531, 164);
             dgViewReceipt.Margin = new Padding(3, 2, 3, 2);
             dgViewReceipt.Name = "dgViewReceipt";
             dgViewReceipt.ReadOnly = true;
             dgViewReceipt.RowHeadersWidth = 51;
-            dgViewReceipt.Size = new Size(387, 199);
+            dgViewReceipt.Size = new Size(464, 199);
             dgViewReceipt.TabIndex = 76;
             // 
             // txtPay
             // 
-            txtPay.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtPay.Anchor = AnchorStyles.Right;
             txtPay.BackColor = Color.GhostWhite;
             txtPay.Font = new Font("Segoe UI", 11F);
-            txtPay.Location = new Point(716, 466);
+            txtPay.Location = new Point(672, 462);
             txtPay.Margin = new Padding(3, 2, 3, 2);
             txtPay.Name = "txtPay";
             txtPay.Size = new Size(120, 27);
@@ -148,7 +176,7 @@
             // 
             // btnPay
             // 
-            btnPay.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnPay.Anchor = AnchorStyles.Right;
             btnPay.BackColor = Color.MediumSpringGreen;
             btnPay.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnPay.ForeColor = Color.Black;
@@ -157,7 +185,7 @@
             btnPay.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnPay.IconSize = 23;
             btnPay.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPay.Location = new Point(868, 466);
+            btnPay.Location = new Point(824, 462);
             btnPay.Name = "btnPay";
             btnPay.Size = new Size(116, 38);
             btnPay.TabIndex = 74;
@@ -172,20 +200,21 @@
             // 
             datetpDate.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             datetpDate.CalendarFont = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            datetpDate.CustomFormat = "";
             datetpDate.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            datetpDate.Location = new Point(670, 136);
+            datetpDate.Location = new Point(617, 79);
             datetpDate.Margin = new Padding(3, 2, 3, 2);
             datetpDate.Name = "datetpDate";
-            datetpDate.Size = new Size(289, 29);
+            datetpDate.Size = new Size(284, 29);
             datetpDate.TabIndex = 73;
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label2.Anchor = AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(593, 506);
+            label2.Location = new Point(549, 502);
             label2.Name = "label2";
             label2.Size = new Size(100, 25);
             label2.TabIndex = 72;
@@ -193,11 +222,11 @@
             // 
             // lblPay
             // 
-            lblPay.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblPay.Anchor = AnchorStyles.Right;
             lblPay.AutoSize = true;
             lblPay.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold);
             lblPay.ForeColor = Color.Black;
-            lblPay.Location = new Point(625, 465);
+            lblPay.Location = new Point(581, 461);
             lblPay.Name = "lblPay";
             lblPay.Size = new Size(59, 25);
             lblPay.TabIndex = 71;
@@ -205,11 +234,11 @@
             // 
             // lblTotal
             // 
-            lblTotal.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblTotal.Anchor = AnchorStyles.Right;
             lblTotal.AutoSize = true;
             lblTotal.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold);
             lblTotal.ForeColor = Color.Black;
-            lblTotal.Location = new Point(614, 432);
+            lblTotal.Location = new Point(570, 428);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(79, 25);
             lblTotal.TabIndex = 70;
@@ -221,7 +250,7 @@
             lblReceiptNo.AutoSize = true;
             lblReceiptNo.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold);
             lblReceiptNo.ForeColor = Color.Black;
-            lblReceiptNo.Location = new Point(584, 178);
+            lblReceiptNo.Location = new Point(531, 121);
             lblReceiptNo.Name = "lblReceiptNo";
             lblReceiptNo.Size = new Size(135, 25);
             lblReceiptNo.TabIndex = 69;
@@ -233,7 +262,7 @@
             lblDate.AutoSize = true;
             lblDate.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold);
             lblDate.ForeColor = Color.Black;
-            lblDate.Location = new Point(584, 136);
+            lblDate.Location = new Point(531, 79);
             lblDate.Name = "lblDate";
             lblDate.Size = new Size(75, 25);
             lblDate.TabIndex = 68;
@@ -245,7 +274,7 @@
             lblStorename.AutoSize = true;
             lblStorename.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold);
             lblStorename.ForeColor = Color.Black;
-            lblStorename.Location = new Point(584, 99);
+            lblStorename.Location = new Point(531, 42);
             lblStorename.Name = "lblStorename";
             lblStorename.Size = new Size(142, 25);
             lblStorename.TabIndex = 67;
@@ -253,7 +282,7 @@
             // 
             // btnCancel
             // 
-            btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnCancel.Anchor = AnchorStyles.Right;
             btnCancel.BackColor = Color.Silver;
             btnCancel.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancel.ForeColor = Color.Black;
@@ -262,7 +291,7 @@
             btnCancel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCancel.IconSize = 23;
             btnCancel.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancel.Location = new Point(203, 506);
+            btnCancel.Location = new Point(786, 368);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(108, 38);
             btnCancel.TabIndex = 59;
@@ -274,7 +303,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnDelete.Anchor = AnchorStyles.Right;
             btnDelete.BackColor = Color.OrangeRed;
             btnDelete.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDelete.ForeColor = Color.Black;
@@ -283,7 +312,7 @@
             btnDelete.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnDelete.IconSize = 23;
             btnDelete.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDelete.Location = new Point(52, 506);
+            btnDelete.Location = new Point(612, 368);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(116, 38);
             btnDelete.TabIndex = 58;
@@ -298,29 +327,29 @@
             dgProducts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgProducts.BackgroundColor = SystemColors.ButtonFace;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.Control;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dgProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = SystemColors.Window;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle8.ForeColor = Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = Color.DeepSkyBlue;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            dgProducts.DefaultCellStyle = dataGridViewCellStyle8;
-            dgProducts.Location = new Point(10, 86);
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F);
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = Color.DeepSkyBlue;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgProducts.DefaultCellStyle = dataGridViewCellStyle4;
+            dgProducts.Location = new Point(14, 125);
             dgProducts.Margin = new Padding(3, 2, 3, 2);
             dgProducts.Name = "dgProducts";
             dgProducts.RowHeadersWidth = 51;
             dgProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgProducts.Size = new Size(548, 404);
+            dgProducts.Size = new Size(493, 404);
             dgProducts.TabIndex = 57;
             dgProducts.CellDoubleClick += dgProducts_CellDoubleClick;
             // 
@@ -334,7 +363,7 @@
             btnSearch.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnSearch.IconSize = 26;
             btnSearch.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSearch.Location = new Point(382, 40);
+            btnSearch.Location = new Point(353, 42);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(144, 40);
             btnSearch.TabIndex = 56;
@@ -348,7 +377,7 @@
             // 
             txtSearch.AutoCompleteMode = AutoCompleteMode.Suggest;
             txtSearch.Font = new Font("Segoe UI", 14F);
-            txtSearch.Location = new Point(88, 44);
+            txtSearch.Location = new Point(59, 46);
             txtSearch.Margin = new Padding(3, 2, 3, 2);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Search Items Here";
@@ -364,6 +393,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "PointofSales";
             Text = "PointofSales";
+            Load += POS_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgViewReceipt).EndInit();
@@ -391,5 +421,7 @@
         private DataGridView dgViewReceipt;
         private Label lblTotalReceipt;
         private Label lblChange;
+        private Label lblHomexia;
+        private Label label1;
     }
 }

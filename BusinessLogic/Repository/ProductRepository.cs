@@ -7,7 +7,7 @@ namespace BusinessLogic.Repository
     internal class ProductRepository
     {
         private readonly string connectionString =
-            "Server=DESKTOP-SMD1DHH;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
+                        "Server=KHARL2005\\SQLEXPRESS02;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
 
         public void AddProduct(ProductDetailsModel product)
         {
@@ -17,13 +17,11 @@ namespace BusinessLogic.Repository
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-
                 cmd.Parameters.AddWithValue("@ProductName", product.ProductName);
                 cmd.Parameters.AddWithValue("@Category", product.Category);
                 cmd.Parameters.AddWithValue("@Supplier", product.Supplier);
                 cmd.Parameters.AddWithValue("@Quantity", product.Quantity);
                 cmd.Parameters.AddWithValue("@Amount", product.Amount);
-
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -37,18 +35,15 @@ namespace BusinessLogic.Repository
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-
                 cmd.Parameters.AddWithValue("@ProductId", product.ProductId);
                 cmd.Parameters.AddWithValue("@ProductName", product.ProductName);
                 cmd.Parameters.AddWithValue("@Category", product.Category);
                 cmd.Parameters.AddWithValue("@Supplier", product.Supplier);
                 cmd.Parameters.AddWithValue("@Quantity", product.Quantity);
                 cmd.Parameters.AddWithValue("@Amount", product.Amount);
-
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
-
         }
 
         public void DeleteProduct(string productId)
@@ -59,31 +54,25 @@ namespace BusinessLogic.Repository
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-
                 cmd.Parameters.AddWithValue("@ProductId", productId);
-
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
-
         }
+
         public List<ProductDetailsModel> GetAll()
         {
-
             var products = new List<ProductDetailsModel>();
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand("GetTop50Products", conn))
             {
-
                 cmd.CommandType = CommandType.StoredProcedure;
                 conn.Open();
-
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        var product = new ProductDetailsModel
+                        products.Add(new ProductDetailsModel
                         {
                             ProductId = reader["ProductId"].ToString(),
                             ProductName = reader["ProductName"].ToString(),
@@ -91,32 +80,27 @@ namespace BusinessLogic.Repository
                             Supplier = reader["Supplier"]?.ToString(),
                             Quantity = Convert.ToInt32(reader["Quantity"]),
                             Amount = Convert.ToDecimal(reader["Amount"])
-                        };
-
-                        products.Add(product);
+                        });
                     }
                 }
             }
-
             return products;
         }
 
         public List<ProductDetailsModel> SearchProducts(string keyword)
         {
             var products = new List<ProductDetailsModel>();
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand("ss_SearchProducts", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Keyword", keyword ?? string.Empty);
                 conn.Open();
-
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        var product = new ProductDetailsModel
+                        products.Add(new ProductDetailsModel
                         {
                             ProductId = reader["ProductId"].ToString(),
                             ProductName = reader["ProductName"].ToString(),
@@ -124,27 +108,21 @@ namespace BusinessLogic.Repository
                             Supplier = reader["Supplier"]?.ToString(),
                             Quantity = Convert.ToInt32(reader["Quantity"]),
                             Amount = Convert.ToDecimal(reader["Amount"])
-                        };
-
-                        products.Add(product);
+                        });
                     }
                 }
             }
-
             return products;
         }
 
         public void UpdateProductQuantity(string productId, int newQuantity)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(@"
-                UPDATE tblProduct 
-                SET Quantity = @Quantity
-                WHERE ProductId = @ProductId", conn))
+            using (SqlCommand cmd = new SqlCommand(
+                "UPDATE tblProduct SET Quantity = @Quantity WHERE ProductId = @ProductId", conn))
             {
                 cmd.Parameters.AddWithValue("@ProductId", productId);
                 cmd.Parameters.AddWithValue("@Quantity", newQuantity);
-
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -153,22 +131,20 @@ namespace BusinessLogic.Repository
         public List<ProductDetailsModel> SearchByProductName(string productName)
         {
             var products = new List<ProductDetailsModel>();
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(@"
-        SELECT ProductId, ProductName, Category, Supplier, Quantity, Amount
-        FROM tblProduct
-        WHERE ProductName LIKE @ProductName
-        ORDER BY ProductName ASC", conn))
+                SELECT ProductId, ProductName, Category, Supplier, Quantity, Amount
+                FROM tblProduct
+                WHERE IsActive = 1 AND ProductName LIKE @ProductName
+                ORDER BY ProductName ASC", conn))
             {
                 cmd.Parameters.AddWithValue("@ProductName", "%" + productName + "%");
                 conn.Open();
-
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        var product = new ProductDetailsModel
+                        products.Add(new ProductDetailsModel
                         {
                             ProductId = reader["ProductId"].ToString(),
                             ProductName = reader["ProductName"].ToString(),
@@ -176,26 +152,28 @@ namespace BusinessLogic.Repository
                             Supplier = reader["Supplier"]?.ToString(),
                             Quantity = Convert.ToInt32(reader["Quantity"]),
                             Amount = Convert.ToDecimal(reader["Amount"])
-                        };
-
-                        products.Add(product);
+                        });
                     }
                 }
             }
-
             return products;
         }
+
+        /// <summary>
+        /// Returns ALL active products ordered by stock level (low stock first).
+        /// Used by POS checkout to validate cart items — not capped like GetAll().
+        /// </summary>
         public List<ProductDetailsModel> GetProductsOrderedByStock()
         {
             var products = new List<ProductDetailsModel>();
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(@"
-        SELECT ProductId, ProductName, Category, Supplier, Quantity, Amount
-        FROM tblProduct
-        ORDER BY 
-            CASE WHEN Quantity <= 0 THEN 1 ELSE 0 END,
-            ProductName ASC", conn))
+                SELECT ProductId, ProductName, Category, Supplier, Quantity, Amount
+                FROM tblProduct
+                WHERE IsActive = 1
+                ORDER BY
+                    CASE WHEN Quantity <= 0 THEN 1 ELSE 0 END,
+                    ProductName ASC", conn))
             {
                 conn.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -215,8 +193,49 @@ namespace BusinessLogic.Repository
                 }
             }
             return products;
+        }
 
+        public int GetTotalInventory()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(
+                "SELECT ISNULL(SUM(Quantity), 0) FROM tblProduct WHERE IsActive = 1", conn))
+            {
+                conn.Open();
+                object result = cmd.ExecuteScalar();
+                return (result != DBNull.Value) ? Convert.ToInt32(result) : 0;
+            }
+        }
 
+        public List<ProductDetailsModel> GetLowStockProducts(int threshold = 10)
+        {
+            var products = new List<ProductDetailsModel>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(@"
+                SELECT ProductId, ProductName, Category, Supplier, Quantity, Amount
+                FROM tblProduct
+                WHERE IsActive = 1 AND Quantity <= @Threshold
+                ORDER BY Quantity ASC", conn))
+            {
+                cmd.Parameters.AddWithValue("@Threshold", threshold);
+                conn.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        products.Add(new ProductDetailsModel
+                        {
+                            ProductId = reader["ProductId"].ToString(),
+                            ProductName = reader["ProductName"].ToString(),
+                            Category = reader["Category"]?.ToString(),
+                            Supplier = reader["Supplier"]?.ToString(),
+                            Quantity = Convert.ToInt32(reader["Quantity"]),
+                            Amount = Convert.ToDecimal(reader["Amount"])
+                        });
+                    }
+                }
+            }
+            return products;
         }
     }
 }

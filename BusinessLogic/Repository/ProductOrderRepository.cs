@@ -1,13 +1,13 @@
 ﻿using Microsoft.Data.SqlClient;
 using Model;
 
-
 namespace BusinessLogic.Repository
 {
     public class ProductOrderRepository
     {
         private readonly string connectionString =
-            "Server=DESKTOP-SMD1DHH;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
+                        "Server=KHARL2005\\SQLEXPRESS02;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
+
 
         public void AddOrUpdate(OrderProductModel order)
         {
@@ -52,7 +52,6 @@ namespace BusinessLogic.Repository
         public List<OrderProductModel> GetAll()
         {
             var orders = new List<OrderProductModel>();
-
             using (var conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -71,7 +70,6 @@ namespace BusinessLogic.Repository
                     }
                 }
             }
-
             return orders;
         }
 
@@ -87,17 +85,15 @@ namespace BusinessLogic.Repository
                     checkCmd.Parameters.AddWithValue("@ProductName", productName);
                     object result = checkCmd.ExecuteScalar();
 
-                    if (result == null)
-                        return;
+                    if (result == null) return;
 
                     int qty = Convert.ToInt32(result);
 
                     if (qty > 1)
                     {
-                        string update = @"UPDATE tblOrderProduct 
-                                  SET Quantity = Quantity - 1 
-                                  WHERE ProductName = @ProductName";
-
+                        string update = @"UPDATE tblOrderProduct
+                                          SET Quantity = Quantity - 1
+                                          WHERE ProductName = @ProductName";
                         using (var updateCmd = new SqlCommand(update, conn))
                         {
                             updateCmd.Parameters.AddWithValue("@ProductName", productName);
@@ -106,9 +102,8 @@ namespace BusinessLogic.Repository
                     }
                     else
                     {
-                        string delete = @"DELETE FROM tblOrderProduct 
-                                  WHERE ProductName = @ProductName";
-
+                        string delete = @"DELETE FROM tblOrderProduct
+                                          WHERE ProductName = @ProductName";
                         using (var delCmd = new SqlCommand(delete, conn))
                         {
                             delCmd.Parameters.AddWithValue("@ProductName", productName);
@@ -118,7 +113,6 @@ namespace BusinessLogic.Repository
                 }
             }
         }
-
 
         public void ClearAll()
         {
@@ -131,82 +125,6 @@ namespace BusinessLogic.Repository
                     cmd.ExecuteNonQuery();
                 }
             }
-        }
-
-
-
-
-        public List<ProductDetailsModel> SearchByProductName(string productName)
-        {
-            var products = new List<ProductDetailsModel>();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(@"
-        SELECT ProductId, ProductName, Category, Supplier, Quantity, Amount
-        FROM Product
-        WHERE ProductName LIKE @ProductName
-        ORDER BY ProductName ASC", conn))
-            {
-                cmd.Parameters.AddWithValue("@ProductName", "%" + productName + "%");
-                conn.Open();
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        var product = new ProductDetailsModel
-                        {
-                            ProductId = reader["ProductId"].ToString(),
-                            ProductName = reader["ProductName"].ToString(),
-                            Category = reader["Category"]?.ToString(),
-                            Supplier = reader["Supplier"]?.ToString(),
-                            Quantity = Convert.ToInt32(reader["Quantity"]),
-                            Amount = Convert.ToDecimal(reader["Amount"])
-                        };
-
-                        products.Add(product);
-                    }
-                }
-            }
-
-            return products;
-        }
-        public List<ProductDetailsModel> GetProductsOrderedByStock()
-        {
-            var products = new List<ProductDetailsModel>();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(@"
-        SELECT ProductId, ProductName, Category, Supplier, Quantity, Amount
-        FROM Product
-        ORDER BY 
-            CASE WHEN Quantity <= 0 THEN 1 ELSE 0 END,
-            ProductName ASC", conn))
-            {
-                conn.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        products.Add(new ProductDetailsModel
-                        {
-                            ProductId = reader["ProductId"].ToString(),
-                            ProductName = reader["ProductName"].ToString(),
-                            Category = reader["Category"]?.ToString(),
-                            Supplier = reader["Supplier"]?.ToString(),
-                            Quantity = Convert.ToInt32(reader["Quantity"]),
-                            Amount = Convert.ToDecimal(reader["Amount"])
-                        });
-                    }
-                }
-            }
-            return products;
-
-
-
-
-
-
         }
     }
 }
