@@ -32,7 +32,6 @@
             panelMenu = new Panel();
             btnLogout = new FontAwesome.Sharp.IconButton();
             btnPOS = new FontAwesome.Sharp.IconButton();
-            btnDashboard = new FontAwesome.Sharp.IconButton();
             panelLogo = new Panel();
             picture_Logo = new PictureBox();
             panelTitleBar = new Panel();
@@ -59,7 +58,6 @@
             panelMenu.BackColor = Color.FromArgb(26, 25, 62);
             panelMenu.Controls.Add(btnLogout);
             panelMenu.Controls.Add(btnPOS);
-            panelMenu.Controls.Add(btnDashboard);
             panelMenu.Controls.Add(panelLogo);
             panelMenu.Dock = DockStyle.Left;
             panelMenu.Location = new Point(0, 0);
@@ -102,7 +100,7 @@
             btnPOS.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnPOS.IconSize = 32;
             btnPOS.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPOS.Location = new Point(0, 218);
+            btnPOS.Location = new Point(0, 158);
             btnPOS.Name = "btnPOS";
             btnPOS.Padding = new Padding(10, 0, 20, 0);
             btnPOS.Size = new Size(200, 60);
@@ -112,29 +110,6 @@
             btnPOS.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnPOS.UseVisualStyleBackColor = true;
             btnPOS.Click += btnPOS_Click;
-            // 
-            // btnDashboard
-            // 
-            btnDashboard.Dock = DockStyle.Top;
-            btnDashboard.FlatAppearance.BorderSize = 0;
-            btnDashboard.FlatStyle = FlatStyle.Flat;
-            btnDashboard.Font = new Font("Arial Black", 10F, FontStyle.Bold);
-            btnDashboard.ForeColor = Color.Gainsboro;
-            btnDashboard.IconChar = FontAwesome.Sharp.IconChar.BarChart;
-            btnDashboard.IconColor = Color.White;
-            btnDashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnDashboard.IconSize = 32;
-            btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.Location = new Point(0, 158);
-            btnDashboard.Name = "btnDashboard";
-            btnDashboard.Padding = new Padding(10, 0, 20, 0);
-            btnDashboard.Size = new Size(200, 60);
-            btnDashboard.TabIndex = 16;
-            btnDashboard.Text = "Dashboard";
-            btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnDashboard.UseVisualStyleBackColor = true;
-            btnDashboard.Click += btnDashboard_Click;
             // 
             // panelLogo
             // 
@@ -292,8 +267,6 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Margin = new Padding(2);
             Name = "CashierLandingPage";
-            Text = "CashierDashboard";
-            Load += CashierDashboard_Load;
             panelMenu.ResumeLayout(false);
             panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picture_Logo).EndInit();
@@ -309,10 +282,7 @@
 
         private Panel panelMenu;
         private FontAwesome.Sharp.IconButton btnLogout;
-        private FontAwesome.Sharp.IconButton btnSalesReport;
-        private FontAwesome.Sharp.IconButton btnStocksReport;
         private FontAwesome.Sharp.IconButton btnPOS;
-        private FontAwesome.Sharp.IconButton btnDashboard;
         private Panel panelLogo;
         private Panel panelTitleBar;
         private Panel panel1;
