@@ -3,6 +3,7 @@
 AS
 BEGIN
     SET NOCOUNT ON;
+    
     SELECT 
         ProductId,
         ProductName,
@@ -11,9 +12,12 @@ BEGIN
         Quantity,
         Amount
     FROM tblProduct
-    WHERE ProductName LIKE '%' + ISNULL(@Keyword, '') + '%'
-       OR Category    LIKE '%' + ISNULL(@Keyword, '') + '%'
-       OR Supplier    LIKE '%' + ISNULL(@Keyword, '') + '%'
+    WHERE IsActive = 1 
+      AND (
+          ProductName LIKE '%' + ISNULL(@Keyword, '') + '%'
+          OR Category    LIKE '%' + ISNULL(@Keyword, '') + '%'
+          OR Supplier    LIKE '%' + ISNULL(@Keyword, '') + '%'
+      )
     ORDER BY ProductName ASC;
 END;
 GO
