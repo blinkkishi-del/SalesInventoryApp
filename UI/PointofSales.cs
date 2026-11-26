@@ -125,15 +125,15 @@ namespace UI
             var orders = orderController.GetOrders();
             foreach (var order in orders)
                 total += order.TotalPrice;
-            lblTotalReceipt.Text = "Total: ₱" + total.ToString("N2");
+            lblTotalReceipt.Text = " ₱" + total.ToString("N2");
             if (decimal.TryParse(txtPay.Text, out decimal payment))
             {
                 decimal change = payment - total;
-                lblChange.Text = "Change: ₱" + change.ToString("N2");
+                lblChange.Text = " ₱" + change.ToString("N2");
             }
             else
             {
-                lblChange.Text = "Change: ₱0.00";
+                lblChange.Text = " ₱0.00";
             }
         }
 
@@ -199,8 +199,8 @@ namespace UI
             RefreshReceiptGrid();
             UpdateTotalAndChange();
             txtPay.Clear();
-            lblChange.Text = "Change: ₱0.00";
-            lblTotalReceipt.Text = "Total: ₱0.00";
+            lblChange.Text = " ₱0.00";
+            lblTotalReceipt.Text = " ₱0.00";
         }
         private void btnPay_Click(object sender, EventArgs e)
         {
@@ -267,7 +267,6 @@ namespace UI
 
         }
 
-
         private void PrintReceiptPreview()
         {
             var orders = orderController.GetOrders();
@@ -277,16 +276,14 @@ namespace UI
             decimal paid = decimal.TryParse(txtPay.Text, out var p) ? p : 0;
             decimal change = paid - total;
 
-            int receiptHeight = 220 + (orders.Count * 25);
-            PrintDocument printDoc = new PrintDocument
-            {
-                DefaultPageSettings =
-    {
-        Landscape = false,
-        PaperSize = new PaperSize("Receipt", 280, receiptHeight),
-        Margins = new Margins(10, 10, 10, 10)
-    }
-            };
+            // ---- Layout constants (1/100 inch, same unit as PaperSize) ----
+            const int paperWidth = 280;
+            const int margin = 10;
+            float contentWidth = paperWidth - (margin * 2);
+
+            float itemColWidth = contentWidth * 0.55f;   // item name wraps inside this width
+            float qtyRight = contentWidth * 0.72f;   // right edge of Qty column
+            float totalRight = contentWidth;           // right edge of Total column
 
             Font headerFont = new Font("Arial", 12, FontStyle.Bold);
             Font subHeaderFont = new Font("Arial", 9);
@@ -294,21 +291,61 @@ namespace UI
             Font tableFont = new Font("Arial", 9);
             int lineHeight = tableFont.Height + 4;
 
+            StringFormat itemFormat = new StringFormat
+            {
+                Trimming = StringTrimming.Character,   // breaks very long words with no spaces
+                FormatFlags = StringFormatFlags.NoClip
+            };
+
+            // ---- Pre-measure every item row so we know the wrapped heights ----
+            // Measured in points, then converted to 1/100 inch (printer units)
+            const float UnitToPoint = 72f / 100f;
+            var itemHeights = new List<float>();
+
+            using (var bmp = new Bitmap(1, 1))
+            using (var g = Graphics.FromImage(bmp))
+            {
+                g.PageUnit = GraphicsUnit.Point;
+                foreach (var order in orders)
+                {
+                    SizeF size = g.MeasureString(
+                        order.ItemName ?? "",
+                        tableFont,
+                        new SizeF(itemColWidth * UnitToPoint, 10000f),
+                        itemFormat);
+
+                    float h = (size.Height / UnitToPoint) + 4;
+                    itemHeights.Add(Math.Max(h, lineHeight));
+                }
+            }
+
+            // ---- Dynamic paper height ----
+            int receiptHeight = 220 + (int)Math.Ceiling(itemHeights.Sum());
+
+            PrintDocument printDoc = new PrintDocument
+            {
+                DefaultPageSettings =
+        {
+            Landscape = false,
+            PaperSize = new PaperSize("Receipt", paperWidth, receiptHeight),
+            Margins = new Margins(margin, margin, margin, margin)
+        }
+            };
+
             printDoc.PrintPage += (s, e) =>
             {
                 float left = e.MarginBounds.Left;
                 float y = e.MarginBounds.Top;
+                float centerX = left + e.MarginBounds.Width / 2;
+
                 StringFormat center = new StringFormat { Alignment = StringAlignment.Center };
                 StringFormat right = new StringFormat { Alignment = StringAlignment.Far };
 
-                e.Graphics.DrawString("Homexa", headerFont, Brushes.Black,
-                    left + e.MarginBounds.Width / 2, y, center);
+                e.Graphics.DrawString("Homexa", headerFont, Brushes.Black, centerX, y, center);
                 y += headerFont.Height + 2;
-                e.Graphics.DrawString("TIN: 123-456-789", subHeaderFont, Brushes.Black,
-                    left + e.MarginBounds.Width / 2, y, center);
+                e.Graphics.DrawString("TIN: 123-456-789", subHeaderFont, Brushes.Black, centerX, y, center);
                 y += subHeaderFont.Height + 2;
-                e.Graphics.DrawString("SALES RECEIPT", subHeaderFont, Brushes.Black,
-                    left + e.MarginBounds.Width / 2, y, center);
+                e.Graphics.DrawString("SALES RECEIPT", subHeaderFont, Brushes.Black, centerX, y, center);
                 y += subHeaderFont.Height + 4;
 
                 e.Graphics.DrawString($"Cashier: {CurrentUser?.Username ?? "N/A"}", subHeaderFont, Brushes.Black, left, y);
@@ -319,9 +356,10 @@ namespace UI
                 e.Graphics.DrawLine(Pens.Black, left, y, left + e.MarginBounds.Width, y);
                 y += 4;
 
+                // Column positions
                 float colItem = left;
-                float colQty = left + e.MarginBounds.Width * 0.55f;
-                float colTotal = left + e.MarginBounds.Width * 0.85f;
+                float colQty = left + qtyRight;
+                float colTotal = left + totalRight;
 
                 e.Graphics.DrawString("Item", tableHeaderFont, Brushes.Black, colItem, y);
                 e.Graphics.DrawString("Qty", tableHeaderFont, Brushes.Black, colQty, y, right);
@@ -330,12 +368,20 @@ namespace UI
                 e.Graphics.DrawLine(Pens.Black, left, y, left + e.MarginBounds.Width, y);
                 y += 2;
 
-                foreach (var order in orders)
+                for (int i = 0; i < orders.Count; i++)
                 {
-                    e.Graphics.DrawString(order.ItemName, tableFont, Brushes.Black, colItem, y);
+                    var order = orders[i];
+                    float rowHeight = itemHeights[i];
+
+                    // Item name wraps inside its own rectangle
+                    RectangleF itemRect = new RectangleF(colItem, y, itemColWidth, rowHeight);
+                    e.Graphics.DrawString(order.ItemName, tableFont, Brushes.Black, itemRect, itemFormat);
+
+                    // Qty and Total stay on the first line of the row
                     e.Graphics.DrawString(order.Quantity.ToString(), tableFont, Brushes.Black, colQty, y, right);
                     e.Graphics.DrawString("₱" + order.TotalPrice.ToString("N2"), tableFont, Brushes.Black, colTotal, y, right);
-                    y += lineHeight;
+
+                    y += rowHeight;
                     e.Graphics.DrawLine(Pens.LightGray, left, y, left + e.MarginBounds.Width, y);
                 }
 
@@ -343,34 +389,38 @@ namespace UI
                 e.Graphics.DrawLine(Pens.Black, left, y, left + e.MarginBounds.Width, y);
                 y += 4;
 
-                e.Graphics.DrawString($"TOTAL: ₱{total:N2}", tableHeaderFont, Brushes.Black,
-                    colTotal, y, right);
+                e.Graphics.DrawString($"TOTAL: ₱{total:N2}", tableHeaderFont, Brushes.Black, colTotal, y, right);
                 y += lineHeight;
-                e.Graphics.DrawString($"PAID: ₱{paid:N2}", tableHeaderFont, Brushes.Black,
-                    colTotal, y, right);
+                e.Graphics.DrawString($"PAID: ₱{paid:N2}", tableHeaderFont, Brushes.Black, colTotal, y, right);
                 y += lineHeight;
-                e.Graphics.DrawString($"CHANGE: ₱{change:N2}", tableHeaderFont, Brushes.Black,
-                    colTotal, y, right);
+                e.Graphics.DrawString($"CHANGE: ₱{change:N2}", tableHeaderFont, Brushes.Black, colTotal, y, right);
                 y += lineHeight + 4;
 
-                e.Graphics.DrawString("Thank you for your purchase!", subHeaderFont, Brushes.Black,
-                    left + e.MarginBounds.Width / 2, y, center);
+                e.Graphics.DrawString("Thank you for your purchase!", subHeaderFont, Brushes.Black, centerX, y, center);
             };
 
-            PrintPreviewDialog preview = new PrintPreviewDialog
+            using (PrintPreviewDialog preview = new PrintPreviewDialog
             {
                 Document = printDoc,
                 Width = 400,
                 Height = 600
-            };
-            preview.ShowDialog();
+            })
+            {
+                preview.ShowDialog();
+            }
 
-
-
-
-
-
+            headerFont.Dispose();
+            subHeaderFont.Dispose();
+            tableHeaderFont.Dispose();
+            tableFont.Dispose();
         }
+
+
+
+
+
+
+
 
     }
 }

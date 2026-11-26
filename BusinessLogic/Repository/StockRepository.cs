@@ -7,7 +7,7 @@ namespace BusinessLogic.Repository
     {
         private readonly string connectionString =
 
-            "Server=DESKTOP-SMD1DHH;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
+                        "Server=KHARL2005\\SQLEXPRESS02;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
 
         public DataTable GetTopProducts()
         {

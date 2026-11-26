@@ -105,31 +105,31 @@
             lblHomexia.ForeColor = Color.Black;
             lblHomexia.Location = new Point(679, 42);
             lblHomexia.Name = "lblHomexia";
-            lblHomexia.Size = new Size(103, 25);
+            lblHomexia.Size = new Size(97, 25);
             lblHomexia.TabIndex = 79;
-            lblHomexia.Text = "Homexia";
+            lblHomexia.Text = "Homexa";
             // 
             // lblTotalReceipt
             // 
             lblTotalReceipt.Anchor = AnchorStyles.Right;
             lblTotalReceipt.AutoSize = true;
             lblTotalReceipt.Font = new Font("Segoe UI", 11F);
-            lblTotalReceipt.Location = new Point(716, 432);
+            lblTotalReceipt.Location = new Point(720, 428);
             lblTotalReceipt.Name = "lblTotalReceipt";
-            lblTotalReceipt.Size = new Size(12, 20);
+            lblTotalReceipt.Size = new Size(25, 20);
             lblTotalReceipt.TabIndex = 78;
-            lblTotalReceipt.Text = ".";
+            lblTotalReceipt.Text = "00";
             // 
             // lblChange
             // 
             lblChange.Anchor = AnchorStyles.Right;
             lblChange.AutoSize = true;
             lblChange.Font = new Font("Segoe UI", 11F);
-            lblChange.Location = new Point(716, 510);
+            lblChange.Location = new Point(720, 506);
             lblChange.Name = "lblChange";
-            lblChange.Size = new Size(12, 20);
+            lblChange.Size = new Size(25, 20);
             lblChange.TabIndex = 77;
-            lblChange.Text = ".";
+            lblChange.Text = "00";
             // 
             // dgViewReceipt
             // 

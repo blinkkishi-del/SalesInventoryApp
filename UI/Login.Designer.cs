@@ -83,7 +83,7 @@
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(325, 36);
-            txtPassword.TabIndex = 13;
+            txtPassword.TabIndex = 2;
             // 
             // txtUsername
             // 
@@ -94,21 +94,24 @@
             txtUsername.Multiline = true;
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(325, 32);
-            txtUsername.TabIndex = 14;
+            txtUsername.TabIndex = 1;
             // 
             // btnLogin
             // 
             btnLogin.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnLogin.BackColor = Color.Navy;
-            btnLogin.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogin.ForeColor = SystemColors.ButtonHighlight;
             btnLogin.Location = new Point(789, 419);
             btnLogin.Margin = new Padding(3, 2, 3, 2);
+            btnLogin.BackColor = Color.FromArgb(124, 58, 237);
+            btnLogin.Cursor = Cursors.Hand;
+            btnLogin.FlatAppearance.BorderSize = 0;
+            btnLogin.FlatStyle = FlatStyle.Flat;
+            btnLogin.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            btnLogin.ForeColor = Color.White;
+            btnLogin.UseVisualStyleBackColor = false;
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(167, 41);
-            btnLogin.TabIndex = 15;
+            btnLogin.TabIndex = 3;
             btnLogin.Text = "Login";
-            btnLogin.UseVisualStyleBackColor = false;
             btnLogin.Click += btnLogin_Click;
             // 
             // pictureBox1
@@ -252,16 +255,8 @@
 
         #endregion
 
-        private TextBox textBox1;
-        private Button button1;
-        private Button button2;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private TextBox textBox2;
         private Label lblUsername;
         private Label lblPassword;
-        private Button button3;
         private TextBox txtPassword;
         private TextBox txtUsername;
         private Button btnLogin;
