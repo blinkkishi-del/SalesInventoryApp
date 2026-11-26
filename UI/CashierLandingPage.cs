@@ -103,7 +103,6 @@ namespace UI
             if (currentBtn == sender) return;
             ActivateButton(sender, RGBColors.color2);
             var pos = new PointofSales();
-            pos.CurrentUser = UserSession;   // fixes "Cashier: N/A" on receipt
             OpenChildForm(pos);
         }
 
