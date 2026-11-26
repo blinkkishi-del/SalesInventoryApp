@@ -73,5 +73,10 @@ namespace BusinessLogic.Controller
             return productRepository.GetProductsOrderedByStock();
         }
 
+        public int GetTotalInventory() => productRepository.GetTotalInventory();
+
+        public List<ProductDetailsModel> GetLowStockProducts(int threshold = 10) => productRepository.GetLowStockProducts(threshold);
+
+
     }
 }

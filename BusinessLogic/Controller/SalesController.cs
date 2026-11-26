@@ -1,19 +1,13 @@
 ﻿using BusinessLogic.Repository;
 using System.Data;
 
-
 namespace BusinessLogic.Controller
 {
     public class SalesController
     {
         private readonly SalesRepository salesRepository;
-        private readonly ProductController productController;
 
-        public SalesController()
-        {
-            salesRepository = new SalesRepository();
-            productController = new ProductController();
-        }
+        public SalesController() => salesRepository = new SalesRepository();
 
         public DataTable GetAllSales() => salesRepository.GetAllSales();
 
@@ -21,22 +15,16 @@ namespace BusinessLogic.Controller
 
         public decimal GetTotalSalesByDate(DateTime date) => salesRepository.GetTotalSalesByDate(date);
 
-        public void AddSale(string productId, int quantity, decimal unitPrice)
-        {
-            if (quantity <= 0) return;
+        public decimal GetTotalSalesToday() => salesRepository.GetTotalSalesByDate(DateTime.Today);
 
-            decimal totalPrice = quantity * unitPrice;
-
-            int salesId = salesRepository.InsertSale(DateTime.Now, totalPrice);
-
-            salesRepository.InsertSaleDetail(salesId, productId, quantity, totalPrice);
-
-            productController.UpdateProductQuantity(productId, quantity);
-        }
+        public void Checkout(IEnumerable<(string ProductId, int Quantity, decimal Price)> lines)
+            => salesRepository.Checkout(DateTime.Now, lines);
 
         public void DeleteSale(int salesId) => salesRepository.DeleteSale(salesId);
 
-        public decimal GetTotalSalesToday() => salesRepository.GetTotalSalesByDate(DateTime.Today);
+        public DataTable GetTop5Sellers() => salesRepository.GetTop5Sellers();
+
+        public DataTable GetLast7DaysSales() => salesRepository.GetLast7DaysSales();
 
         public DataTable SearchSales(string keyword)
         {

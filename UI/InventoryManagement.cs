@@ -18,7 +18,7 @@ namespace UI
         {
             InitializeComponent();
             productController = new ProductController();
-            tabAdd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;     
+            tabAdd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tabInventoryManagement.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         }
 
@@ -27,7 +27,7 @@ namespace UI
         {
             List<string> categories = new List<string>()
          {
-            "Kitchen", "Cleaning", "Laundry", "Climate", "Personal Care", "Outdoor"
+           "Basement / Bedroom", "Bathroom", "Bedroom", "Dining Room", "Dining Room / Kitchen", "Front Entrance", "Garage / Driveway", "Garage / Patio", "Garden / Yard", "Home Office", "Kitchen", "Kitchen / Dining", "Kitchen / Home Bar", "Laundry Room", "Living Room", "Living Room / All Areas", "Living Room / Bedroom", "Living Room / Hallway", "Living Room / Hallways", "Living Room / Home Office", "Master Bathroom", "Master Bedroom", "Utility / Storage Room"
          };
 
             cmbCategory.Items.Clear();
@@ -142,14 +142,6 @@ namespace UI
             txtAmount.Text = "";
         }
 
-
-
-        private void btnHome_Click(object sender, EventArgs e)
-        {
-            AdminDashboard adminDashboardForm = new AdminDashboard();
-            adminDashboardForm.Show();
-            this.Hide();
-        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -269,6 +261,7 @@ namespace UI
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            cmbFilter.Text = "";
             InitialState();
         }
 
@@ -277,7 +270,7 @@ namespace UI
             InitialState();
             LoadCategories();
             dgProducts.AutoGenerateColumns = true;
-  
+
             dgProducts.ReadOnly = true;
             dgProducts.AllowUserToAddRows = false;
             dgProducts.AllowUserToDeleteRows = false;
@@ -339,7 +332,7 @@ namespace UI
                 else
                 {
                     ClearFields();
-                    InitialState();
+                    LoadData();
                     MessageBox.Show("No products found matching your search.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -351,6 +344,6 @@ namespace UI
             txtSearch.Text = "";
         }
 
-     
+
     }
 }
