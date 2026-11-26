@@ -65,14 +65,6 @@ namespace UI
             }
         }
 
-        private void CashierDashboard_Load(object sender, EventArgs e)
-        {
-            if (UserSession != null)
-                lblTitleChild.Text = $"Welcome, {UserSession.Username}";
-
-            ActivateButton(btnDashboard, RGBColors.color1);
-            OpenChildForm(new CashierDashboard(UserSession));
-        }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
@@ -91,19 +83,12 @@ namespace UI
             }
         }
 
-        private void btnDashboard_Click(object sender, EventArgs e)
-        {
-            if (currentBtn == sender) return;
-            ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new CashierDashboard(UserSession));
-        }
 
         private void btnPOS_Click(object sender, EventArgs e)
         {
             if (currentBtn == sender) return;
             ActivateButton(sender, RGBColors.color2);
             var pos = new PointofSales();
-            pos.CurrentUser = UserSession;   // fixes "Cashier: N/A" on receipt
             OpenChildForm(pos);
         }
 
