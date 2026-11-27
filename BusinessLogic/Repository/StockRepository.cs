@@ -7,79 +7,49 @@ namespace BusinessLogic.Repository
     {
         private readonly string connectionString =
 
-                        "Server=KHARL2005\\SQLEXPRESS02;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
+                        "Server=DESKTOP-SMD1DHH;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
 
-        public DataTable GetTopProducts()
+        public DataTable GetInventoryList(int lowStockThreshold, bool criticalOnly)
         {
             var dt = new DataTable();
             using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand("GetTop50Products", conn))
+            using (SqlCommand cmd = new SqlCommand(@"
+                SELECT
+                    ProductId, ProductName, Model, Brand, Category, Supplier,
+                    Quantity, Amount,
+                    CASE WHEN Quantity <= @LowStockThreshold THEN 'Low Stock' ELSE 'In Stock' END AS StockHealth
+                FROM tblProduct
+                WHERE IsActive = 1
+                  AND (@CriticalOnly = 0 OR Quantity <= @LowStockThreshold)
+                ORDER BY CASE WHEN @CriticalOnly = 1 THEN Quantity END ASC, ProductName ASC;", conn))
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                try
-                {
-                    new SqlDataAdapter(cmd).Fill(dt);
-                }
-                catch
-                {
-                    cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "SELECT TOP 50 * FROM tblProduct WHERE IsActive = 1 ORDER BY Quantity DESC";
-                    new SqlDataAdapter(cmd).Fill(dt);
-                }
+                cmd.Parameters.AddWithValue("@LowStockThreshold", lowStockThreshold);
+                cmd.Parameters.AddWithValue("@CriticalOnly", criticalOnly);
+                new SqlDataAdapter(cmd).Fill(dt);
             }
             return dt;
         }
 
-        public int GetTotalInventory()
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(
-                "SELECT ISNULL(SUM(Quantity), 0) FROM tblProduct WHERE IsActive = 1", conn))
-            {
-                conn.Open();
-                object result = cmd.ExecuteScalar();
-                return (result != DBNull.Value) ? Convert.ToInt32(result) : 0;
-            }
-        }
-
-        public int GetLowStockCount(int threshold = 10)
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(
-                "SELECT COUNT(*) FROM tblProduct WHERE IsActive = 1 AND Quantity <= @Threshold", conn))
-            {
-                cmd.Parameters.AddWithValue("@Threshold", threshold);
-                conn.Open();
-                return Convert.ToInt32(cmd.ExecuteScalar());
-            }
-        }
-
-        public DataTable GetStockByProductId(string productId)
+        public DataTable GetRecentMovements(int count)
         {
             var dt = new DataTable();
             using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(@"
+                SELECT TOP (@Count) m.[When], m.Activity, m.ReferenceNo, p.ProductName, m.Qty, m.[By]
+                FROM (
+                    SELECT StockInDate AS [When], 'Stock-In' AS Activity, ReferenceNo, ProductId,
+                           Quantity AS Qty, StockInBy AS [By]
+                    FROM tblStockIn
+                    UNION ALL
+                    SELECT AdjustmentDate, 'Adjustment', ReferenceNo, ProductId,
+                           CASE WHEN Action = 'Remove' THEN -Quantity ELSE Quantity END, AdjustedBy
+                    FROM tblStockAdjustment
+                ) m
+                INNER JOIN tblProduct p ON p.ProductId = m.ProductId
+                ORDER BY m.[When] DESC;", conn))
             {
-                string query = @"
-                    SELECT
-                        p.ProductId,
-                        p.ProductName,
-                        p.Category,
-                        ISNULL(SUM(sd.Quantity), 0) AS QuantitySold,
-                        p.Quantity AS CurrentStock,
-                        (p.Quantity + ISNULL(SUM(sd.Quantity), 0)) AS PreviousStock
-                    FROM tblProduct p
-                    LEFT JOIN tblSalesDetail sd ON p.ProductId = sd.ProductId
-                    LEFT JOIN tblSales s ON sd.SalesId = s.SalesId
-                    WHERE p.IsActive = 1
-                      AND (@ProductId = '' OR p.ProductId LIKE '%' + @ProductId + '%')
-                    GROUP BY p.ProductId, p.ProductName, p.Category, p.Quantity
-                    ORDER BY p.ProductName;";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@ProductId", productId ?? "");
-                    new SqlDataAdapter(cmd).Fill(dt);
-                }
+                cmd.Parameters.AddWithValue("@Count", count);
+                new SqlDataAdapter(cmd).Fill(dt);
             }
             return dt;
         }

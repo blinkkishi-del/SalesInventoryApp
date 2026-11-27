@@ -7,25 +7,12 @@ namespace BusinessLogic.Controller
     {
         private readonly StockRepository repo = new StockRepository();
 
-        public DataTable LoadStockData()
-        {
-            return repo.GetTopProducts();
-        }
+        public const int LowStockThreshold = 10;
 
-        public int GetTotalInventory()
-        {
-            return repo.GetTotalInventory();
-        }
+        public DataTable GetRecentMovements(int count = 5) => repo.GetRecentMovements(count);
 
-        public int GetLowStockCount()
-        {
-            return repo.GetLowStockCount();
-        }
+        public DataTable GetInventoryList() => repo.GetInventoryList(LowStockThreshold, criticalOnly: false);
 
-        public DataTable GetStockByProductId(string productId)
-        {
-            return repo.GetStockByProductId(productId);
-        }
-
+        public DataTable GetCriticalStocks() => repo.GetInventoryList(LowStockThreshold, criticalOnly: true);
     }
 }
