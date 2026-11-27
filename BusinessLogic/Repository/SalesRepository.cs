@@ -6,56 +6,134 @@ namespace BusinessLogic.Repository
     public class SalesRepository
     {
         private readonly string connectionString =
-                        "Server=KHARL2005\\SQLEXPRESS02;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
+                        "Server=DESKTOP-SMD1DHH;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
 
-        public DataTable GetAllSales()
+        public DataTable GetSalesHistory(DateTime from, DateTime to, string cashier, string keyword)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(@"
+                SELECT
+                    s.ReceiptNo,
+                    s.SalesDate,
+                    s.CashierUsername AS SoldBy,
+                    sd.ProductId,
+                    p.ProductName,
+                    sd.Quantity,
+                    sd.DiscountAmount,
+                    sd.TotalPrice,
+                    s.OrderDiscountAmount AS OrderDiscount
+                FROM tblSales s
+                INNER JOIN tblSalesDetail sd ON s.SalesId = sd.SalesId
+                INNER JOIN tblProduct p ON sd.ProductId = p.ProductId
+                WHERE s.SalesDate BETWEEN @From AND @To
+                  AND (@Cashier IS NULL OR s.CashierUsername = @Cashier)
+                  AND (@Keyword = '' OR p.ProductName LIKE '%' + @Keyword + '%')
+                ORDER BY s.SalesId DESC;", conn))
             {
-                string query = @"
-                    SELECT
-                        s.SalesId,
-                        s.SalesDate,
-                        p.ProductName,
-                        sd.ProductId,
-                        sd.Quantity,
-                        sd.TotalPrice
-                    FROM tblSales s
-                    INNER JOIN tblSalesDetail sd ON s.SalesId = sd.SalesId
-                    INNER JOIN tblProduct p ON sd.ProductId = p.ProductId
-                    ORDER BY s.SalesDate DESC;";
-
-                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                cmd.Parameters.AddWithValue("@From", from.Date);
+                cmd.Parameters.AddWithValue("@To", to.Date);
+                cmd.Parameters.AddWithValue("@Cashier", string.IsNullOrEmpty(cashier) ? DBNull.Value : cashier);
+                cmd.Parameters.AddWithValue("@Keyword", keyword ?? "");
                 DataTable dt = new DataTable();
-                adapter.Fill(dt);
+                new SqlDataAdapter(cmd).Fill(dt);
                 return dt;
             }
         }
 
-        public DataTable GetSalesByDate(DateTime date)
+        public DataTable GetSoldItemsSummary(DateTime from, DateTime to)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(@"
+                SELECT
+                    sd.ProductId,
+                    p.ProductName,
+                    p.Model,
+                    SUM(sd.Quantity)       AS Quantity,
+                    SUM(sd.DiscountAmount) AS DiscountAmount,
+                    SUM(sd.TotalPrice)     AS TotalPrice
+                FROM tblSales s
+                INNER JOIN tblSalesDetail sd ON s.SalesId = sd.SalesId
+                INNER JOIN tblProduct p ON sd.ProductId = p.ProductId
+                WHERE s.SalesDate BETWEEN @From AND @To
+                GROUP BY sd.ProductId, p.ProductName, p.Model
+                ORDER BY p.ProductName ASC;", conn))
             {
-                string query = @"
-                    SELECT
-                        s.SalesId,
-                        s.SalesDate,
-                        p.ProductName,
-                        sd.ProductId,
-                        sd.Quantity,
-                        sd.TotalPrice
-                    FROM tblSales s
-                    INNER JOIN tblSalesDetail sd ON s.SalesId = sd.SalesId
-                    INNER JOIN tblProduct p ON sd.ProductId = p.ProductId
-                    WHERE CAST(s.SalesDate AS DATE) = @Date;";
-
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Date", date.Date);
-
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                cmd.Parameters.AddWithValue("@From", from.Date);
+                cmd.Parameters.AddWithValue("@To", to.Date);
                 DataTable dt = new DataTable();
-                adapter.Fill(dt);
+                new SqlDataAdapter(cmd).Fill(dt);
                 return dt;
+            }
+        }
+
+        public DataTable GetTopSelling(DateTime from, DateTime to)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(@"
+                SELECT TOP 10
+                    ROW_NUMBER() OVER (ORDER BY SUM(sd.Quantity) DESC, SUM(sd.TotalPrice) DESC) AS [Rank],
+                    sd.ProductId,
+                    p.ProductName,
+                    p.Model,
+                    p.Brand,
+                    SUM(sd.Quantity)   AS Quantity,
+                    SUM(sd.TotalPrice) AS TotalPrice
+                FROM tblSales s
+                INNER JOIN tblSalesDetail sd ON s.SalesId = sd.SalesId
+                INNER JOIN tblProduct p ON sd.ProductId = p.ProductId
+                WHERE s.SalesDate BETWEEN @From AND @To
+                GROUP BY sd.ProductId, p.ProductName, p.Model, p.Brand
+                ORDER BY [Rank];", conn))
+            {
+                cmd.Parameters.AddWithValue("@From", from.Date);
+                cmd.Parameters.AddWithValue("@To", to.Date);
+                DataTable dt = new DataTable();
+                new SqlDataAdapter(cmd).Fill(dt);
+                return dt;
+            }
+        }
+
+        public int GetSalesCountByDate(DateTime date)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM tblSales WHERE SalesDate = @Date;", conn))
+            {
+                cmd.Parameters.AddWithValue("@Date", date.Date);
+                conn.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public DataTable GetRecentSales(int count)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(@"
+                SELECT TOP (@Count)
+                    s.ReceiptNo,
+                    s.SalesDate,
+                    s.CashierUsername AS SoldBy,
+                    (SELECT ISNULL(SUM(sd.Quantity), 0) FROM tblSalesDetail sd WHERE sd.SalesId = s.SalesId) AS Items,
+                    s.TotalAmount
+                FROM tblSales s
+                ORDER BY s.SalesId DESC;", conn))
+            {
+                cmd.Parameters.AddWithValue("@Count", count);
+                DataTable dt = new DataTable();
+                new SqlDataAdapter(cmd).Fill(dt);
+                return dt;
+            }
+        }
+
+        public decimal GetOrderDiscountTotal(DateTime from, DateTime to)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(
+                "SELECT ISNULL(SUM(OrderDiscountAmount), 0) FROM tblSales WHERE SalesDate BETWEEN @From AND @To;", conn))
+            {
+                cmd.Parameters.AddWithValue("@From", from.Date);
+                cmd.Parameters.AddWithValue("@To", to.Date);
+                conn.Open();
+                return Convert.ToDecimal(cmd.ExecuteScalar());
             }
         }
 
@@ -75,8 +153,8 @@ namespace BusinessLogic.Repository
             }
         }
 
-
-        public void Checkout(DateTime salesDate, IEnumerable<(string ProductId, int Quantity, decimal Price)> lines)
+        public string Checkout(DateTime salesDate, IEnumerable<(string ProductId, int Quantity, decimal Price, decimal DiscountAmount)> lines,
+            string cashierUsername = null, decimal orderDiscountPercent = 0)
         {
             var items = lines.ToList();
             using var conn = new SqlConnection(connectionString);
@@ -84,20 +162,34 @@ namespace BusinessLogic.Repository
             using var tx = conn.BeginTransaction();
             try
             {
-                decimal total = items.Sum(l => l.Quantity * l.Price);
+                decimal subtotal = items.Sum(l => l.Quantity * l.Price - l.DiscountAmount);
+                decimal orderDiscount = Math.Round(subtotal * orderDiscountPercent / 100m, 2);
+                decimal total = subtotal - orderDiscount;
                 int salesId;
 
                 using (var cmd = new SqlCommand(@"
-                    INSERT INTO tblSales (SalesDate, TotalAmount)
+                    INSERT INTO tblSales (SalesDate, TotalAmount, CashierUsername, OrderDiscountPercent, OrderDiscountAmount)
                     OUTPUT INSERTED.SalesId
-                    VALUES (@SalesDate, @TotalAmount);", conn, tx))
+                    VALUES (@SalesDate, @TotalAmount, @CashierUsername, @OrderDiscountPercent, @OrderDiscountAmount);", conn, tx))
                 {
                     cmd.Parameters.AddWithValue("@SalesDate", salesDate);
                     cmd.Parameters.AddWithValue("@TotalAmount", total);
+                    cmd.Parameters.AddWithValue("@OrderDiscountPercent", orderDiscountPercent);
+                    cmd.Parameters.AddWithValue("@OrderDiscountAmount", orderDiscount);
+                    cmd.Parameters.AddWithValue("@CashierUsername", (object)cashierUsername ?? DBNull.Value);
                     salesId = Convert.ToInt32(cmd.ExecuteScalar());
                 }
 
-                foreach (var (productId, quantity, price) in items)
+                string receiptNo = "RCPT-" + salesId.ToString("D6");
+                using (var receipt = new SqlCommand(
+                    "UPDATE tblSales SET ReceiptNo = @ReceiptNo WHERE SalesId = @SalesId;", conn, tx))
+                {
+                    receipt.Parameters.AddWithValue("@ReceiptNo", receiptNo);
+                    receipt.Parameters.AddWithValue("@SalesId", salesId);
+                    receipt.ExecuteNonQuery();
+                }
+
+                foreach (var (productId, quantity, price, discountAmount) in items)
                 {
                     using (var stock = new SqlCommand(@"
                         UPDATE tblProduct
@@ -114,86 +206,25 @@ namespace BusinessLogic.Repository
                     }
 
                     using (var detail = new SqlCommand(@"
-                        INSERT INTO tblSalesDetail (SalesId, ProductId, Quantity, TotalPrice)
-                        VALUES (@SalesId, @ProductId, @Quantity, @TotalPrice);", conn, tx))
+                        INSERT INTO tblSalesDetail (SalesId, ProductId, Quantity, TotalPrice, DiscountAmount)
+                        VALUES (@SalesId, @ProductId, @Quantity, @TotalPrice, @DiscountAmount);", conn, tx))
                     {
                         detail.Parameters.AddWithValue("@SalesId", salesId);
                         detail.Parameters.AddWithValue("@ProductId", productId);
                         detail.Parameters.AddWithValue("@Quantity", quantity);
-                        detail.Parameters.AddWithValue("@TotalPrice", quantity * price);
+                        detail.Parameters.AddWithValue("@TotalPrice", quantity * price - discountAmount);
+                        detail.Parameters.AddWithValue("@DiscountAmount", discountAmount);
                         detail.ExecuteNonQuery();
                     }
                 }
 
                 tx.Commit();
+                return receiptNo;
             }
             catch
             {
                 tx.Rollback();
                 throw;
-            }
-        }
-
-        public void DeleteSale(int salesId)
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                using var transaction = conn.BeginTransaction();
-                try
-                {
-                    // Restore stock for every item in the deleted sale.
-                    using (var restore = new SqlCommand(@"
-                        UPDATE p SET p.Quantity = p.Quantity + sd.Quantity
-                        FROM tblProduct p
-                        INNER JOIN tblSalesDetail sd ON sd.ProductId = p.ProductId
-                        WHERE sd.SalesId = @SalesId;", conn, transaction))
-                    {
-                        restore.Parameters.AddWithValue("@SalesId", salesId);
-                        restore.ExecuteNonQuery();
-                    }
-
-                    using (var cmdDetails = new SqlCommand(
-                        "DELETE FROM tblSalesDetail WHERE SalesId = @SalesId", conn, transaction))
-                    {
-                        cmdDetails.Parameters.AddWithValue("@SalesId", salesId);
-                        cmdDetails.ExecuteNonQuery();
-                    }
-
-                    using (var cmdSale = new SqlCommand(
-                        "DELETE FROM tblSales WHERE SalesId = @SalesId", conn, transaction))
-                    {
-                        cmdSale.Parameters.AddWithValue("@SalesId", salesId);
-                        cmdSale.ExecuteNonQuery();
-                    }
-
-                    transaction.Commit();
-                }
-                catch
-                {
-                    transaction.Rollback();
-                    throw;
-                }
-            }
-        }
-
-        public DataTable GetTop5Sellers()
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string query = @"
-                    SELECT TOP 5
-                        p.ProductName,
-                        SUM(sd.Quantity)   AS TotalQtySold,
-                        SUM(sd.TotalPrice) AS TotalRevenue
-                    FROM tblSalesDetail sd
-                    INNER JOIN tblProduct p ON sd.ProductId = p.ProductId
-                    GROUP BY p.ProductName
-                    ORDER BY TotalQtySold DESC;";
-                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                return dt;
             }
         }
 
@@ -213,34 +244,6 @@ namespace BusinessLogic.Repository
                     GROUP BY CAST(d.SalesDate AS DATE)
                     ORDER BY SaleDay ASC;";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                return dt;
-            }
-        }
-
-        public DataTable SearchSalesByProductName(string keyword)
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string query = @"
-                    SELECT
-                        s.SalesId,
-                        s.SalesDate,
-                        p.ProductName,
-                        sd.ProductId,
-                        sd.Quantity,
-                        sd.TotalPrice
-                    FROM tblSales s
-                    INNER JOIN tblSalesDetail sd ON s.SalesId = sd.SalesId
-                    INNER JOIN tblProduct p ON sd.ProductId = p.ProductId
-                    WHERE p.ProductName LIKE @Keyword
-                    ORDER BY s.SalesDate DESC;";
-
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Keyword", "%" + keyword + "%");
-
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 return dt;
