@@ -1,6 +1,5 @@
 ﻿using FontAwesome.Sharp;
 using Model;
-using System.Runtime.InteropServices;
 
 namespace UI
 {
@@ -65,6 +64,13 @@ namespace UI
             }
         }
 
+        private void CashierDashboard_Load(object sender, EventArgs e)
+        {
+            if (UserSession != null)
+                lblTitleChild.Text = $"Welcome, {UserSession.Username}";
+
+            btnPOS_Click(btnPOS, EventArgs.Empty);
+        }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
@@ -83,24 +89,10 @@ namespace UI
             }
         }
 
-
         private void btnPOS_Click(object sender, EventArgs e)
         {
             if (currentBtn == sender) return;
             ActivateButton(sender, RGBColors.color2);
-            var pos = new PointofSales();
-            OpenChildForm(pos);
-        }
-
-        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
-        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
-
-        private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
-        {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
         private void OpenChildForm(Form childForm)
