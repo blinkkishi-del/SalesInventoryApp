@@ -267,6 +267,8 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Margin = new Padding(2);
             Name = "CashierLandingPage";
+            Text = "CashierDashboard";
+            Load += CashierDashboard_Load;
             panelMenu.ResumeLayout(false);
             panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picture_Logo).EndInit();
