@@ -2,6 +2,8 @@
 (
  [ProductId] VARCHAR(20) NOT NULL PRIMARY KEY,
  [ProductName] VARCHAR(100) NULL,
+ [Model] VARCHAR(50) NULL,
+ [Brand] VARCHAR(50) NULL,
  [Category] VARCHAR(30) NULL,
  [Supplier] VARCHAR(50) NULL,
  [Quantity] INT NULL,
