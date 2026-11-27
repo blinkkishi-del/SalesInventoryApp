@@ -62,9 +62,23 @@
     <Folder Include="PostScript" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Table\tblUsers.sql" />
+    <Build Include="StoredProc\UpProduct.sql" />
+    <Build Include="StoredProc\AddProduct.sql" />
+    <Build Include="StoredProc\DelProduct.sql" />
+    <Build Include="StoredProc\GetTop50Products.sql" />
+    <Build Include="StoredProc\ss_SearchProducts.sql" />
+    <Build Include="StoredProc\GetSalesByDate.sql" />
+    <Build Include="Table\tblBrand.sql" />
+    <Build Include="Table\tblCategory.sql" />
+    <Build Include="Table\tblOrderProduct.sql" />
     <Build Include="Table\tblProduct.sql" />
     <Build Include="Table\tblProductDetails.sql" />
+    <Build Include="Table\tblSales.sql" />
+    <Build Include="Table\tblSalesDetail.sql" />
+    <Build Include="Table\tblStockAdjustment.sql" />
+    <Build Include="Table\tblSupplier.sql" />
+    <Build Include="Table\tblUsers.sql" />
+    <Build Include="Table\tblStockIn.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostScript\Script.InitialScript.sql" />
