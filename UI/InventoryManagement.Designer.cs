@@ -28,450 +28,544 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             tabInventoryManagement = new TabControl();
             tabInventory = new TabPage();
+            dgProducts = new DataGridView();
+            panelFooter = new Panel();
+            lblCount = new Label();
+            lblLowStockNote = new Label();
+            panelToolbar = new Panel();
+            lblSearch = new Label();
+            txtSearch = new TextBox();
             lblFilter = new Label();
             cmbFilter = new ComboBox();
-            btnRefresh = new FontAwesome.Sharp.IconButton();
-            btnSearch = new FontAwesome.Sharp.IconButton();
-            btnUpdate = new FontAwesome.Sharp.IconButton();
-            btnDelete = new FontAwesome.Sharp.IconButton();
             btnAdd = new FontAwesome.Sharp.IconButton();
-            txtSearch = new TextBox();
-            dgProducts = new DataGridView();
+            btnUpdate = new FontAwesome.Sharp.IconButton();
+            btnRefresh = new FontAwesome.Sharp.IconButton();
             tabAdd = new TabPage();
-            panel3 = new Panel();
-            cmbSupplier = new ComboBox();
-            lblSupplier = new Label();
-            cmbCategory = new ComboBox();
-            txtAmount = new TextBox();
-            btnCancel = new Button();
-            btnSave = new Button();
-            txtProductID = new TextBox();
+            panelCard = new Panel();
+            tableFields = new TableLayoutPanel();
             lblProductID = new Label();
+            lblProductIdValue = new Label();
             lblProductName = new Label();
-            lblAmount = new Label();
+            txtProductName = new TextBox();
+            lblModel = new Label();
+            txtModel = new TextBox();
+            lblBrand = new Label();
+            cmbBrand = new ComboBox();
             lblCategory = new Label();
+            cmbCategory = new ComboBox();
+            lblSupplier = new Label();
+            cmbSupplier = new ComboBox();
             lblQuantity = new Label();
             txtQuantity = new TextBox();
-            txtProductName = new TextBox();
-            panel2 = new Panel();
+            lblAmount = new Label();
+            txtAmount = new TextBox();
+            lblHint = new Label();
+            flowButtons = new FlowLayoutPanel();
+            btnSave = new FontAwesome.Sharp.IconButton();
+            btnCancel = new FontAwesome.Sharp.IconButton();
+            panelHeader = new Panel();
             lblAdding = new Label();
             tabInventoryManagement.SuspendLayout();
             tabInventory.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgProducts).BeginInit();
+            panelFooter.SuspendLayout();
+            panelToolbar.SuspendLayout();
             tabAdd.SuspendLayout();
-            panel3.SuspendLayout();
-            panel2.SuspendLayout();
+            panelCard.SuspendLayout();
+            tableFields.SuspendLayout();
+            flowButtons.SuspendLayout();
+            panelHeader.SuspendLayout();
             SuspendLayout();
-            // 
+            //
             // tabInventoryManagement
-            // 
+            //
+            tabInventoryManagement.Appearance = TabAppearance.FlatButtons;
             tabInventoryManagement.Controls.Add(tabInventory);
             tabInventoryManagement.Controls.Add(tabAdd);
-            tabInventoryManagement.Location = new Point(0, -26);
+            tabInventoryManagement.Dock = DockStyle.Fill;
+            tabInventoryManagement.ItemSize = new Size(0, 1);
+            tabInventoryManagement.Location = new Point(0, 0);
             tabInventoryManagement.Name = "tabInventoryManagement";
             tabInventoryManagement.SelectedIndex = 0;
-            tabInventoryManagement.Size = new Size(1104, 663);
-            tabInventoryManagement.TabIndex = 46;
-            // 
+            tabInventoryManagement.Size = new Size(1007, 550);
+            tabInventoryManagement.SizeMode = TabSizeMode.Fixed;
+            tabInventoryManagement.TabIndex = 0;
+            tabInventoryManagement.TabStop = false;
+            //
             // tabInventory
-            // 
+            //
             tabInventory.BackColor = Color.FromArgb(34, 33, 74);
-            tabInventory.Controls.Add(lblFilter);
-            tabInventory.Controls.Add(cmbFilter);
-            tabInventory.Controls.Add(btnRefresh);
-            tabInventory.Controls.Add(btnSearch);
-            tabInventory.Controls.Add(btnUpdate);
-            tabInventory.Controls.Add(btnDelete);
-            tabInventory.Controls.Add(btnAdd);
-            tabInventory.Controls.Add(txtSearch);
             tabInventory.Controls.Add(dgProducts);
-            tabInventory.ForeColor = Color.Black;
-            tabInventory.Location = new Point(4, 24);
+            tabInventory.Controls.Add(panelFooter);
+            tabInventory.Controls.Add(panelToolbar);
+            tabInventory.Location = new Point(4, 5);
             tabInventory.Name = "tabInventory";
-            tabInventory.Padding = new Padding(3);
-            tabInventory.Size = new Size(1096, 635);
+            tabInventory.Padding = new Padding(16, 8, 16, 8);
+            tabInventory.Size = new Size(999, 541);
             tabInventory.TabIndex = 0;
-            tabInventory.Text = "tabInventory";
-            // 
+            tabInventory.Text = "Products";
+            //
+            // panelToolbar
+            //
+            panelToolbar.Controls.Add(lblSearch);
+            panelToolbar.Controls.Add(txtSearch);
+            panelToolbar.Controls.Add(lblFilter);
+            panelToolbar.Controls.Add(cmbFilter);
+            panelToolbar.Controls.Add(btnAdd);
+            panelToolbar.Controls.Add(btnUpdate);
+            panelToolbar.Controls.Add(btnRefresh);
+            panelToolbar.Dock = DockStyle.Top;
+            panelToolbar.Location = new Point(16, 8);
+            panelToolbar.Name = "panelToolbar";
+            panelToolbar.Size = new Size(967, 66);
+            panelToolbar.TabIndex = 0;
+            //
+            // lblSearch
+            //
+            lblSearch.AutoSize = true;
+            lblSearch.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            lblSearch.ForeColor = Color.Gainsboro;
+            lblSearch.Location = new Point(0, 4);
+            lblSearch.Name = "lblSearch";
+            lblSearch.Text = "Search";
+            //
+            // txtSearch
+            //
+            txtSearch.BorderStyle = BorderStyle.FixedSingle;
+            txtSearch.Font = new Font("Segoe UI", 11F);
+            txtSearch.Location = new Point(0, 28);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "ID, name, model, brand or supplier";
+            txtSearch.Size = new Size(300, 27);
+            txtSearch.TabIndex = 0;
+            txtSearch.TextChanged += Filters_Changed;
+            //
             // lblFilter
-            // 
+            //
             lblFilter.AutoSize = true;
-            lblFilter.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Bold);
-            lblFilter.ForeColor = Color.White;
-            lblFilter.Location = new Point(332, 17);
+            lblFilter.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            lblFilter.ForeColor = Color.Gainsboro;
+            lblFilter.Location = new Point(316, 4);
             lblFilter.Name = "lblFilter";
-            lblFilter.Size = new Size(46, 18);
-            lblFilter.TabIndex = 58;
-            lblFilter.Text = "Filter";
-            // 
+            lblFilter.Text = "Category";
+            //
             // cmbFilter
-            // 
-            cmbFilter.FormattingEnabled = true;
-            cmbFilter.Location = new Point(332, 37);
-            cmbFilter.Margin = new Padding(3, 2, 3, 2);
+            //
+            cmbFilter.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbFilter.Font = new Font("Segoe UI", 11F);
+            cmbFilter.Location = new Point(316, 27);
             cmbFilter.Name = "cmbFilter";
-            cmbFilter.Size = new Size(156, 23);
-            cmbFilter.TabIndex = 57;
-            // 
-            // btnRefresh
-            // 
-            btnRefresh.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnRefresh.BackColor = Color.Silver;
-            btnRefresh.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRefresh.ForeColor = Color.Black;
-            btnRefresh.IconChar = FontAwesome.Sharp.IconChar.Refresh;
-            btnRefresh.IconColor = Color.Black;
-            btnRefresh.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnRefresh.IconSize = 23;
-            btnRefresh.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRefresh.Location = new Point(523, 22);
-            btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(107, 38);
-            btnRefresh.TabIndex = 56;
-            btnRefresh.Text = "REFRESH";
-            btnRefresh.TextAlign = ContentAlignment.MiddleRight;
-            btnRefresh.TextImageRelation = TextImageRelation.TextBeforeImage;
-            btnRefresh.UseVisualStyleBackColor = false;
-            btnRefresh.Click += btnRefresh_Click;
-            // 
-            // btnSearch
-            // 
-            btnSearch.BackColor = Color.Silver;
-            btnSearch.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSearch.ForeColor = Color.Black;
-            btnSearch.IconChar = FontAwesome.Sharp.IconChar.Search;
-            btnSearch.IconColor = Color.Black;
-            btnSearch.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnSearch.IconSize = 23;
-            btnSearch.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSearch.Location = new Point(209, 22);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(117, 38);
-            btnSearch.TabIndex = 55;
-            btnSearch.Text = "SEARCH";
-            btnSearch.TextAlign = ContentAlignment.MiddleRight;
-            btnSearch.TextImageRelation = TextImageRelation.TextBeforeImage;
-            btnSearch.UseVisualStyleBackColor = false;
-            btnSearch.Click += btnSearch_Click;
-            // 
-            // btnUpdate
-            // 
-            btnUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnUpdate.BackColor = Color.FromArgb(0, 192, 192);
-            btnUpdate.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnUpdate.ForeColor = Color.Black;
-            btnUpdate.IconChar = FontAwesome.Sharp.IconChar.FilePen;
-            btnUpdate.IconColor = Color.Black;
-            btnUpdate.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnUpdate.IconSize = 23;
-            btnUpdate.ImageAlign = ContentAlignment.MiddleLeft;
-            btnUpdate.Location = new Point(796, 22);
-            btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(96, 38);
-            btnUpdate.TabIndex = 54;
-            btnUpdate.Text = "MODIFY";
-            btnUpdate.TextAlign = ContentAlignment.MiddleRight;
-            btnUpdate.TextImageRelation = TextImageRelation.TextBeforeImage;
-            btnUpdate.UseVisualStyleBackColor = false;
-            btnUpdate.Click += btnUpdate_Click;
-            // 
-            // btnDelete
-            // 
-            btnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnDelete.BackColor = Color.OrangeRed;
-            btnDelete.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDelete.ForeColor = Color.Black;
-            btnDelete.IconChar = FontAwesome.Sharp.IconChar.MinusCircle;
-            btnDelete.IconColor = Color.Black;
-            btnDelete.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnDelete.IconSize = 23;
-            btnDelete.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDelete.Location = new Point(898, 22);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(93, 38);
-            btnDelete.TabIndex = 53;
-            btnDelete.Text = "DELETE";
-            btnDelete.TextAlign = ContentAlignment.MiddleRight;
-            btnDelete.TextImageRelation = TextImageRelation.TextBeforeImage;
-            btnDelete.UseVisualStyleBackColor = false;
-            btnDelete.Click += btnDelete_Click;
-            // 
+            cmbFilter.Size = new Size(220, 28);
+            cmbFilter.TabIndex = 1;
+            cmbFilter.SelectedIndexChanged += Filters_Changed;
+            //
             // btnAdd
-            // 
+            //
             btnAdd.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnAdd.BackColor = Color.MediumSeaGreen;
-            btnAdd.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAdd.ForeColor = Color.Black;
+            btnAdd.Cursor = Cursors.Hand;
+            btnAdd.FlatAppearance.BorderSize = 0;
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            btnAdd.ForeColor = Color.White;
             btnAdd.IconChar = FontAwesome.Sharp.IconChar.CirclePlus;
-            btnAdd.IconColor = Color.Black;
+            btnAdd.IconColor = Color.White;
             btnAdd.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnAdd.IconSize = 23;
-            btnAdd.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAdd.Location = new Point(683, 22);
+            btnAdd.IconSize = 22;
+            btnAdd.Location = new Point(613, 22);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(107, 38);
-            btnAdd.TabIndex = 52;
+            btnAdd.Size = new Size(118, 38);
+            btnAdd.TabIndex = 2;
             btnAdd.Text = "ADD NEW";
-            btnAdd.TextAlign = ContentAlignment.MiddleRight;
-            btnAdd.TextImageRelation = TextImageRelation.TextBeforeImage;
+            btnAdd.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
-            // 
-            // txtSearch
-            // 
-            txtSearch.AutoCompleteMode = AutoCompleteMode.Suggest;
-            txtSearch.Font = new Font("Segoe UI", 11F);
-            txtSearch.Location = new Point(8, 33);
-            txtSearch.Margin = new Padding(3, 2, 3, 2);
-            txtSearch.Name = "txtSearch";
-            txtSearch.PlaceholderText = "Search Items Here";
-            txtSearch.Size = new Size(195, 27);
-            txtSearch.TabIndex = 50;
-            // 
+            //
+            // btnUpdate
+            //
+            btnUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnUpdate.BackColor = Color.FromArgb(24, 161, 251);
+            btnUpdate.Cursor = Cursors.Hand;
+            btnUpdate.FlatAppearance.BorderSize = 0;
+            btnUpdate.FlatStyle = FlatStyle.Flat;
+            btnUpdate.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            btnUpdate.ForeColor = Color.White;
+            btnUpdate.IconChar = FontAwesome.Sharp.IconChar.FilePen;
+            btnUpdate.IconColor = Color.White;
+            btnUpdate.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnUpdate.IconSize = 22;
+            btnUpdate.Location = new Point(737, 22);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(108, 38);
+            btnUpdate.TabIndex = 3;
+            btnUpdate.Text = "MODIFY";
+            btnUpdate.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnUpdate.UseVisualStyleBackColor = false;
+            btnUpdate.Click += btnUpdate_Click;
+            //
+            // btnRefresh
+            //
+            btnRefresh.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnRefresh.BackColor = Color.FromArgb(108, 117, 125);
+            btnRefresh.Cursor = Cursors.Hand;
+            btnRefresh.FlatAppearance.BorderSize = 0;
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            btnRefresh.ForeColor = Color.White;
+            btnRefresh.IconChar = FontAwesome.Sharp.IconChar.Refresh;
+            btnRefresh.IconColor = Color.White;
+            btnRefresh.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnRefresh.IconSize = 22;
+            btnRefresh.Location = new Point(851, 22);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(116, 38);
+            btnRefresh.TabIndex = 4;
+            btnRefresh.Text = "REFRESH";
+            btnRefresh.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnRefresh.UseVisualStyleBackColor = false;
+            btnRefresh.Click += btnRefresh_Click;
+            //
             // dgProducts
-            // 
-            dgProducts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dgProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dgProducts.BackgroundColor = SystemColors.ButtonFace;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = Color.DeepSkyBlue;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgProducts.DefaultCellStyle = dataGridViewCellStyle2;
-            dgProducts.Location = new Point(8, 65);
-            dgProducts.Margin = new Padding(3, 2, 3, 2);
+            //
+            dgProducts.Dock = DockStyle.Fill;
+            dgProducts.Location = new Point(16, 74);
             dgProducts.Name = "dgProducts";
-            dgProducts.RowHeadersWidth = 51;
-            dgProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgProducts.Size = new Size(983, 476);
-            dgProducts.TabIndex = 51;
-            // 
+            dgProducts.Size = new Size(967, 423);
+            dgProducts.TabIndex = 5;
+            dgProducts.SelectionChanged += dgProducts_SelectionChanged;
+            dgProducts.CellDoubleClick += dgProducts_CellDoubleClick;
+            //
+            // panelFooter
+            //
+            panelFooter.Controls.Add(lblLowStockNote);
+            panelFooter.Controls.Add(lblCount);
+            panelFooter.Dock = DockStyle.Bottom;
+            panelFooter.Location = new Point(16, 497);
+            panelFooter.Name = "panelFooter";
+            panelFooter.Size = new Size(967, 36);
+            panelFooter.TabIndex = 6;
+            //
+            // lblCount
+            //
+            lblCount.Dock = DockStyle.Left;
+            lblCount.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            lblCount.ForeColor = Color.FromArgb(111, 207, 151);
+            lblCount.Name = "lblCount";
+            lblCount.Size = new Size(400, 36);
+            lblCount.Text = "0 products";
+            lblCount.TextAlign = ContentAlignment.MiddleLeft;
+            //
+            // lblLowStockNote
+            //
+            lblLowStockNote.Dock = DockStyle.Fill;
+            lblLowStockNote.Font = new Font("Segoe UI", 10F);
+            lblLowStockNote.ForeColor = Color.Silver;
+            lblLowStockNote.Name = "lblLowStockNote";
+            lblLowStockNote.Size = new Size(400, 36);
+            lblLowStockNote.Text = "Stock shown in red is low (10 or less). Double-click a row to modify.";
+            lblLowStockNote.TextAlign = ContentAlignment.MiddleRight;
+            //
             // tabAdd
-            // 
+            //
+            tabAdd.AutoScroll = true;
             tabAdd.BackColor = Color.FromArgb(34, 33, 74);
-            tabAdd.Controls.Add(panel3);
-            tabAdd.Controls.Add(panel2);
-            tabAdd.ForeColor = Color.FromArgb(34, 33, 74);
-            tabAdd.Location = new Point(4, 24);
+            tabAdd.Controls.Add(panelCard);
+            tabAdd.Controls.Add(panelHeader);
+            tabAdd.Location = new Point(4, 5);
             tabAdd.Name = "tabAdd";
-            tabAdd.Padding = new Padding(3);
-            tabAdd.Size = new Size(1096, 635);
+            tabAdd.Size = new Size(999, 541);
             tabAdd.TabIndex = 1;
-            tabAdd.Text = "tabAdd";
-            // 
-            // panel3
-            // 
-            panel3.Controls.Add(cmbSupplier);
-            panel3.Controls.Add(lblSupplier);
-            panel3.Controls.Add(cmbCategory);
-            panel3.Controls.Add(txtAmount);
-            panel3.Controls.Add(btnCancel);
-            panel3.Controls.Add(btnSave);
-            panel3.Controls.Add(txtProductID);
-            panel3.Controls.Add(lblProductID);
-            panel3.Controls.Add(lblProductName);
-            panel3.Controls.Add(lblAmount);
-            panel3.Controls.Add(lblCategory);
-            panel3.Controls.Add(lblQuantity);
-            panel3.Controls.Add(txtQuantity);
-            panel3.Controls.Add(txtProductName);
-            panel3.Location = new Point(3, 73);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(1004, 485);
-            panel3.TabIndex = 48;
-            // 
-            // cmbSupplier
-            // 
-            cmbSupplier.Font = new Font("Arial", 16.25F);
-            cmbSupplier.FormattingEnabled = true;
-            cmbSupplier.Location = new Point(41, 360);
-            cmbSupplier.Margin = new Padding(3, 2, 3, 2);
-            cmbSupplier.Name = "cmbSupplier";
-            cmbSupplier.Size = new Size(344, 33);
-            cmbSupplier.TabIndex = 54;
-            // 
-            // lblSupplier
-            // 
-            lblSupplier.AutoSize = true;
-            lblSupplier.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold);
-            lblSupplier.ForeColor = Color.White;
-            lblSupplier.Location = new Point(41, 308);
-            lblSupplier.Name = "lblSupplier";
-            lblSupplier.Size = new Size(99, 25);
-            lblSupplier.TabIndex = 50;
-            lblSupplier.Text = "Supplier";
-            // 
+            tabAdd.Text = "Add / Modify";
+            //
+            // panelHeader
+            //
+            panelHeader.Controls.Add(lblAdding);
+            panelHeader.Dock = DockStyle.Top;
+            panelHeader.Location = new Point(0, 0);
+            panelHeader.Name = "panelHeader";
+            panelHeader.Padding = new Padding(24, 0, 0, 0);
+            panelHeader.Size = new Size(999, 64);
+            panelHeader.TabIndex = 0;
+            //
+            // lblAdding
+            //
+            lblAdding.Dock = DockStyle.Fill;
+            lblAdding.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold);
+            lblAdding.ForeColor = Color.White;
+            lblAdding.Name = "lblAdding";
+            lblAdding.Text = "ADD NEW PRODUCT";
+            lblAdding.TextAlign = ContentAlignment.MiddleLeft;
+            //
+            // panelCard
+            //
+            panelCard.Anchor = AnchorStyles.Top;
+            panelCard.BackColor = Color.FromArgb(44, 43, 92);
+            panelCard.Controls.Add(tableFields);
+            panelCard.Location = new Point(70, 76);
+            panelCard.Name = "panelCard";
+            panelCard.Padding = new Padding(24, 20, 24, 16);
+            panelCard.Size = new Size(860, 440);
+            panelCard.TabIndex = 1;
+            //
+            // tableFields
+            //
+            tableFields.ColumnCount = 3;
+            tableFields.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
+            tableFields.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
+            tableFields.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.34F));
+            tableFields.Controls.Add(lblProductID, 0, 0);
+            tableFields.Controls.Add(lblProductName, 1, 0);
+            tableFields.Controls.Add(lblProductIdValue, 0, 1);
+            tableFields.Controls.Add(txtProductName, 1, 1);
+            tableFields.Controls.Add(lblModel, 0, 2);
+            tableFields.Controls.Add(lblBrand, 1, 2);
+            tableFields.Controls.Add(lblCategory, 2, 2);
+            tableFields.Controls.Add(txtModel, 0, 3);
+            tableFields.Controls.Add(cmbBrand, 1, 3);
+            tableFields.Controls.Add(cmbCategory, 2, 3);
+            tableFields.Controls.Add(lblSupplier, 0, 4);
+            tableFields.Controls.Add(lblQuantity, 1, 4);
+            tableFields.Controls.Add(lblAmount, 2, 4);
+            tableFields.Controls.Add(cmbSupplier, 0, 5);
+            tableFields.Controls.Add(txtQuantity, 1, 5);
+            tableFields.Controls.Add(txtAmount, 2, 5);
+            tableFields.Controls.Add(lblHint, 0, 6);
+            tableFields.Controls.Add(flowButtons, 0, 7);
+            tableFields.Dock = DockStyle.Fill;
+            tableFields.Name = "tableFields";
+            tableFields.RowCount = 8;
+            tableFields.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
+            tableFields.RowStyles.Add(new RowStyle(SizeType.Absolute, 52F));
+            tableFields.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
+            tableFields.RowStyles.Add(new RowStyle(SizeType.Absolute, 52F));
+            tableFields.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
+            tableFields.RowStyles.Add(new RowStyle(SizeType.Absolute, 52F));
+            tableFields.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableFields.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            tableFields.TabIndex = 0;
+            tableFields.SetColumnSpan(txtProductName, 2);
+            tableFields.SetColumnSpan(lblProductName, 2);
+            tableFields.SetColumnSpan(lblHint, 3);
+            tableFields.SetColumnSpan(flowButtons, 3);
+            //
+            // lblProductID
+            //
+            lblProductID.Dock = DockStyle.Fill;
+            lblProductID.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            lblProductID.ForeColor = Color.Silver;
+            lblProductID.Name = "lblProductID";
+            lblProductID.Text = "Product ID (next in sequence)";
+            lblProductID.TextAlign = ContentAlignment.BottomLeft;
+            //
+            // lblProductIdValue
+            //
+            lblProductIdValue.BackColor = Color.FromArgb(60, 59, 110);
+            lblProductIdValue.Dock = DockStyle.Fill;
+            lblProductIdValue.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            lblProductIdValue.ForeColor = Color.White;
+            lblProductIdValue.Margin = new Padding(3, 4, 12, 12);
+            lblProductIdValue.Name = "lblProductIdValue";
+            lblProductIdValue.Padding = new Padding(8, 0, 0, 0);
+            lblProductIdValue.Text = "-";
+            lblProductIdValue.TextAlign = ContentAlignment.MiddleLeft;
+            //
+            // lblProductName
+            //
+            lblProductName.Dock = DockStyle.Fill;
+            lblProductName.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            lblProductName.ForeColor = Color.Silver;
+            lblProductName.Name = "lblProductName";
+            lblProductName.Text = "Product Name *";
+            lblProductName.TextAlign = ContentAlignment.BottomLeft;
+            //
+            // txtProductName
+            //
+            txtProductName.BorderStyle = BorderStyle.FixedSingle;
+            txtProductName.Dock = DockStyle.Fill;
+            txtProductName.Font = new Font("Segoe UI", 12F);
+            txtProductName.Margin = new Padding(3, 4, 12, 12);
+            txtProductName.MaxLength = 100;
+            txtProductName.Name = "txtProductName";
+            txtProductName.TabIndex = 0;
+            //
+            // lblModel
+            //
+            lblModel.Dock = DockStyle.Fill;
+            lblModel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            lblModel.ForeColor = Color.Silver;
+            lblModel.Name = "lblModel";
+            lblModel.Text = "Model No. *";
+            lblModel.TextAlign = ContentAlignment.BottomLeft;
+            //
+            // txtModel
+            //
+            txtModel.BorderStyle = BorderStyle.FixedSingle;
+            txtModel.CharacterCasing = CharacterCasing.Upper;
+            txtModel.Dock = DockStyle.Fill;
+            txtModel.Font = new Font("Segoe UI", 12F);
+            txtModel.Margin = new Padding(3, 4, 12, 12);
+            txtModel.MaxLength = 50;
+            txtModel.Name = "txtModel";
+            txtModel.TabIndex = 1;
+            //
+            // lblBrand
+            //
+            lblBrand.Dock = DockStyle.Fill;
+            lblBrand.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            lblBrand.ForeColor = Color.Silver;
+            lblBrand.Name = "lblBrand";
+            lblBrand.Text = "Brand *";
+            lblBrand.TextAlign = ContentAlignment.BottomLeft;
+            //
+            // cmbBrand
+            //
+            cmbBrand.Dock = DockStyle.Fill;
+            cmbBrand.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbBrand.Font = new Font("Segoe UI", 12F);
+            cmbBrand.Margin = new Padding(3, 4, 12, 12);
+            cmbBrand.Name = "cmbBrand";
+            cmbBrand.TabIndex = 2;
+            //
+            // lblCategory
+            //
+            lblCategory.Dock = DockStyle.Fill;
+            lblCategory.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            lblCategory.ForeColor = Color.Silver;
+            lblCategory.Name = "lblCategory";
+            lblCategory.Text = "Category *";
+            lblCategory.TextAlign = ContentAlignment.BottomLeft;
+            //
             // cmbCategory
-            // 
-            cmbCategory.Font = new Font("Arial", 16.25F);
-            cmbCategory.FormattingEnabled = true;
-            cmbCategory.Location = new Point(337, 248);
-            cmbCategory.Margin = new Padding(3, 2, 3, 2);
+            //
+            cmbCategory.Dock = DockStyle.Fill;
+            cmbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbCategory.Font = new Font("Segoe UI", 12F);
+            cmbCategory.Margin = new Padding(3, 4, 12, 12);
             cmbCategory.Name = "cmbCategory";
-            cmbCategory.Size = new Size(344, 33);
-            cmbCategory.TabIndex = 55;
-            // 
+            cmbCategory.TabIndex = 3;
+            //
+            // lblSupplier
+            //
+            lblSupplier.Dock = DockStyle.Fill;
+            lblSupplier.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            lblSupplier.ForeColor = Color.Silver;
+            lblSupplier.Name = "lblSupplier";
+            lblSupplier.Text = "Supplier *";
+            lblSupplier.TextAlign = ContentAlignment.BottomLeft;
+            //
+            // cmbSupplier
+            //
+            cmbSupplier.Dock = DockStyle.Fill;
+            cmbSupplier.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbSupplier.Font = new Font("Segoe UI", 12F);
+            cmbSupplier.Margin = new Padding(3, 4, 12, 12);
+            cmbSupplier.Name = "cmbSupplier";
+            cmbSupplier.TabIndex = 4;
+            //
+            // lblQuantity
+            //
+            lblQuantity.Dock = DockStyle.Fill;
+            lblQuantity.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            lblQuantity.ForeColor = Color.Silver;
+            lblQuantity.Name = "lblQuantity";
+            lblQuantity.Text = "Quantity *";
+            lblQuantity.TextAlign = ContentAlignment.BottomLeft;
+            //
+            // txtQuantity
+            //
+            txtQuantity.BorderStyle = BorderStyle.FixedSingle;
+            txtQuantity.Dock = DockStyle.Fill;
+            txtQuantity.Font = new Font("Segoe UI", 12F);
+            txtQuantity.Margin = new Padding(3, 4, 12, 12);
+            txtQuantity.MaxLength = 9;
+            txtQuantity.Name = "txtQuantity";
+            txtQuantity.TabIndex = 5;
+            txtQuantity.TextAlign = HorizontalAlignment.Right;
+            //
+            // lblAmount
+            //
+            lblAmount.Dock = DockStyle.Fill;
+            lblAmount.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            lblAmount.ForeColor = Color.Silver;
+            lblAmount.Name = "lblAmount";
+            lblAmount.Text = "Price (₱) *";
+            lblAmount.TextAlign = ContentAlignment.BottomLeft;
+            //
             // txtAmount
-            // 
-            txtAmount.Font = new Font("Arial", 16.25F);
-            txtAmount.Location = new Point(660, 100);
-            txtAmount.Margin = new Padding(3, 2, 3, 2);
-            txtAmount.Multiline = true;
+            //
+            txtAmount.BorderStyle = BorderStyle.FixedSingle;
+            txtAmount.Dock = DockStyle.Fill;
+            txtAmount.Font = new Font("Segoe UI", 12F);
+            txtAmount.Margin = new Padding(3, 4, 12, 12);
+            txtAmount.MaxLength = 15;
             txtAmount.Name = "txtAmount";
-            txtAmount.Size = new Size(243, 37);
-            txtAmount.TabIndex = 51;
-            // 
+            txtAmount.TabIndex = 6;
+            txtAmount.TextAlign = HorizontalAlignment.Right;
+            //
+            // lblHint
+            //
+            lblHint.Dock = DockStyle.Fill;
+            lblHint.Font = new Font("Segoe UI", 9.75F, FontStyle.Italic);
+            lblHint.ForeColor = Color.Silver;
+            lblHint.Name = "lblHint";
+            lblHint.Text = "Brand, Category and Supplier come from their own screens. Adding a product with the same name and model merges it into the existing stock.";
+            lblHint.TextAlign = ContentAlignment.TopLeft;
+            //
+            // flowButtons
+            //
+            flowButtons.Controls.Add(btnCancel);
+            flowButtons.Controls.Add(btnSave);
+            flowButtons.Dock = DockStyle.Fill;
+            flowButtons.FlowDirection = FlowDirection.RightToLeft;
+            flowButtons.Name = "flowButtons";
+            flowButtons.TabIndex = 7;
+            //
             // btnCancel
-            // 
-            btnCancel.BackColor = SystemColors.ControlDark;
-            btnCancel.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Bold);
+            //
+            btnCancel.BackColor = Color.FromArgb(108, 117, 125);
+            btnCancel.Cursor = Cursors.Hand;
+            btnCancel.FlatAppearance.BorderSize = 0;
+            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             btnCancel.ForeColor = Color.White;
-            btnCancel.Location = new Point(700, 350);
-            btnCancel.Margin = new Padding(3, 2, 3, 2);
+            btnCancel.IconChar = FontAwesome.Sharp.IconChar.Xmark;
+            btnCancel.IconColor = Color.White;
+            btnCancel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnCancel.IconSize = 22;
+            btnCancel.Margin = new Padding(8, 8, 12, 0);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(98, 38);
-            btnCancel.TabIndex = 43;
-            btnCancel.Text = "Cancel";
+            btnCancel.Size = new Size(130, 44);
+            btnCancel.TabIndex = 8;
+            btnCancel.Text = "CANCEL";
+            btnCancel.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
-            // 
+            //
             // btnSave
-            // 
+            //
             btnSave.BackColor = Color.ForestGreen;
-            btnSave.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSave.Cursor = Cursors.Hand;
+            btnSave.FlatAppearance.BorderSize = 0;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(516, 344);
-            btnSave.Margin = new Padding(3, 2, 3, 2);
+            btnSave.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
+            btnSave.IconColor = Color.White;
+            btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnSave.IconSize = 22;
+            btnSave.Margin = new Padding(8, 8, 0, 0);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(140, 49);
-            btnSave.TabIndex = 42;
-            btnSave.Text = "Save";
+            btnSave.Size = new Size(160, 44);
+            btnSave.TabIndex = 7;
+            btnSave.Text = "SAVE";
+            btnSave.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
-            // 
-            // txtProductID
-            // 
-            txtProductID.Font = new Font("Arial", 16.25F);
-            txtProductID.Location = new Point(41, 100);
-            txtProductID.Margin = new Padding(3, 2, 3, 2);
-            txtProductID.Multiline = true;
-            txtProductID.Name = "txtProductID";
-            txtProductID.Size = new Size(243, 37);
-            txtProductID.TabIndex = 52;
-            // 
-            // lblProductID
-            // 
-            lblProductID.AutoSize = true;
-            lblProductID.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold);
-            lblProductID.ForeColor = Color.White;
-            lblProductID.Location = new Point(41, 50);
-            lblProductID.Name = "lblProductID";
-            lblProductID.Size = new Size(122, 25);
-            lblProductID.TabIndex = 48;
-            lblProductID.Text = "Product ID";
-            // 
-            // lblProductName
-            // 
-            lblProductName.AutoSize = true;
-            lblProductName.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold);
-            lblProductName.ForeColor = Color.White;
-            lblProductName.Location = new Point(31, 182);
-            lblProductName.Name = "lblProductName";
-            lblProductName.Size = new Size(160, 25);
-            lblProductName.TabIndex = 49;
-            lblProductName.Text = "Product Name";
-            // 
-            // lblAmount
-            // 
-            lblAmount.AutoSize = true;
-            lblAmount.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold);
-            lblAmount.ForeColor = Color.White;
-            lblAmount.Location = new Point(660, 50);
-            lblAmount.Name = "lblAmount";
-            lblAmount.Size = new Size(91, 25);
-            lblAmount.TabIndex = 53;
-            lblAmount.Text = "Amount";
-            // 
-            // lblCategory
-            // 
-            lblCategory.AutoSize = true;
-            lblCategory.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold);
-            lblCategory.ForeColor = Color.White;
-            lblCategory.Location = new Point(337, 182);
-            lblCategory.Name = "lblCategory";
-            lblCategory.Size = new Size(107, 25);
-            lblCategory.TabIndex = 45;
-            lblCategory.Text = "Category";
-            // 
-            // lblQuantity
-            // 
-            lblQuantity.AutoSize = true;
-            lblQuantity.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold);
-            lblQuantity.ForeColor = Color.White;
-            lblQuantity.Location = new Point(337, 50);
-            lblQuantity.Name = "lblQuantity";
-            lblQuantity.Size = new Size(100, 25);
-            lblQuantity.TabIndex = 44;
-            lblQuantity.Text = "Quantity";
-            // 
-            // txtQuantity
-            // 
-            txtQuantity.Font = new Font("Arial", 16.25F);
-            txtQuantity.Location = new Point(337, 100);
-            txtQuantity.Margin = new Padding(3, 2, 3, 2);
-            txtQuantity.Multiline = true;
-            txtQuantity.Name = "txtQuantity";
-            txtQuantity.Size = new Size(243, 37);
-            txtQuantity.TabIndex = 46;
-            // 
-            // txtProductName
-            // 
-            txtProductName.Font = new Font("Arial", 16.25F);
-            txtProductName.Location = new Point(41, 248);
-            txtProductName.Margin = new Padding(3, 2, 3, 2);
-            txtProductName.Multiline = true;
-            txtProductName.Name = "txtProductName";
-            txtProductName.Size = new Size(243, 37);
-            txtProductName.TabIndex = 47;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(lblAdding);
-            panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(3, 3);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1090, 70);
-            panel2.TabIndex = 47;
-            // 
-            // lblAdding
-            // 
-            lblAdding.AutoSize = true;
-            lblAdding.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAdding.ForeColor = Color.White;
-            lblAdding.Location = new Point(18, 21);
-            lblAdding.Name = "lblAdding";
-            lblAdding.Size = new Size(245, 29);
-            lblAdding.TabIndex = 0;
-            lblAdding.Text = "ADDING PRODUCT :";
-            // 
+            //
             // InventoryManagement
-            // 
+            //
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(34, 33, 74);
@@ -480,57 +574,63 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "InventoryManagement";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "InventoryManagement";
+            Text = "Product Management";
             Load += InventoryManagement_Load;
             tabInventoryManagement.ResumeLayout(false);
             tabInventory.ResumeLayout(false);
-            tabInventory.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgProducts).EndInit();
+            panelFooter.ResumeLayout(false);
+            panelToolbar.ResumeLayout(false);
+            panelToolbar.PerformLayout();
             tabAdd.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            panelCard.ResumeLayout(false);
+            tableFields.ResumeLayout(false);
+            tableFields.PerformLayout();
+            flowButtons.ResumeLayout(false);
+            panelHeader.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-        private Button button3;
-        private Button button4;
-        private Button button5;
-        private Button button6;
-        private DataGridView dataGridView1;
-        private TextBox txtRestocks;
-        private TextBox txtSupplier;
-        private Label lblAmmount;
+
         private TabControl tabInventoryManagement;
         private TabPage tabInventory;
         private TabPage tabAdd;
-        private FontAwesome.Sharp.IconButton btnSearch;
-        private FontAwesome.Sharp.IconButton btnUpdate;
-        private FontAwesome.Sharp.IconButton btnDelete;
-        private FontAwesome.Sharp.IconButton btnAdd;
+        private Panel panelToolbar;
+        private Label lblSearch;
         private TextBox txtSearch;
-        private DataGridView dgProducts;
-        private Panel panel2;
-        private FontAwesome.Sharp.IconButton btnRefresh;
         private Label lblFilter;
         private ComboBox cmbFilter;
+        private FontAwesome.Sharp.IconButton btnAdd;
+        private FontAwesome.Sharp.IconButton btnUpdate;
+        private FontAwesome.Sharp.IconButton btnRefresh;
+        private DataGridView dgProducts;
+        private Panel panelFooter;
+        private Label lblCount;
+        private Label lblLowStockNote;
+        private Panel panelHeader;
         private Label lblAdding;
-        private Panel panel3;
-        private ComboBox cmbSupplier;
-        private Label lblSupplier;
-        private ComboBox cmbCategory;
-        private TextBox txtAmount;
-        private Button btnCancel;
-        private Button btnSave;
-        private TextBox txtProductID;
+        private Panel panelCard;
+        private TableLayoutPanel tableFields;
         private Label lblProductID;
+        private Label lblProductIdValue;
         private Label lblProductName;
-        private Label lblAmount;
+        private TextBox txtProductName;
+        private Label lblModel;
+        private TextBox txtModel;
+        private Label lblBrand;
+        private ComboBox cmbBrand;
         private Label lblCategory;
+        private ComboBox cmbCategory;
+        private Label lblSupplier;
+        private ComboBox cmbSupplier;
         private Label lblQuantity;
         private TextBox txtQuantity;
-        private TextBox txtProductName;
+        private Label lblAmount;
+        private TextBox txtAmount;
+        private Label lblHint;
+        private FlowLayoutPanel flowButtons;
+        private FontAwesome.Sharp.IconButton btnSave;
+        private FontAwesome.Sharp.IconButton btnCancel;
     }
 }

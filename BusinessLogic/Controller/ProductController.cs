@@ -14,22 +14,18 @@ namespace BusinessLogic.Controller
             productRepository = new ProductRepository();
         }
 
-        public void Add(ProductDetailsModel model)
+        public string Add(ProductDetailsModel model)
         {
             if (model == null) throw new Exception("Missing parameter: model");
-            productRepository.AddProduct(model);
+            return productRepository.AddProduct(model);
         }
+
+        public string GetNextProductId() => productRepository.GetNextProductId();
 
         public void Update(ProductDetailsModel model)
         {
             if (model == null) throw new Exception("Missing parameter: model");
             productRepository.UpdateProduct(model);
-        }
-
-        public void Delete(string productId)
-        {
-            if (string.IsNullOrEmpty(productId)) throw new Exception("Invalid product Id");
-            productRepository.DeleteProduct(productId);
         }
 
         public List<ProductDetailsModel> GetAllProducts() => productRepository.GetAll();
@@ -40,5 +36,16 @@ namespace BusinessLogic.Controller
             return productRepository.SearchProducts(keyword);
         }
 
+        public ProductDetailsModel? GetById(string productId)
+        {
+            if (string.IsNullOrEmpty(productId)) throw new Exception("Invalid product Id");
+            return productRepository.GetAll().FirstOrDefault(p => p.ProductId == productId);
+        }
+
+        public List<ProductDetailsModel> GetProductsOrderedByStock() => productRepository.GetProductsOrderedByStock();
+
+        public int GetTotalInventory() => productRepository.GetTotalInventory();
+
+        public List<ProductDetailsModel> GetLowStockProducts(int threshold = 10) => productRepository.GetLowStockProducts(threshold);
     }
 }
