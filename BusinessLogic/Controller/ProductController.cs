@@ -1,12 +1,10 @@
 ﻿using BusinessLogic.Repository;
 using Model;
 
-
 namespace BusinessLogic.Controller
 {
     public class ProductController
     {
-
         private readonly ProductRepository productRepository;
 
         public ProductController()
@@ -35,14 +33,10 @@ namespace BusinessLogic.Controller
             if (string.IsNullOrWhiteSpace(keyword)) return productRepository.GetAll();
             return productRepository.SearchProducts(keyword);
         }
-
-        public ProductDetailsModel? GetById(string productId)
+        public List<ProductDetailsModel> GetProductsOrderedByStock()
         {
-            if (string.IsNullOrEmpty(productId)) throw new Exception("Invalid product Id");
-            return productRepository.GetAll().FirstOrDefault(p => p.ProductId == productId);
+            return productRepository.GetProductsOrderedByStock();
         }
-
-        public List<ProductDetailsModel> GetProductsOrderedByStock() => productRepository.GetProductsOrderedByStock();
 
         public int GetTotalInventory() => productRepository.GetTotalInventory();
 
