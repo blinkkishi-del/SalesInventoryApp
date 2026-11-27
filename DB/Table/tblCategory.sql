@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[tblCategory]
+(
+ [CategoryId] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+ [CategoryName] VARCHAR(50) NOT NULL UNIQUE,
+ [IsActive] BIT NOT NULL DEFAULT 1
+);
+GO
