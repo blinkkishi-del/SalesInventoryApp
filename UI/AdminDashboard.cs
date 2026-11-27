@@ -1,30 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-
-namespace UI
+﻿namespace UI
 {
     public partial class AdminDashboard : Form
     {
+
         public AdminDashboard()
         {
             InitializeComponent();
+           
         }
 
-        private void btnLogout_Click(object sender, EventArgs e)
+        private void AdminDashboard_Load(object sender, EventArgs e)
         {
-
         }
 
-        private void btnInvmanage_Click(object sender, EventArgs e)
+        private void PanelChart_Paint(object sender, PaintEventArgs e)
         {
-            InventoryManagement inventoryManagementForm = new InventoryManagement();
-            this.Hide();
-            inventoryManagementForm.Show();
+          
+        } 
+
+        private void btnReorder_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void dgridLowStock_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
         }
     }
 }

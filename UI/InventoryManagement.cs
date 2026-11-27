@@ -1,30 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+﻿using BusinessLogic.Controller;
+using Model;
 
 namespace UI
 {
     public partial class InventoryManagement : Form
     {
+     
+
         public InventoryManagement()
         {
             InitializeComponent();
         }
 
-        private void btnHome_Click(object sender, EventArgs e)
+        private void InventoryManagement_Load(object sender, EventArgs e)
         {
-            AdminDashboard adminDashboardForm = new AdminDashboard();
-            adminDashboardForm.Show();
-            this.Hide();
+
+        }
+
+
+     
+
+        private void Filters_Changed(object sender, EventArgs e) { }
+
+        private void dgProducts_SelectionChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void dgProducts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        private void dgProducts_CellFormatting(object? sender, DataGridViewCellFormattingEventArgs e)
+        {
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+           
+
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+ 
         }
     }
 }
