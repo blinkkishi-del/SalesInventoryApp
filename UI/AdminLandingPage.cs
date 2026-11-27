@@ -199,8 +199,18 @@ namespace UI
             HideSubmenus();
             ActivateButton(sender, RGBColors.color1);
             var dash = new AdminDashboard();
+            dash.CurrentUser = UserSession;
+            dash.ReorderRequested = OpenReorder;
+            OpenChildForm(dash);
         }
 
+        private void OpenReorder(string productId, string supplierName)
+        {
+            HideSubmenus();
+            panelSubStock.Visible = true;
+            ActivateButton(btnStockEntry, RGBColors.color4);
+            OpenChildForm(new StockEntry(UserSession?.Username, productId, supplierName));
+        }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
