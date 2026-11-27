@@ -14,109 +14,63 @@ GO
 -- 50 Records
 INSERT INTO [dbo].[tblProduct] (ProductId, ProductName, Category, Supplier, Quantity, Amount)
 VALUES
+('APP-001', 'Inverter Side-by-Side Refrigerator', 'Kitchen', 'LG Electronics', 22, 48500.00),
+('APP-002', 'Front-Load Washing Machine', 'Laundry Room', 'Samsung Electronics', 25, 26995.00),
+('APP-003', 'Heat Pump Clothes Dryer', 'Laundry Room', 'Whirlpool', 28, 32400.00),
+('APP-004', 'Double-Type Inverter Air Conditioner', 'Master Bedroom', 'Daikin', 26, 34800.00),
+('APP-005', 'Split-Type Inverter Air Conditioner', 'Living Room', 'Carrier', 21, 42500.00),
+('APP-006', '55-Inch Smart QLED TV', 'Living Room', 'Sony', 33, 38990.00),
+('APP-007', 'Digital Microwave Oven', 'Kitchen', 'Panasonic', 46, 6495.00),
+('APP-008', '4-Burner Gas Range with Electric Oven', 'Kitchen', 'Elba', 24, 28500.00),
+('APP-009', 'Built-in Range Hood', 'Kitchen', 'La Germania', 36, 11200.00),
+('APP-010', 'Digital Fuzzy Rice Cooker', 'Kitchen', 'Zojirushi', 54, 9800.00),
+('APP-011', 'Cordless Stick Vacuum Cleaner', 'Living Room / All Areas', 'Dyson', 52, 24900.00),
+('APP-012', 'HEPA Air Purifier', 'Master Bedroom', 'Xiaomi', 45, 7499.00),
+('APP-013', 'Electric Convection Oven', 'Kitchen', 'Hanabishi', 41, 5200.00),
+('APP-014', 'Digital Air Fryer', 'Kitchen', 'Philips', 5, 6995.00),
+('APP-015', 'Espresso & Cappuccino Maker', 'Kitchen / Dining', 'De''Longhi', 44, 14500.00),
+('APP-016', 'Stainless Steel Electric Kettle', 'Kitchen', 'Breville', 63, 3850.00),
+('APP-017', '4-Slice Pop-Up Toaster', 'Kitchen', 'KitchenAid', 61, 4200.00),
+('APP-018', 'High-Speed Countertop Blender', 'Kitchen', 'Oster', 55, 3495.00),
+('APP-019', 'Stand Mixer with Stainless Bowl', 'Kitchen', 'KitchenAid', 38, 27900.00),
+('APP-020', 'Free-Standing Dishwasher', 'Kitchen', 'Bosch', 23, 35000.00),
+('APP-021', 'Water Dispenser', 'Dining Room', 'Fujidenzo', 7, 8995.00),
+('APP-022', 'Chest Freezer', 'Utility / Storage Room', 'Condura', 27, 14200.00),
+('APP-023', '16-Inch Inverter Stand Fan', 'Living Room / Bedroom', 'Asahi', 47, 2650.00),
+('APP-024', 'High-Velocity Industrial Floor Fan', 'Garage / Patio', 'Camel', 37, 2890.00),
+('APP-025', 'Steam Iron with Ceramic Soleplate', 'Laundry Room', 'Tefal', 8, 2450.00),
+('APP-026', 'Standing Garment Steamer', 'Walk-in Closet / Laundry', 'Philips', 48, 4995.00),
+('APP-027', 'Multipoint Instant Water Heater', 'Master Bathroom', 'Panasonic', 56, 7800.00),
+('APP-028', 'Ceiling Exhaust Fan', 'Bathroom', 'KDK', 58, 1850.00),
+('APP-029', 'Ionic Hair Dryer', 'Master Bathroom', 'Dyson', 9, 21500.00),
+('APP-030', 'Robot Vacuum and Mop Combo', 'Living Room / Hallways', 'Roborock', 51, 19990.00),
+('APP-031', 'Soundbar with Wireless Subwoofer', 'Living Room', 'JBL', 39, 15495.00),
+('APP-032', 'Dehumidifier', 'Basement / Bedroom', 'Carrier', 35, 12800.00),
+('APP-033', 'Pressure Washer', 'Garage / Driveway', 'Bosch', 42, 8450.00),
+('APP-034', 'Food Processor', 'Kitchen', 'Cuisinart', 8, 8900.00),
+('APP-035', 'Induction Cooker', 'Kitchen', 'Imarflex', 62, 2795.00),
+('APP-036', 'Electric Grill & Panini Press', 'Kitchen / Dining', 'George Foreman', 53, 3600.00),
+('APP-037', 'Cold Press Slow Juicer', 'Kitchen', 'Hurom', 47, 16500.00),
+('APP-038', 'Wine Chiller', 'Dining Room', 'Fujidenzo', 30, 15995.00),
+('APP-039', 'Smart Video Doorbell', 'Front Entrance', 'Ring', 70, 6500.00),
+('APP-040', 'Indoor Pan-Tilt Security Camera', 'Living Room / Hallway', 'TP-Link Tapo', 68, 1499.00),
+('APP-041', 'Automatic Voltage Regulator', 'Living Room / Home Office', 'Meiji', 43, 2150.00),
+('APP-042', 'Uninterruptible Power Supply', 'Home Office', 'APC', 40, 5400.00),
+('APP-043', 'Paper Shredder', 'Home Office', 'Fellowes', 46, 4350.00),
+('APP-044', 'UV-C Dish Sterilizer & Dryer', 'Kitchen', 'Dowell', 44, 4895.00),
+('APP-045', 'Insect Killer Lamp', 'Dining Room / Kitchen', 'Firefly', 64, 1250.00),
+('APP-046', 'Aroma Diffuser & Humidifier', 'Bedroom', 'Muji', 67, 2950.00),
+('APP-047', 'Handheld Upholstery Cleaner', 'Living Room / Bedroom', 'Bissell', 57, 7995.00),
+('APP-048', 'Portable Ice Maker', 'Kitchen / Home Bar', 'Breville', 36, 11500.00),
+('APP-049', 'Smart Wi-Fi Mesh Router', 'All Areas', 'TP-Link Deco', 65, 8990.00),
+('APP-050', 'Electric Lawn Trimmer', 'Garden / Yard', 'Black+Decker', 48, 3450.00);
 
--- [ PENCILS ] (6)
-('K79X2M', 'Mongol 1', 'Pencils', 'Amspec Fine Products Inc.', 102, 10.00),
-('P4W8Q1', 'Mongol 2', 'Pencils', 'Amspec Fine Products Inc.', 250, 10.00),
-('9F3V7L', 'Mongol 3', 'Pencils', 'Amspec Fine Products Inc.', 180, 10.00),
-('R2M6K8', 'Faber-Castell 2B Pencil', 'Pencils', 'Amspec Fine Products Inc.', 120, 15.00),
-('3J8H5N', 'Pilot Mechanical Pencil 0.5', 'Pencils', 'Penline Stationery Inc.', 75, 45.00),
-('X9B4T2', 'HB Graphite Pencil Set', 'Pencils', 'Goldwings Stationery Products Inc.', 60, 85.00),
-
-
-
--- [ PENS ] (7)
-('8N2D6P', 'Pilot G2 Gel Pen Black 0.7', 'Pens', 'Penline Stationery Inc.', 150, 65.00),
-('V4K9X3', 'Pilot G2 Gel Pen Blue 0.7', 'Pens', 'Penline Stationery Inc.', 140, 65.00),
-('1M7F5J', 'Pilot G2 Gel Pen Red 0.7', 'Pens', 'Penline Stationery Inc.', 90, 65.00),
-('Q3R8W2', 'Faber-Castell Ballpen Black', 'Pens', 'Amspec Fine Products Inc.', 300, 12.00),
-('7L5T9B', 'Faber-Castell Ballpen Blue', 'Pens', 'Amspec Fine Products Inc.', 280, 12.00),
-('H2P6N4', 'Panda Ballpoint Pen Black', 'Pens', 'Goldwings Stationery Products Inc.', 500, 6.00),
-('E9X1K3', 'Panda Ballpoint Pen Blue', 'Pens', 'Goldwings Stationery Products Inc.', 450, 6.00),
-
-
-
--- [ MARKERS ] (6)
-
-('Markers', 'Highlighter Yellow', 'Markers', 'Goldwings Stationery Products Inc.', 110, 25.00),
-('4W8J2R', 'Highlighter Green', 'Markers', 'Goldwings Stationery Products Inc.', 85, 25.00),
-('T7M3L9', 'Highlighter Pink', 'Markers', 'Goldwings Stationery Products Inc.', 95, 25.00),
-('2B6V8K', 'Whiteboard Marker Black', 'Markers', 'Penline Stationery Inc.', 70, 40.00),
-('Y1Q5F4', 'Whiteboard Marker Blue', 'Markers', 'Penline Stationery Inc.', 65, 40.00),
-('6N9P3X', 'Whiteboard Marker Black', 'Markers', 'Penline Stationery Inc.', 70, 40.00),
-('F8W2D7', 'Permanent Marker Black', 'Markers', 'Penline Stationery Inc.', 130, 35.00),
-
-
-
-
-
--- [ NOTEBOOKS ] (6)
-('9X4R6T', 'Spiral Notebook 80 Sheets', 'Notebooks', 'Sterling Paper Products Enterprises, Inc.', 200, 30.00),
-('2M8B1K', 'Composition Notebook 80 Sheets', 'Notebooks', 'Sterling Paper Products Enterprises, Inc.', 180, 28.00),
-('L7F3W9', 'Writing Notebook 80 Sheets', 'Notebooks', 'Sterling Paper Products Enterprises, Inc.', 220, 25.00),
-('K5P9J2', 'Binder Notebook Filler', 'Notebooks', 'Capitol Stationery Mfg. Co. Inc.', 90, 45.00),
-('3Q1V8D', 'Graphing Notebook', 'Notebooks', 'Sterling Paper Products Enterprises, Inc.', 110, 35.00),
-('R6N7H4', 'Steno Notebook', 'Notebooks', 'Capitol Stationery Mfg. Co. Inc.', 85, 22.00),
-
-
-
-
--- [ PAPERS ] (6)
-('5J9X3P', 'Short Bond Paper 70gsm (Ream)', 'Papers', 'Sterling Paper Products Enterprises, Inc.', 50, 210.00),
-('B2L8R7', 'Long Bond Paper 70gsm (Ream)', 'Papers', 'Sterling Paper Products Enterprises, Inc.', 45, 230.00),
-('8F4W1K', 'A4 Bond Paper 70gsm (Ream)', 'Papers', 'Sterling Paper Products Enterprises, Inc.', 60, 220.00),
-('N7Q6D3', 'Intermediate Pad Paper', 'Capitol Stationery Mfg. Co. Inc.', 140, 35.00),
-('P1V9M2', 'Intermediate Pad Paper', 'Papers', 'Capitol Stationery Mfg. Co. Inc.', 160, 40.00),
-('X3T5J8', 'Construction Paper Assorted 20s', 'Papers', 'Goldwings Stationery Products Inc.', 75, 55.00),
+GO
 
 
--- [ MEASURING TOOLS ] (4)
+INSERT INTO [dbo].[tblProductDetails] (ProductId, Category, Supplier, Name)
+VALUES
 
-('7W3M9F ', 'Plastic Ruler 12 Inch', 'Measuring Tools', 'Goldwings Stationery Products Inc.', 150, 15.00),
-('D8P1K4 ', 'Metal Ruler 12 Inch', 'Measuring Tools', 'Goldwings Stationery Products Inc.', 90, 35.00),
-('1Q6V2T', 'Math Protractor 180 Deg ', 'Measuring Tools', 'Goldwings Stationery Products Inc.', 110, 18.00),
-('M5R8J7', 'Compass Set with Pencil', 'Measuring Tools', 'Penline Stationery Inc.', 70, 45.00),
-
-
--- [ ADHESIVES ] (4)
-
-
-('2F9T6R', 'Elmer Glue 130ml', 'Adhesives', 'Amspec Fine Products Inc.', 85, 50.00),
-('W4M1K8', 'Glue Stick 15g', 'Adhesives', 'Goldwings Stationery Products Inc.', 140, 25.00),
-('7X8J3L', 'Transparent Tape 1 Inch', 'Adhesives', 'Goldwings Stationery Products Inc.', 120, 20.00),
-('9P5B2V', 'Double Sided Tape 1 Inch', 'Adhesives', 'Goldwings Stationery Products Inc.', 95, 30.00),
-
-
-
-
--- [ CUTTING & CORRECTION ] (5)
-
-
-('L4P8V2 ', 'Student Scissors 5 Inch', 'Cutting & Correction', 'Goldwings Stationery Products Inc.', 105, 28.00),
-('8M3R7T', 'Cutter Knife Small  ', 'Cutting & Correction', 'Goldwings Stationery Products Inc.', 80, 22.00),
-('1K9X5F ', 'Double Pencil Sharpener', 'Cutting & Correction', 'Amspec Fine Products Inc.', 130, 18.00),
-('6J2N8W ', 'Correction Tape 12m', 'Cutting & Correction', 'Penline Stationery Inc.', 115, 38.00),
-('T5Q1D9 ', 'Eraser White Large', 'Cutting & Correction', 'Amspec Fine Products Inc.', 210, 12.00),
-
-
-
--- [ ART SUPPLIES ] (3)
-
-
-
-('Q8X2N7', 'Crayola Crayons 24 Colors', 'Art Supplies', 'Amspec Fine Products Inc.', 95, 90.00),
-('4T7P1M', 'Watercolor Set 12 Colors', 'Art Supplies', 'Amspec Fine Products Inc.', 50, 110.00),
-('9R5W3J ', 'Oil Pastels 12 Colors', 'Art Supplies', 'Amspec Fine Products Inc.', 65, 80.00),
-
-
-
-
--- [ OFFICE & STORAGE ] (3)
-
-('3W9K6D', 'Expanding Clear Envelope Long', 'Office & Storage', 'Capitol Stationery Mfg. Co. Inc.', 140, 25.00),
-('P8R4T1', 'Two-Hole Puncher Small', 'Office & Storage', 'Goldwings Stationery Products Inc.', 40, 85.00),
-('7J1V5M', 'Heavy Duty Stapler with Staples', 'Office & Storage', 'Goldwings Stationery Products Inc.', 30, 150.00);
-
-
+('APP-050', 'Garden / Yard', 'Black+Decker', 'Electric Lawn Trimmer');
 
 GO
