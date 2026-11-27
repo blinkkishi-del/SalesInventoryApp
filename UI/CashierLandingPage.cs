@@ -1,26 +1,18 @@
 ﻿using FontAwesome.Sharp;
 using Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class CashierDashboard : Form
+    public partial class CashierLandingPage : Form
     {
-
         private IconButton currentBtn;
         private Panel leftBorderBtn;
         private Form currentChildForm;
 
-        UserModel UserSession;
+        internal UserModel UserSession;
 
-        public CashierDashboard()
+        public CashierLandingPage()
         {
             InitializeComponent();
             leftBorderBtn = new Panel();
@@ -37,8 +29,6 @@ namespace UI
         {
             public static Color color1 = Color.FromArgb(172, 126, 241);
             public static Color color2 = Color.FromArgb(249, 118, 176);
-
-
         }
 
         private void ActivateButton(object senderBtn, Color color)
@@ -46,7 +36,6 @@ namespace UI
             if (senderBtn != null)
             {
                 DisableButton();
-
                 currentBtn = (IconButton)senderBtn;
                 currentBtn.BackColor = Color.FromArgb(37, 36, 81);
                 currentBtn.ForeColor = color;
@@ -54,12 +43,10 @@ namespace UI
                 currentBtn.IconColor = color;
                 currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
                 currentBtn.ImageAlign = ContentAlignment.MiddleRight;
-
                 leftBorderBtn.BackColor = color;
                 leftBorderBtn.Location = new Point(0, currentBtn.Location.Y);
                 leftBorderBtn.Visible = true;
                 leftBorderBtn.BringToFront();
-
                 iconCurrentChildIcon.IconChar = currentBtn.IconChar;
                 iconCurrentChildIcon.IconColor = color;
             }
@@ -75,45 +62,34 @@ namespace UI
                 currentBtn.IconColor = Color.Gainsboro;
                 currentBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
                 currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
-
             }
         }
 
+
         private void btnLogout_Click(object sender, EventArgs e)
         {
-
             DialogResult result = MessageBox.Show(
                 "Are you sure you want to log out?",
                 "Confirm Logout",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
-
             if (result == DialogResult.Yes)
             {
-                if (UserSession != null)
-                {
-                    UserSession.Clear();
-                }
-
+                UserSession?.Clear();
                 Login login = new Login();
                 login.Show();
-
                 this.Close();
             }
         }
 
-        private void btnDashboard_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender, RGBColors.color1);
-
-
-        }
 
         private void btnPOS_Click(object sender, EventArgs e)
         {
+            if (currentBtn == sender) return;
             ActivateButton(sender, RGBColors.color2);
-            OpenChildForm(new PointofSales());
+            var pos = new PointofSales();
+            OpenChildForm(pos);
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -121,20 +97,16 @@ namespace UI
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
-
         private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
-
         }
 
         private void OpenChildForm(Form childForm)
         {
             if (currentChildForm != null)
-            {
                 currentChildForm.Close();
-            }
 
             currentChildForm = childForm;
             childForm.TopLevel = false;
@@ -145,33 +117,17 @@ namespace UI
             childForm.BringToFront();
             childForm.Show();
             lblTitleChild.Text = childForm.Text;
-
         }
 
         private void btnMaximize_Click(object sender, EventArgs e)
         {
-            if ((this.WindowState) == FormWindowState.Normal)
-            {
-                this.WindowState = FormWindowState.Maximized;
-            }
-            else if (this.WindowState == FormWindowState.Maximized)
-            {
-
-                this.WindowState = FormWindowState.Normal;
-
-            }
+            WindowState = WindowState == FormWindowState.Normal
+                ? FormWindowState.Maximized
+                : FormWindowState.Normal;
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        private void btnExit_Click(object sender, EventArgs e) => Application.Exit();
 
-        private void btnMinimize_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-
+        private void btnMinimize_Click(object sender, EventArgs e) => WindowState = FormWindowState.Minimized;
     }
 }

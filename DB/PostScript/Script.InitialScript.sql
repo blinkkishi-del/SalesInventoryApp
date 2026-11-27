@@ -14,68 +14,56 @@ GO
 -- 50 Records
 INSERT INTO [dbo].[tblProduct] (ProductId, ProductName, Category, Supplier, Quantity, Amount)
 VALUES
-
--- [ KITCHEN ] (19)
-('HA1001', 'Air Fryer 5L', 'Kitchen', 'NinjaCorp', 120, 129.99),
-('HA1002', 'Smart Inverter Fridge', 'Kitchen', 'Apex Appliances', 35, 899.00),
-('HA1005', 'Electric Pressure Cooker', 'Kitchen', 'InstantHome', 150, 89.99),
-('HA1008', '12-Cup Coffee Maker', 'Kitchen', 'BrewMaster', 110, 49.99),
-('HA1010', 'Convection Microwave', 'Kitchen', 'Apex Appliances', 70, 179.99),
-('HA1013', 'Countertop Ice Maker', 'Kitchen', 'ChillTech', 85, 119.99),
-('HA1014', 'High-Speed Blender', 'Kitchen', 'VitaMixer', 90, 159.50),
-('HA1019', 'Food Processor 8-Cup', 'Kitchen', 'NinjaCorp', 115, 89.99),
-('HA1020', 'Toaster 4-Slice', 'Kitchen', 'BrewMaster', 160, 39.99),
-('HA1022', 'Electric Kettle 1.7L', 'Kitchen', 'ChillTech', 220, 34.99),
-('HA1023', 'Water Dispenser', 'Kitchen', 'AquaPure', 45, 139.99),
-('HA1024', 'Multi-Cooker Rice Cooker', 'Kitchen', 'InstantHome', 175, 74.50),
-('HA1026', 'Hand Mixer', 'Kitchen', 'BrewMaster', 210, 24.99),
-('HA1027', 'Garlic Chopper Mini', 'Kitchen', 'NinjaCorp', 350, 19.99),
-('HA1028', 'Electric Griddle', 'Kitchen', 'Apex Appliances', 95, 49.99),
-('HA1029', 'Deep Fryer 3L', 'Kitchen', 'ChillTech', 65, 69.99),
-('HA1030', 'Stick Immersion Blender', 'Kitchen', 'VitaMixer', 140, 39.99),
-('HA1031', 'Espresso Machine', 'Kitchen', 'BrewMaster', 55, 299.99),
-('HA1037', 'Mini Fridge 4L', 'Kitchen', 'Apex Appliances', 75, 49.99),
-('HA1038', 'Panini Press Grill', 'Kitchen', 'NinjaCorp', 100, 59.99),
-('HA1039', 'Waffle Maker', 'Kitchen', 'BrewMaster', 120, 34.99),
-('HA1040', 'Portable Induction Cooktop', 'Kitchen', 'InstantHome', 90, 79.99),
-('HA1041', 'Stand Mixer 5Qt', 'Kitchen', 'VitaMixer', 40, 229.99),
-('HA1042', 'Wine Cooler 18-Bottle', 'Kitchen', 'ChillTech', 30, 249.99),
-('HA1043', 'Dishwasher Built-In', 'Kitchen', 'Whirlwind', 20, 480.00),
-('HA1045', 'Upright Freezer', 'Kitchen', 'Apex Appliances', 25, 399.99),
-
--- [ CLEANING ] (5)
-('HA1003', 'Cordless Stick Vacuum', 'Cleaning', 'DysonTech', 80, 249.50),
-('HA1007', 'Robotic Vacuum Cleaner', 'Cleaning', 'RoboClean', 60, 329.00),
-('HA1046', 'Carpet Cleaner', 'Cleaning', 'RoboClean', 45, 189.99),
-('HA1047', 'Handheld Vacuum', 'Cleaning', 'DysonTech', 110, 79.99),
-
--- [ LAUNDRY ] (4)
-('HA1004', 'Front-Load Washer', 'Laundry', 'Whirlwind', 25, 650.00),
-('HA1011', 'Steam Iron', 'Laundry', 'PressPro', 200, 35.00),
-('HA1015', 'Clothes Dryer', 'Laundry', 'Whirlwind', 30, 599.99),
-('HA1021', 'Handheld Garment Steamer', 'Laundry', 'PressPro', 180, 45.00),
-
--- [ CLIMATE ] (7)
-('HA1006', 'HEPA Air Purifier', 'Climate', 'PureAir Inc.', 95, 149.99),
-('HA1009', 'Tower Fan with Remote', 'Climate', 'BreezeCo', 140, 65.00),
-('HA1012', 'Dehumidifier 50-Pint', 'Climate', 'PureAir Inc.', 40, 219.99),
-('HA1018', 'Portable Space Heater', 'Climate', 'WarmthCo', 130, 59.99),
-('HA1025', 'Window AC Unit 10000BTU', 'Climate', 'BreezeCo', 50, 349.00),
-('HA1034', 'Electric Blanket', 'Climate', 'WarmthCo', 110, 69.99),
-('HA1035', 'Humidifier Ultrasonic', 'Climate', 'PureAir Inc.', 130, 49.99),
-('HA1036', 'Smart Thermostat', 'Climate', 'EcoHome', 85, 129.99),
-
--- [ PERSONAL CARE ] (5)
-('HA1016', 'Ceramic Hair Straightener', 'Personal Care', 'GlamourTech', 250, 29.99),
-('HA1017', 'Electric Toothbrush', 'Personal Care', 'SmileCare', 300, 49.99),
-('HA1032', 'Sonic Facial Cleanser', 'Personal Care', 'GlamourTech', 190, 39.99),
-('HA1033', 'Hair Dryer Pro', 'Personal Care', 'GlamourTech', 160, 54.99),
-('HA1044', 'Electric Toothbrush Kids', 'Personal Care', 'SmileCare', 240, 24.99),
-
--- [ OUTDOOR ] (3)
-('HA1048', 'Electric Lawn Mower', 'Outdoor', 'GreenYard', 15, 299.00),
-('HA1049', 'Leaf Blower Cordless', 'Outdoor', 'GreenYard', 50, 119.00),
-('HA1050', 'Electric Pressure Washer', 'Outdoor', 'CleanMax', 40, 159.99);
+('APP-001', 'Inverter Side-by-Side Refrigerator', 'Kitchen', 'LG Electronics', 22, 48500.00),
+('APP-002', 'Front-Load Washing Machine', 'Laundry Room', 'Samsung Electronics', 25, 26995.00),
+('APP-003', 'Heat Pump Clothes Dryer', 'Laundry Room', 'Whirlpool', 28, 32400.00),
+('APP-004', 'Double-Type Inverter Air Conditioner', 'Master Bedroom', 'Daikin', 26, 34800.00),
+('APP-005', 'Split-Type Inverter Air Conditioner', 'Living Room', 'Carrier', 21, 42500.00),
+('APP-006', '55-Inch Smart QLED TV', 'Living Room', 'Sony', 33, 38990.00),
+('APP-007', 'Digital Microwave Oven', 'Kitchen', 'Panasonic', 46, 6495.00),
+('APP-008', '4-Burner Gas Range with Electric Oven', 'Kitchen', 'Elba', 24, 28500.00),
+('APP-009', 'Built-in Range Hood', 'Kitchen', 'La Germania', 36, 11200.00),
+('APP-010', 'Digital Fuzzy Rice Cooker', 'Kitchen', 'Zojirushi', 54, 9800.00),
+('APP-011', 'Cordless Stick Vacuum Cleaner', 'Living Room / All Areas', 'Dyson', 52, 24900.00),
+('APP-012', 'HEPA Air Purifier', 'Master Bedroom', 'Xiaomi', 45, 7499.00),
+('APP-013', 'Electric Convection Oven', 'Kitchen', 'Hanabishi', 41, 5200.00),
+('APP-014', 'Digital Air Fryer', 'Kitchen', 'Philips', 5, 6995.00),
+('APP-015', 'Espresso & Cappuccino Maker', 'Kitchen / Dining', 'De''Longhi', 44, 14500.00),
+('APP-016', 'Stainless Steel Electric Kettle', 'Kitchen', 'Breville', 63, 3850.00),
+('APP-017', '4-Slice Pop-Up Toaster', 'Kitchen', 'KitchenAid', 61, 4200.00),
+('APP-018', 'High-Speed Countertop Blender', 'Kitchen', 'Oster', 55, 3495.00),
+('APP-019', 'Stand Mixer with Stainless Bowl', 'Kitchen', 'KitchenAid', 38, 27900.00),
+('APP-020', 'Free-Standing Dishwasher', 'Kitchen', 'Bosch', 23, 35000.00),
+('APP-021', 'Water Dispenser', 'Dining Room', 'Fujidenzo', 7, 8995.00),
+('APP-022', 'Chest Freezer', 'Utility / Storage Room', 'Condura', 27, 14200.00),
+('APP-023', '16-Inch Inverter Stand Fan', 'Living Room / Bedroom', 'Asahi', 47, 2650.00),
+('APP-024', 'High-Velocity Industrial Floor Fan', 'Garage / Patio', 'Camel', 37, 2890.00),
+('APP-025', 'Steam Iron with Ceramic Soleplate', 'Laundry Room', 'Tefal', 8, 2450.00),
+('APP-026', 'Standing Garment Steamer', 'Walk-in Closet / Laundry', 'Philips', 48, 4995.00),
+('APP-027', 'Multipoint Instant Water Heater', 'Master Bathroom', 'Panasonic', 56, 7800.00),
+('APP-028', 'Ceiling Exhaust Fan', 'Bathroom', 'KDK', 58, 1850.00),
+('APP-029', 'Ionic Hair Dryer', 'Master Bathroom', 'Dyson', 9, 21500.00),
+('APP-030', 'Robot Vacuum and Mop Combo', 'Living Room / Hallways', 'Roborock', 51, 19990.00),
+('APP-031', 'Soundbar with Wireless Subwoofer', 'Living Room', 'JBL', 39, 15495.00),
+('APP-032', 'Dehumidifier', 'Basement / Bedroom', 'Carrier', 35, 12800.00),
+('APP-033', 'Pressure Washer', 'Garage / Driveway', 'Bosch', 42, 8450.00),
+('APP-034', 'Food Processor', 'Kitchen', 'Cuisinart', 8, 8900.00),
+('APP-035', 'Induction Cooker', 'Kitchen', 'Imarflex', 62, 2795.00),
+('APP-036', 'Electric Grill & Panini Press', 'Kitchen / Dining', 'George Foreman', 53, 3600.00),
+('APP-037', 'Cold Press Slow Juicer', 'Kitchen', 'Hurom', 47, 16500.00),
+('APP-038', 'Wine Chiller', 'Dining Room', 'Fujidenzo', 30, 15995.00),
+('APP-039', 'Smart Video Doorbell', 'Front Entrance', 'Ring', 70, 6500.00),
+('APP-040', 'Indoor Pan-Tilt Security Camera', 'Living Room / Hallway', 'TP-Link Tapo', 68, 1499.00),
+('APP-041', 'Automatic Voltage Regulator', 'Living Room / Home Office', 'Meiji', 43, 2150.00),
+('APP-042', 'Uninterruptible Power Supply', 'Home Office', 'APC', 40, 5400.00),
+('APP-043', 'Paper Shredder', 'Home Office', 'Fellowes', 46, 4350.00),
+('APP-044', 'UV-C Dish Sterilizer & Dryer', 'Kitchen', 'Dowell', 44, 4895.00),
+('APP-045', 'Insect Killer Lamp', 'Dining Room / Kitchen', 'Firefly', 64, 1250.00),
+('APP-046', 'Aroma Diffuser & Humidifier', 'Bedroom', 'Muji', 67, 2950.00),
+('APP-047', 'Handheld Upholstery Cleaner', 'Living Room / Bedroom', 'Bissell', 57, 7995.00),
+('APP-048', 'Portable Ice Maker', 'Kitchen / Home Bar', 'Breville', 36, 11500.00),
+('APP-049', 'Smart Wi-Fi Mesh Router', 'All Areas', 'TP-Link Deco', 65, 8990.00),
+('APP-050', 'Electric Lawn Trimmer', 'Garden / Yard', 'Black+Decker', 48, 3450.00);
 
 GO
 
@@ -83,8 +71,6 @@ GO
 INSERT INTO [dbo].[tblProductDetails] (ProductId, Category, Supplier, Name)
 VALUES
 
-('9X4R6T', 'Notebooks', 'Sterling Paper Products Enterprises, Inc.', 'Spiral Notebook 80 Sheets');
+('APP-050', 'Garden / Yard', 'Black+Decker', 'Electric Lawn Trimmer');
 
 GO
-
-
