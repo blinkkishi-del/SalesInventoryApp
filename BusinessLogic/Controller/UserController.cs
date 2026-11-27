@@ -12,9 +12,6 @@ namespace BusinessLogic.Controller
             userRepository = new UserRepository();
         }
 
-        public UserModel Login(string username, string password)
-        {
-            return userRepository.ValidateUser(username, password);
-        }
+
     }
 }
