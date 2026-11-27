@@ -4,6 +4,7 @@
     [ProductId] VARCHAR(20) NOT NULL,
     [Quantity] INT NOT NULL,
     [TotalPrice] DECIMAL(15,2) NOT NULL,
+    [DiscountAmount] DECIMAL(15,2) NOT NULL DEFAULT 0,
     FOREIGN KEY ([SalesId]) REFERENCES [tblSales]([SalesId]),
     FOREIGN KEY ([ProductId]) REFERENCES [tblProduct]([ProductId])
 );
