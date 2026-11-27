@@ -5,30 +5,26 @@ namespace UI
 {
     public partial class Login : Form
     {
-
         private UserController userController;
-
 
         public Login()
         {
             InitializeComponent();
             userController = new UserController();
-        }
 
+            this.Text = string.Empty;
+            this.ControlBox = false;
+            this.DoubleBuffered = true;
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            btnMaximize.Enabled = false;
+        }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
                 string username = txtUsername.Text.Trim();
-                string password = txtPassword.Text.Trim();
-
-                if (password.Length < 6)
-                {
-                    MessageBox.Show("Password must be at least 6 characters!",
-                        "Invalid Password", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                string password = txtPassword.Text;
 
                 UserModel user = userController.Login(username, password);
 
@@ -39,13 +35,15 @@ namespace UI
 
                     if (user.Role == "Admin")
                     {
-                        AdminDashboard db = new AdminDashboard();
+                        AdminLandingPage db = new AdminLandingPage();
+                        db.UserSession = user;
                         db.Show();
                         this.Hide();
                     }
                     else if (user.Role == "Cashier")
                     {
-                        CashierDashboard cashierForm = new CashierDashboard();
+                        CashierLandingPage cashierForm = new CashierLandingPage();
+                        cashierForm.UserSession = user;
                         cashierForm.Show();
                         this.Hide();
                     }
@@ -56,6 +54,10 @@ namespace UI
                         "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message, "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}",
@@ -63,11 +65,15 @@ namespace UI
             }
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void btnExit_Click_1(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
     }
 }
-
 
