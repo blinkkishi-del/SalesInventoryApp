@@ -14,22 +14,18 @@ namespace BusinessLogic.Controller
             productRepository = new ProductRepository();
         }
 
-        public void Add(ProductDetailsModel model)
+        public string Add(ProductDetailsModel model)
         {
             if (model == null) throw new Exception("Missing parameter: model");
-            productRepository.AddProduct(model);
+            return productRepository.AddProduct(model);
         }
+
+        public string GetNextProductId() => productRepository.GetNextProductId();
 
         public void Update(ProductDetailsModel model)
         {
             if (model == null) throw new Exception("Missing parameter: model");
             productRepository.UpdateProduct(model);
-        }
-
-        public void Delete(string productId)
-        {
-            if (string.IsNullOrEmpty(productId)) throw new Exception("Invalid product Id");
-            productRepository.DeleteProduct(productId);
         }
 
         public List<ProductDetailsModel> GetAllProducts() => productRepository.GetAll();
@@ -40,38 +36,16 @@ namespace BusinessLogic.Controller
             return productRepository.SearchProducts(keyword);
         }
 
-
-        public ProductDetailsModel GetById(string productId)
+        public ProductDetailsModel? GetById(string productId)
         {
             if (string.IsNullOrEmpty(productId)) throw new Exception("Invalid product Id");
             return productRepository.GetAll().FirstOrDefault(p => p.ProductId == productId);
         }
 
+        public List<ProductDetailsModel> GetProductsOrderedByStock() => productRepository.GetProductsOrderedByStock();
 
+        public int GetTotalInventory() => productRepository.GetTotalInventory();
 
-        public void UpdateProductQuantity(string productId, int quantityToDeduct)
-        {
-            var product = GetById(productId);
-            if (product == null) throw new Exception("Product not found.");
-
-            int newQuantity = product.Quantity - quantityToDeduct;
-            if (newQuantity < 0) newQuantity = 0;
-
-            productRepository.UpdateProductQuantity(productId, newQuantity);
-            product.Quantity = newQuantity;
-        }
-
-        public List<ProductDetailsModel> SearchByProductName(string productName)
-        {
-            if (string.IsNullOrWhiteSpace(productName))
-                return productRepository.GetAll();
-
-            return productRepository.SearchByProductName(productName);
-        }
-        public List<ProductDetailsModel> GetProductsOrderedByStock()
-        {
-            return productRepository.GetProductsOrderedByStock();
-        }
-
+        public List<ProductDetailsModel> GetLowStockProducts(int threshold = 10) => productRepository.GetLowStockProducts(threshold);
     }
 }

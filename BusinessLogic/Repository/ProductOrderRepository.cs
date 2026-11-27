@@ -1,47 +1,49 @@
 ﻿using Microsoft.Data.SqlClient;
 using Model;
 
-
 namespace BusinessLogic.Repository
 {
     public class ProductOrderRepository
     {
         private readonly string connectionString =
-            "Server=DESKTOP-SMD1DHH;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
+                        "Server=DESKTOP-SMD1DHH;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
 
-        public void AddOrUpdate(OrderProductModel order)
+        public void AddOrUpdate(OrderProductModel order, string cashier)
         {
             using (var conn = new SqlConnection(connectionString))
             {
                 conn.Open();
 
-                string checkQuery = "SELECT COUNT(*) FROM tblOrderProduct WHERE ProductName = @ProductName";
+                string checkQuery = "SELECT COUNT(*) FROM tblOrderProduct WHERE ProductName = @ProductName AND CashierUsername = @Cashier";
                 using (var checkCmd = new SqlCommand(checkQuery, conn))
                 {
                     checkCmd.Parameters.AddWithValue("@ProductName", order.ItemName);
+                    checkCmd.Parameters.AddWithValue("@Cashier", cashier);
                     int exists = (int)checkCmd.ExecuteScalar();
 
                     if (exists > 0)
                     {
                         string updateQuery = @"UPDATE tblOrderProduct
                                                SET Quantity = Quantity + @Quantity
-                                               WHERE ProductName = @ProductName";
+                                               WHERE ProductName = @ProductName AND CashierUsername = @Cashier";
                         using (var updateCmd = new SqlCommand(updateQuery, conn))
                         {
                             updateCmd.Parameters.AddWithValue("@Quantity", order.Quantity);
                             updateCmd.Parameters.AddWithValue("@ProductName", order.ItemName);
+                            updateCmd.Parameters.AddWithValue("@Cashier", cashier);
                             updateCmd.ExecuteNonQuery();
                         }
                     }
                     else
                     {
-                        string insertQuery = @"INSERT INTO tblOrderProduct (ProductName, Quantity, UnitPrice)
-                                               VALUES (@ProductName, @Quantity, @UnitPrice)";
+                        string insertQuery = @"INSERT INTO tblOrderProduct (ProductName, Quantity, UnitPrice, CashierUsername)
+                                               VALUES (@ProductName, @Quantity, @UnitPrice, @Cashier)";
                         using (var insertCmd = new SqlCommand(insertQuery, conn))
                         {
                             insertCmd.Parameters.AddWithValue("@ProductName", order.ItemName);
                             insertCmd.Parameters.AddWithValue("@Quantity", order.Quantity);
                             insertCmd.Parameters.AddWithValue("@UnitPrice", order.Price);
+                            insertCmd.Parameters.AddWithValue("@Cashier", cashier);
                             insertCmd.ExecuteNonQuery();
                         }
                     }
@@ -49,69 +51,86 @@ namespace BusinessLogic.Repository
             }
         }
 
-        public List<OrderProductModel> GetAll()
+        public List<OrderProductModel> GetAll(string cashier)
         {
             var orders = new List<OrderProductModel>();
-
             using (var conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT ProductName, Quantity, UnitPrice FROM tblOrderProduct ORDER BY OrderId DESC";
+                string query = @"SELECT ProductName, Quantity, UnitPrice, DiscountPercent FROM tblOrderProduct
+                                 WHERE CashierUsername = @Cashier ORDER BY OrderId DESC";
                 using (var cmd = new SqlCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
                 {
-                    while (reader.Read())
+                    cmd.Parameters.AddWithValue("@Cashier", cashier);
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        orders.Add(new OrderProductModel
+                        while (reader.Read())
                         {
-                            ItemName = reader["ProductName"].ToString(),
-                            Quantity = Convert.ToInt32(reader["Quantity"]),
-                            Price = Convert.ToDecimal(reader["UnitPrice"])
-                        });
+                            orders.Add(new OrderProductModel
+                            {
+                                ItemName = reader["ProductName"].ToString(),
+                                Quantity = Convert.ToInt32(reader["Quantity"]),
+                                Price = Convert.ToDecimal(reader["UnitPrice"]),
+                                DiscountPercent = Convert.ToDecimal(reader["DiscountPercent"])
+                            });
+                        }
                     }
                 }
             }
-
             return orders;
         }
 
-        public void Delete(string productName)
+        public void SetDiscount(string productName, decimal discountPercent, string cashier)
+        {
+            using (var conn = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand(
+                "UPDATE tblOrderProduct SET DiscountPercent = @Percent WHERE ProductName = @ProductName AND CashierUsername = @Cashier", conn))
+            {
+                cmd.Parameters.AddWithValue("@Percent", discountPercent);
+                cmd.Parameters.AddWithValue("@ProductName", productName);
+                cmd.Parameters.AddWithValue("@Cashier", cashier);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void Delete(string productName, string cashier)
         {
             using (var conn = new SqlConnection(connectionString))
             {
                 conn.Open();
 
-                string getQty = "SELECT Quantity FROM tblOrderProduct WHERE ProductName = @ProductName";
+                string getQty = "SELECT Quantity FROM tblOrderProduct WHERE ProductName = @ProductName AND CashierUsername = @Cashier";
                 using (var checkCmd = new SqlCommand(getQty, conn))
                 {
                     checkCmd.Parameters.AddWithValue("@ProductName", productName);
+                    checkCmd.Parameters.AddWithValue("@Cashier", cashier);
                     object result = checkCmd.ExecuteScalar();
 
-                    if (result == null)
-                        return;
+                    if (result == null) return;
 
                     int qty = Convert.ToInt32(result);
 
                     if (qty > 1)
                     {
-                        string update = @"UPDATE tblOrderProduct 
-                                  SET Quantity = Quantity - 1 
-                                  WHERE ProductName = @ProductName";
-
+                        string update = @"UPDATE tblOrderProduct
+                                          SET Quantity = Quantity - 1
+                                          WHERE ProductName = @ProductName AND CashierUsername = @Cashier";
                         using (var updateCmd = new SqlCommand(update, conn))
                         {
                             updateCmd.Parameters.AddWithValue("@ProductName", productName);
+                            updateCmd.Parameters.AddWithValue("@Cashier", cashier);
                             updateCmd.ExecuteNonQuery();
                         }
                     }
                     else
                     {
-                        string delete = @"DELETE FROM tblOrderProduct 
-                                  WHERE ProductName = @ProductName";
-
+                        string delete = @"DELETE FROM tblOrderProduct
+                                          WHERE ProductName = @ProductName AND CashierUsername = @Cashier";
                         using (var delCmd = new SqlCommand(delete, conn))
                         {
                             delCmd.Parameters.AddWithValue("@ProductName", productName);
+                            delCmd.Parameters.AddWithValue("@Cashier", cashier);
                             delCmd.ExecuteNonQuery();
                         }
                     }
@@ -119,94 +138,15 @@ namespace BusinessLogic.Repository
             }
         }
 
-
-        public void ClearAll()
+        public void ClearAll(string cashier)
         {
             using (var conn = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("DELETE FROM tblOrderProduct WHERE CashierUsername = @Cashier", conn))
             {
+                cmd.Parameters.AddWithValue("@Cashier", cashier);
                 conn.Open();
-                string query = "DELETE FROM tblOrderProduct";
-                using (var cmd = new SqlCommand(query, conn))
-                {
-                    cmd.ExecuteNonQuery();
-                }
+                cmd.ExecuteNonQuery();
             }
-        }
-
-
-
-
-        public List<ProductDetailsModel> SearchByProductName(string productName)
-        {
-            var products = new List<ProductDetailsModel>();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(@"
-        SELECT ProductId, ProductName, Category, Supplier, Quantity, Amount
-        FROM Product
-        WHERE ProductName LIKE @ProductName
-        ORDER BY ProductName ASC", conn))
-            {
-                cmd.Parameters.AddWithValue("@ProductName", "%" + productName + "%");
-                conn.Open();
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        var product = new ProductDetailsModel
-                        {
-                            ProductId = reader["ProductId"].ToString(),
-                            ProductName = reader["ProductName"].ToString(),
-                            Category = reader["Category"]?.ToString(),
-                            Supplier = reader["Supplier"]?.ToString(),
-                            Quantity = Convert.ToInt32(reader["Quantity"]),
-                            Amount = Convert.ToDecimal(reader["Amount"])
-                        };
-
-                        products.Add(product);
-                    }
-                }
-            }
-
-            return products;
-        }
-        public List<ProductDetailsModel> GetProductsOrderedByStock()
-        {
-            var products = new List<ProductDetailsModel>();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(@"
-        SELECT ProductId, ProductName, Category, Supplier, Quantity, Amount
-        FROM Product
-        ORDER BY 
-            CASE WHEN Quantity <= 0 THEN 1 ELSE 0 END,
-            ProductName ASC", conn))
-            {
-                conn.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        products.Add(new ProductDetailsModel
-                        {
-                            ProductId = reader["ProductId"].ToString(),
-                            ProductName = reader["ProductName"].ToString(),
-                            Category = reader["Category"]?.ToString(),
-                            Supplier = reader["Supplier"]?.ToString(),
-                            Quantity = Convert.ToInt32(reader["Quantity"]),
-                            Amount = Convert.ToDecimal(reader["Amount"])
-                        });
-                    }
-                }
-            }
-            return products;
-
-
-
-
-
-
         }
     }
 }
