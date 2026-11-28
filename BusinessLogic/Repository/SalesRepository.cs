@@ -6,7 +6,19 @@ namespace BusinessLogic.Repository
     public class SalesRepository
     {
         private readonly string connectionString =
-                        "Server=DESKTOP-SMD1DHH;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
+        "Server=KHARL2005\\SQLEXPRESS02;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
+
+        public string GetNextReceiptNo()
+        {
+            using var conn = new SqlConnection(connectionString);
+            using var cmd = new SqlCommand(@"
+                SELECT CAST(ISNULL(CAST(last_value AS BIGINT) + CAST(increment_value AS BIGINT), CAST(seed_value AS BIGINT)) AS BIGINT)
+                FROM sys.identity_columns
+                WHERE object_id = OBJECT_ID('dbo.tblSales');", conn);
+            conn.Open();
+            long next = Convert.ToInt64(cmd.ExecuteScalar() ?? 1L);
+            return "INV-" + next.ToString("D6");
+        }
 
         public DataTable GetSalesHistory(DateTime from, DateTime to, string cashier, string keyword)
         {
@@ -180,7 +192,7 @@ namespace BusinessLogic.Repository
                     salesId = Convert.ToInt32(cmd.ExecuteScalar());
                 }
 
-                string receiptNo = "RCPT-" + salesId.ToString("D6");
+                string receiptNo = "INV-" + salesId.ToString("D6");
                 using (var receipt = new SqlCommand(
                     "UPDATE tblSales SET ReceiptNo = @ReceiptNo WHERE SalesId = @SalesId;", conn, tx))
                 {

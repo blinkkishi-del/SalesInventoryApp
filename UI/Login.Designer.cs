@@ -79,10 +79,9 @@
             txtPassword.Font = new Font("Segoe UI", 13F);
             txtPassword.Location = new Point(707, 367);
             txtPassword.Margin = new Padding(3, 2, 3, 2);
-            txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(325, 36);
+            txtPassword.Size = new Size(325, 31);
             txtPassword.TabIndex = 2;
             // 
             // txtUsername
@@ -91,27 +90,26 @@
             txtUsername.Font = new Font("Segoe UI", 13F);
             txtUsername.Location = new Point(707, 313);
             txtUsername.Margin = new Padding(3, 2, 3, 2);
-            txtUsername.Multiline = true;
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(325, 32);
+            txtUsername.Size = new Size(325, 31);
             txtUsername.TabIndex = 1;
             // 
             // btnLogin
             // 
             btnLogin.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnLogin.Location = new Point(789, 419);
-            btnLogin.Margin = new Padding(3, 2, 3, 2);
             btnLogin.BackColor = Color.FromArgb(124, 58, 237);
             btnLogin.Cursor = Cursors.Hand;
             btnLogin.FlatAppearance.BorderSize = 0;
             btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             btnLogin.ForeColor = Color.White;
-            btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Location = new Point(789, 419);
+            btnLogin.Margin = new Padding(3, 2, 3, 2);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(167, 41);
             btnLogin.TabIndex = 3;
             btnLogin.Text = "Login";
+            btnLogin.UseVisualStyleBackColor = false;
             btnLogin.Click += btnLogin_Click;
             // 
             // pictureBox1

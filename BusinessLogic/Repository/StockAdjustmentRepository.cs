@@ -6,7 +6,7 @@ namespace BusinessLogic.Repository
     public class StockAdjustmentRepository
     {
         private readonly string connectionString =
-                        "Server=DESKTOP-SMD1DHH;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
+        "Server=KHARL2005\\SQLEXPRESS02;Initial Catalog=SALESINVENTORY;Trusted_Connection=True;TrustServerCertificate=True;";
 
         public string SaveAdjustment(string productId, string action, int quantity,
                                      string reason, string remarks, string adjustedBy)
