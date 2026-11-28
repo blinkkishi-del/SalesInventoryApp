@@ -27,6 +27,8 @@ namespace BusinessLogic.Controller
 
         public decimal GetTotalSalesToday() => salesRepository.GetTotalSalesByDate(DateTime.Today);
 
+        public string GetNextReceiptNo() => salesRepository.GetNextReceiptNo();
+
         public string Checkout(IEnumerable<(string ProductId, int Quantity, decimal Price, decimal DiscountAmount)> lines,
             string cashierUsername = null, decimal orderDiscountPercent = 0)
         {

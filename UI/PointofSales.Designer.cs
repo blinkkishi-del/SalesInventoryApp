@@ -43,11 +43,11 @@
             lblTotalReceipt = new Label();
             lblChange = new Label();
             dgViewReceipt = new DataGridView();
-            txtPay = new TextBox();
+            lblPay = new Label();
             btnPay = new FontAwesome.Sharp.IconButton();
             datetpDate = new DateTimePicker();
             label2 = new Label();
-            lblPay = new Label();
+            lblPayCaption = new Label();
             lblTotal = new Label();
             lblReceiptNo = new Label();
             lblDate = new Label();
@@ -59,9 +59,9 @@
             btnSearch = new FontAwesome.Sharp.IconButton();
             txtSearch = new TextBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudQty).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgViewReceipt).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgProducts).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudQty).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -75,11 +75,11 @@
             panel1.Controls.Add(lblTotalReceipt);
             panel1.Controls.Add(lblChange);
             panel1.Controls.Add(dgViewReceipt);
-            panel1.Controls.Add(txtPay);
+            panel1.Controls.Add(lblPay);
             panel1.Controls.Add(btnPay);
             panel1.Controls.Add(datetpDate);
             panel1.Controls.Add(label2);
-            panel1.Controls.Add(lblPay);
+            panel1.Controls.Add(lblPayCaption);
             panel1.Controls.Add(lblTotal);
             panel1.Controls.Add(lblReceiptNo);
             panel1.Controls.Add(lblDate);
@@ -99,26 +99,28 @@
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9.5F, FontStyle.Italic);
             label1.ForeColor = Color.FromArgb(107, 114, 128);
             label1.Location = new Point(30, 103);
             label1.Name = "label1";
-            label1.Size = new Size(190, 17);
+            label1.Size = new Size(196, 17);
             label1.TabIndex = 80;
             label1.Text = "Double-click or press Enter to add";
-            //
+            // 
             // lblQty
-            //
-            lblQty.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            // 
             lblQty.AutoSize = true;
             lblQty.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             lblQty.ForeColor = Color.FromArgb(34, 33, 74);
             lblQty.Location = new Point(330, 101);
             lblQty.Name = "lblQty";
+            lblQty.Size = new Size(32, 19);
+            lblQty.TabIndex = 81;
             lblQty.Text = "Qty";
-            nudQty.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            // 
+            // nudQty
+            // 
             nudQty.Font = new Font("Segoe UI", 10F);
             nudQty.Location = new Point(365, 97);
             nudQty.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
@@ -127,15 +129,17 @@
             nudQty.Size = new Size(70, 25);
             nudQty.TabIndex = 82;
             nudQty.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            //
+            // 
             // lblShortcuts
-            //
+            // 
             lblShortcuts.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblShortcuts.AutoSize = true;
             lblShortcuts.Font = new Font("Segoe UI", 9F);
             lblShortcuts.ForeColor = Color.FromArgb(107, 114, 128);
             lblShortcuts.Location = new Point(14, 529);
             lblShortcuts.Name = "lblShortcuts";
+            lblShortcuts.Size = new Size(343, 15);
+            lblShortcuts.TabIndex = 83;
             lblShortcuts.Text = "F1 Search    F2 Qty    F3 Discount    F4 Remove    F5 Void    F8 Pay";
             // 
             // lblHomexia
@@ -156,11 +160,12 @@
             lblTotalReceipt.AutoSize = true;
             lblTotalReceipt.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold);
             lblTotalReceipt.ForeColor = Color.FromArgb(124, 58, 237);
-            lblTotalReceipt.Location = new Point(720, 428);
+            lblTotalReceipt.Location = new Point(652, 428);
             lblTotalReceipt.Name = "lblTotalReceipt";
-            lblTotalReceipt.Size = new Size(32, 25);
+            lblTotalReceipt.RightToLeft = RightToLeft.Yes;
+            lblTotalReceipt.Size = new Size(62, 25);
             lblTotalReceipt.TabIndex = 78;
-            lblTotalReceipt.Text = "00";
+            lblTotalReceipt.Text = " ₱0.00";
             // 
             // lblChange
             // 
@@ -168,11 +173,11 @@
             lblChange.AutoSize = true;
             lblChange.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold);
             lblChange.ForeColor = Color.FromArgb(22, 163, 74);
-            lblChange.Location = new Point(720, 506);
+            lblChange.Location = new Point(646, 502);
             lblChange.Name = "lblChange";
-            lblChange.Size = new Size(32, 25);
+            lblChange.Size = new Size(62, 25);
             lblChange.TabIndex = 77;
-            lblChange.Text = "00";
+            lblChange.Text = " ₱0.00";
             // 
             // dgViewReceipt
             // 
@@ -214,19 +219,18 @@
             dgViewReceipt.Size = new Size(464, 199);
             dgViewReceipt.TabIndex = 76;
             // 
-            // txtPay
+            // lblPay
             // 
-            txtPay.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            txtPay.BackColor = Color.White;
-            txtPay.BorderStyle = BorderStyle.FixedSingle;
-            txtPay.Font = new Font("Segoe UI", 11F);
-            txtPay.ForeColor = Color.FromArgb(34, 33, 74);
-            txtPay.Location = new Point(672, 462);
-            txtPay.Margin = new Padding(3, 2, 3, 2);
-            txtPay.Name = "txtPay";
-            txtPay.RightToLeft = RightToLeft.Yes;
-            txtPay.Size = new Size(120, 27);
-            txtPay.TabIndex = 75;
+            lblPay.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblPay.AutoSize = true;
+            lblPay.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold);
+            lblPay.ForeColor = Color.FromArgb(34, 33, 74);
+            lblPay.Location = new Point(651, 462);
+            lblPay.Name = "lblPay";
+            lblPay.RightToLeft = RightToLeft.Yes;
+            lblPay.Size = new Size(62, 25);
+            lblPay.TabIndex = 75;
+            lblPay.Text = " ₱0.00";
             // 
             // btnPay
             // 
@@ -249,7 +253,6 @@
             btnPay.TextAlign = ContentAlignment.MiddleRight;
             btnPay.TextImageRelation = TextImageRelation.TextBeforeImage;
             btnPay.UseVisualStyleBackColor = false;
-            btnPay.TextChanged += txtPay_TextChanged;
             btnPay.Click += btnPay_Click;
             // 
             // datetpDate
@@ -277,17 +280,17 @@
             label2.TabIndex = 72;
             label2.Text = "Change:";
             // 
-            // lblPay
+            // lblPayCaption
             // 
-            lblPay.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            lblPay.AutoSize = true;
-            lblPay.Font = new Font("Segoe UI", 13F);
-            lblPay.ForeColor = Color.FromArgb(107, 114, 128);
-            lblPay.Location = new Point(581, 461);
-            lblPay.Name = "lblPay";
-            lblPay.Size = new Size(43, 25);
-            lblPay.TabIndex = 71;
-            lblPay.Text = "Pay:";
+            lblPayCaption.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblPayCaption.AutoSize = true;
+            lblPayCaption.Font = new Font("Segoe UI", 13F);
+            lblPayCaption.ForeColor = Color.FromArgb(107, 114, 128);
+            lblPayCaption.Location = new Point(581, 461);
+            lblPayCaption.Name = "lblPayCaption";
+            lblPayCaption.Size = new Size(43, 25);
+            lblPayCaption.TabIndex = 71;
+            lblPayCaption.Text = "Pay:";
             // 
             // lblTotal
             // 
@@ -309,9 +312,9 @@
             lblReceiptNo.ForeColor = Color.FromArgb(34, 33, 74);
             lblReceiptNo.Location = new Point(531, 121);
             lblReceiptNo.Name = "lblReceiptNo";
-            lblReceiptNo.Size = new Size(108, 25);
+            lblReceiptNo.Size = new Size(105, 25);
             lblReceiptNo.TabIndex = 69;
-            lblReceiptNo.Text = "Receipt No:";
+            lblReceiptNo.Text = "Invoice No:";
             // 
             // lblDate
             // 
@@ -460,7 +463,6 @@
             btnSearch.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnSearch.IconSize = 26;
             btnSearch.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             btnSearch.Location = new Point(353, 42);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(144, 40);
@@ -477,7 +479,6 @@
             txtSearch.BorderStyle = BorderStyle.FixedSingle;
             txtSearch.Font = new Font("Segoe UI", 14F);
             txtSearch.ForeColor = Color.FromArgb(34, 33, 74);
-            txtSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             txtSearch.Location = new Point(59, 46);
             txtSearch.Margin = new Padding(3, 2, 3, 2);
             txtSearch.Name = "txtSearch";
@@ -497,9 +498,9 @@
             Load += POS_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudQty).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgViewReceipt).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgProducts).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudQty).EndInit();
             ResumeLayout(false);
         }
 
@@ -514,13 +515,13 @@
         private FontAwesome.Sharp.IconButton btnCancel;
         private DateTimePicker datetpDate;
         private Label label2;
-        private Label lblPay;
+        private Label lblPayCaption;
         private Label lblTotal;
         private Label lblReceiptNo;
         private Label lblDate;
         private Label lblStorename;
         private FontAwesome.Sharp.IconButton btnPay;
-        private TextBox txtPay;
+        private Label lblPay;
         private DataGridView dgViewReceipt;
         private Label lblTotalReceipt;
         private Label lblChange;

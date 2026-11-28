@@ -24,6 +24,17 @@ namespace UI
             stockInBy = username;
             GridFormatHelper.ApplyModernStyle(dgProducts);
             GridFormatHelper.ApplyModernStyle(dgEntry);
+            dgProducts.CellFormatting += dgProducts_CellFormatting;
+        }
+
+        private void dgProducts_CellFormatting(object? sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0 || dgProducts.Columns[e.ColumnIndex].DataPropertyName != "Quantity") return;
+            if (e.Value is int stock && stock <= StockController.LowStockThreshold)
+            {
+                e.CellStyle.ForeColor = Color.Red;
+                e.CellStyle.Font = new Font(dgProducts.Font, FontStyle.Bold);
+            }
         }
 
         public StockEntry(string username, string productId, string supplierName) : this(username)
@@ -100,11 +111,15 @@ namespace UI
             dgProducts.DataSource = products;
             GridFormatHelper.HideColumns(dgProducts, "Category", "Supplier", "Amount");
             GridFormatHelper.SetHeaders(dgProducts, ("ProductId", "ID"), ("ProductName", "Product"), ("Quantity", "Stock"));
-            GridFormatHelper.SetColumnFillWeight(dgProducts, "ProductId", 19);
-            GridFormatHelper.SetColumnFillWeight(dgProducts, "ProductName", 35);
-            GridFormatHelper.SetColumnFillWeight(dgProducts, "Model", 16);
-            GridFormatHelper.SetColumnFillWeight(dgProducts, "Brand", 18);
-            GridFormatHelper.SetColumnFillWeight(dgProducts, "Quantity", 12);
+            foreach (string column in new[] { "ProductId", "Model", "Brand", "Quantity" })
+                if (dgProducts.Columns[column] is DataGridViewColumn fit)
+                    fit.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            if (dgProducts.Columns["ProductName"] is DataGridViewColumn name)
+            {
+                name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                name.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            }
+            dgProducts.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)

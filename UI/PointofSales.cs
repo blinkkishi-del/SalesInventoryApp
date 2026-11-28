@@ -13,6 +13,7 @@ namespace UI
         internal UserModel CurrentUser;
 
         private decimal orderDiscountPercent;
+        private decimal cashPaid;
 
         private decimal OrderDiscountOf(decimal grandTotal) => Math.Round(grandTotal * orderDiscountPercent / 100m, 2);
 
@@ -21,7 +22,6 @@ namespace UI
             InitializeComponent();
             productController = new ProductController();
             salesController = new SalesController();
-            txtPay.TextChanged += txtPay_TextChanged;
             txtSearch.KeyDown += txtSearch_KeyDown;
             datetpDate.Enabled = false;
         }
@@ -29,6 +29,7 @@ namespace UI
         private void POS_Load(object sender, EventArgs e)
         {
             orderController = new OrderProductController(CurrentUser?.Username);
+            ShowNextReceiptNo();
             LoadProducts();
             RefreshReceiptGrid();
             UpdateTotalAndChange();
@@ -39,6 +40,11 @@ namespace UI
             dgViewReceipt.ReadOnly = true;
             dgViewReceipt.AllowUserToAddRows = false;
             dgViewReceipt.AllowUserToDeleteRows = false;
+        }
+
+        private void ShowNextReceiptNo()
+        {
+            lblReceiptNo.Text = "Invoice No: " + salesController.GetNextReceiptNo();
         }
 
         private void LoadProducts()
@@ -187,20 +193,8 @@ namespace UI
             decimal total = grandTotal - OrderDiscountOf(grandTotal);
             lblTotalReceipt.Text = " ₱" + total.ToString("N2")
                 + (orderDiscountPercent > 0 ? $"  (-{orderDiscountPercent:0.##}% order)" : "");
-            if (decimal.TryParse(txtPay.Text, out decimal payment))
-            {
-                decimal change = payment - total;
-                lblChange.Text = " ₱" + change.ToString("N2");
-            }
-            else
-            {
-                lblChange.Text = " ₱0.00";
-            }
-        }
-
-        private void txtPay_TextChanged(object sender, EventArgs e)
-        {
-            UpdateTotalAndChange();
+            lblPay.Text = " ₱" + cashPaid.ToString("N2");
+            lblChange.Text = " ₱" + (cashPaid > 0 ? cashPaid - total : 0).ToString("N2");
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -260,10 +254,8 @@ namespace UI
             orderDiscountPercent = 0;
             orderController.ClearAllOrders();
             RefreshReceiptGrid();
+            cashPaid = 0;
             UpdateTotalAndChange();
-            txtPay.Clear();
-            lblChange.Text = " ₱0.00";
-            lblTotalReceipt.Text = " ₱0.00";
         }
         private void btnDiscount_Click(object sender, EventArgs e)
         {
@@ -306,12 +298,12 @@ namespace UI
             decimal grandTotal = orders.Sum(o => o.TotalPrice);
             decimal total = grandTotal - OrderDiscountOf(grandTotal);
 
-            decimal typed = decimal.TryParse(txtPay.Text, out decimal t) ? t : 0;
-            using (var settle = new SettleForm(total, typed))
+            using (var settle = new SettleForm(total, cashPaid))
             {
                 if (settle.ShowDialog(this) != DialogResult.OK) return;
-                txtPay.Text = settle.Cash.ToString("0.##");
+                cashPaid = settle.Cash;
             }
+            UpdateTotalAndChange();
             try
             {
                 var products = productController.GetProductsOrderedByStock();
@@ -336,16 +328,19 @@ namespace UI
                 }
 
                 string receiptNo = salesController.Checkout(lines, CurrentUser?.Username, orderDiscountPercent);
-                lblReceiptNo.Text = "Receipt No: " + receiptNo;
+                lblReceiptNo.Text = "Invoice No: " + receiptNo;
 
                 PrintReceiptPreview(receiptNo);
                 orderController.ClearAllOrders();
                 orderDiscountPercent = 0;
                 RefreshReceiptGrid();
                 LoadProducts();
-                lblTotalReceipt.Text = "Total: ₱0.00";
-                lblChange.Text = "Change: ₱0.00";
-                txtPay.Clear();
+                ShowNextReceiptNo();
+                string paidText = lblPay.Text, changeText = lblChange.Text;
+                cashPaid = 0;
+                UpdateTotalAndChange();
+                lblPay.Text = paidText;
+                lblChange.Text = changeText;
                 MessageBox.Show("Order processed successfully!", "Success",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -366,7 +361,7 @@ namespace UI
             decimal subtotal = grandTotal + totalDiscount;
             decimal orderDiscount = OrderDiscountOf(grandTotal);
             decimal total = grandTotal - orderDiscount;
-            decimal paid = decimal.TryParse(txtPay.Text, out var p) ? p : 0;
+            decimal paid = cashPaid;
             decimal change = paid - total;
 
             const int paperWidth = 280;
@@ -435,7 +430,7 @@ namespace UI
 
                 e.Graphics.DrawString("Homexa", headerFont, Brushes.Black, centerX, y, center);
                 y += headerFont.Height + 2;
-                e.Graphics.DrawString($"Receipt No: {receiptNo}", subHeaderFont, Brushes.Black, centerX, y, center);
+                e.Graphics.DrawString($"Invoice No: {receiptNo}", subHeaderFont, Brushes.Black, centerX, y, center);
                 y += subHeaderFont.Height + 2;
                 e.Graphics.DrawString("INVOICE RECEIPT", subHeaderFont, Brushes.Black, centerX, y, center);
                 y += subHeaderFont.Height + 4;
